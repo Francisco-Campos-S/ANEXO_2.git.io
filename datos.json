@@ -1,0 +1,821 @@
+{
+  "estudiantes": [
+    {
+      "numero": 1,
+      "nombre": "Agüero Brénes Freyser",
+      "seccion": "7-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 2,
+      "nombre": "Guillen Chávez Omar Rafael",
+      "seccion": "7-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 3,
+      "nombre": "Guillen Guido Eneizer",
+      "seccion": "7-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 4,
+      "nombre": "Morales Arosemena Keilor Joshua ",
+      "seccion": "7-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente Cambio de apellidos Arosemena Siles"
+    },
+    {
+      "numero": 5,
+      "nombre": "González Martínez Josué ",
+      "seccion": "7-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 6,
+      "nombre": "Briones Sánchez Yeisliany",
+      "seccion": "7-2",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 7,
+      "nombre": "Cerdas Guerrero Rihanna",
+      "seccion": "7-2",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 8,
+      "nombre": "Cortes Espinoza Sara Ibeth",
+      "seccion": "7-2",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 9,
+      "nombre": "Franco Caballero Bayron",
+      "seccion": "7–2",
+      "cedula": "",
+      "observaciones": "Según nota de matrícula que señala adecuación. Falta Revisar expediente"
+    },
+    {
+      "numero": 10,
+      "nombre": "Martínez Artola Julisa",
+      "seccion": "7-2",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 11,
+      "nombre": "Palacios Montezuma Kenya ",
+      "seccion": "7-2",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 12,
+      "nombre": "Ávila Ramírez Alejandra Victoria",
+      "seccion": "8-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 13,
+      "nombre": "Caballero González Angie Guiselle",
+      "seccion": "8-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 14,
+      "nombre": "Caballero Mora Janish",
+      "seccion": "8-1",
+      "cedula": "",
+      "observaciones": "No se observa en expediente el último nivel de funcionamiento, el docente lo asigna según su valoración del diagnóstico aplicado."
+    },
+    {
+      "numero": 15,
+      "nombre": "Guerra Pineda Astri Vanessa",
+      "seccion": "8-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 16,
+      "nombre": "Hidalgo Vindas Lashmy",
+      "seccion": "8-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 17,
+      "nombre": "Mora Castillo Elvis Antonio",
+      "seccion": "8-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 18,
+      "nombre": "Muñoz Valdez Owen",
+      "seccion": "8-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 19,
+      "nombre": "Rodríguez Rodríguez Adcison",
+      "seccion": "8-1",
+      "cedula": "",
+      "observaciones": "Nivel de funcionamiento en el 2023 Est Soc III grado, Educación Cívica no aparece en el expediente, Ciencias III grado, Matemáticas III grado, Español III grado, Religión III grado e Ingles 5° grado en el 2022. El docente valora si lo sube de nivel."
+    },
+    {
+      "numero": 20,
+      "nombre": "Salazar Chandler Jefferson Samir",
+      "seccion": "8-1",
+      "cedula": "",
+      "observaciones": "Según revisión de expediente el 07/05/2025 el mismo no indica nivel de funcionamiento en ninguna asignatura. El docente valora el nivel a trabajar con el estudiante."
+    },
+    {
+      "numero": 21,
+      "nombre": "Umaña Ortiz Rutvel",
+      "seccion": "8-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 22,
+      "nombre": "Vega Samudio Dianeth",
+      "seccion": "8-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 23,
+      "nombre": "Jiménez Palacios Johel David",
+      "seccion": "8-2",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 24,
+      "nombre": "Morales Cedeño Reichel",
+      "seccion": "8-2",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 25,
+      "nombre": "Quiel Espinoza Maikel Jaccir",
+      "seccion": "8-2",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 26,
+      "nombre": "Torres Álvarez Dixon Bacduel",
+      "seccion": "8-2",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 27,
+      "nombre": "Alvarado Carrera Antoni",
+      "seccion": "9-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 28,
+      "nombre": "Pineda Zúñiga María José",
+      "seccion": "9-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 29,
+      "nombre": "Macres Gamboa Fernanda",
+      "seccion": "9-2",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 30,
+      "nombre": "Restrepo Mora Andrés Alexander",
+      "seccion": "9-2",
+      "cedula": "",
+      "observaciones": "Audición: A partir de 10-04-25 se valorará con ADNS por solicitud de levantamiento de su apoyo."
+    },
+    {
+      "numero": 31,
+      "nombre": "Arauz González Brayan",
+      "seccion": "9-3",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 32,
+      "nombre": "Quintero Mora Ryan Enrique",
+      "seccion": "9-3",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 33,
+      "nombre": "Concepción Hurtado (Quesada) Joseth David",
+      "seccion": "10-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 34,
+      "nombre": "Obregón Ríos Guiselle Dayana",
+      "seccion": "10-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 35,
+      "nombre": "Palacios Vigil Dayron",
+      "seccion": "10-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 36,
+      "nombre": "Ruiz Villareal Adriana Floribeth",
+      "seccion": "10-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 37,
+      "nombre": "Degracia Pitti Yosbeh Aurelio",
+      "seccion": "10-2",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 38,
+      "nombre": "Mora Alvarado David",
+      "seccion": "10-2",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 39,
+      "nombre": "Sánchez Chinchilla Genesis Victoria",
+      "seccion": "10-2",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 40,
+      "nombre": "Madriz Marín Keilor",
+      "seccion": "10-3",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 41,
+      "nombre": "Morales Villagra Nicole",
+      "seccion": "10-3",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 42,
+      "nombre": "Largaespada Gallardo Kristen Arlin",
+      "seccion": "10-4",
+      "cedula": "",
+      "observaciones": "La revisión del expediente se dio el 21/ 05/25"
+    },
+    {
+      "numero": 43,
+      "nombre": "Arcellu Martínez Miguel Ángel",
+      "seccion": "11-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 44,
+      "nombre": "Figueros Víquez Kristel",
+      "seccion": "11-1",
+      "cedula": "",
+      "observaciones": "Se recomienda según expediente atención individual y dar tiempo adicional"
+    },
+    {
+      "numero": 45,
+      "nombre": "Sequeira Pitti Jean Carlo",
+      "seccion": "11-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 46,
+      "nombre": "Silva Castro Cristofer",
+      "seccion": "11-1",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 47,
+      "nombre": "Artavia López Eduardo Antonio",
+      "seccion": "11-2",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 48,
+      "nombre": "Carmona López José",
+      "seccion": "11-2",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 49,
+      "nombre": "Cortez Cerdas Dasly Nikole",
+      "seccion": "11-2",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 50,
+      "nombre": "Valencia García Natalia Vanesa",
+      "seccion": "11-2",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 51,
+      "nombre": "Caballera Artavia Austin",
+      "seccion": "11-3",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 52,
+      "nombre": "Delgado Cianca Alexa Fernanda",
+      "seccion": "11-3",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 53,
+      "nombre": "Castillo Contreras Jonjansson",
+      "seccion": "11-3",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 54,
+      "nombre": "Gonzales Batista Maikol",
+      "seccion": "11-3",
+      "cedula": "",
+      "observaciones": "Revisar expediente."
+    },
+    {
+      "numero": 55,
+      "nombre": "Guillén Chaves Sorangel Damaris",
+      "seccion": "11-3",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 56,
+      "nombre": "Muños García Ariana",
+      "seccion": "11-3",
+      "cedula": "",
+      "observaciones": "Según expediente en las asignaturas de español y estudios sociales."
+    },
+    {
+      "numero": 57,
+      "nombre": "Rodríguez Pimentel Kevin Antonio",
+      "seccion": "11-3",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 58,
+      "nombre": "Amador Montiel Leny Yohel",
+      "seccion": "11-4",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 59,
+      "nombre": "Arauz Saavedra Katry",
+      "seccion": "11-4",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 60,
+      "nombre": "Montero Araya Juleisy Pamela",
+      "seccion": "11-4",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 61,
+      "nombre": "Torres Artavia Daniel Duban",
+      "seccion": "11-4",
+      "cedula": "",
+      "observaciones": "Revisar Expediente"
+    },
+    {
+      "numero": 62,
+      "nombre": "Villareal Concepción Breiner Aarón",
+      "seccion": "11-4",
+      "cedula": "",
+      "observaciones": "Revisar Expediente."
+    },
+    {
+      "numero": 63,
+      "nombre": "González Corrales Laura",
+      "seccion": "11-5",
+      "cedula": "",
+      "observaciones": "Español y la Ciencias. "
+    }
+  ],
+  "apoyos": {
+    "personales": [
+      {
+        "codigo": "A.P.1",
+        "descripcion": "Utilizar su cercanía física para mantenerlo atento a la clase. "
+      },
+      {
+        "codigo": "A.P.2",
+        "descripcion": "Utilizar la tutoría entre compañeros. "
+      },
+      {
+        "codigo": "A.P.3",
+        "descripcion": "Brindar acercamiento físico y las manifestaciones de apoyo. "
+      },
+      {
+        "codigo": "A.P.4",
+        "descripcion": "Reforzar cada logro por más pequeño que este sea. "
+      },
+      {
+        "codigo": "A.P.5",
+        "descripcion": "Reforzar la autoestima mediante actividades que le permitan éxito, particularizando en características cognitivas y sociales. "
+      },
+      {
+        "codigo": "A.P.6",
+        "descripcion": "Utilizar constantemente la estrategia de trabajo cooperativo con la finalidad de que logre beneficiar y beneficiarse de las experiencias de otros compañeros y así reforzar su seguridad en la ejecución de los aprendizajes. "
+      },
+      {
+        "codigo": "A.P.7",
+        "descripcion": "Dar responsabilidades especificas al estudiante dentro del aula y hogar para reforzar su autoconfianza generando responsabilidad e independencia. "
+      },
+      {
+        "codigo": "A.P.8",
+        "descripcion": "Utilizar dentro de la propuesta pedagógica actividades que refuercen la autoestima como: expresión de sentimientos, respeto a la diferencia y tolerancia. "
+      },
+      {
+        "codigo": "A.P.9",
+        "descripcion": "Utilizar reforzadores sociales como: \"muy bien\", \"usted puede\" y \"siga así\". "
+      },
+      {
+        "codigo": "A.P.10",
+        "descripcion": "Utilizar canales sensoriales como: auditivos, kinestésico y táctil para presentar la materia. "
+      },
+      {
+        "codigo": "A.P.11",
+        "descripcion": "Generar alguna técnica para recordar frecuentemente la entrega de trabajos a largo plazo."
+      },
+      {
+        "codigo": "A.P.12",
+        "descripcion": "Referir a otros especialistas (orientador, docente de apoyo, psicología, terapia física, terapia de lenguaje, otros). "
+      },
+      {
+        "codigo": "A.P.13",
+        "descripcion": "Otros:"
+      }
+    ],
+    "organizativos": [
+      {
+        "codigo": "A.A.13",
+        "descripcion": "Ubicar al estudiante cerca de compañeros que no se desconcentren."
+      },
+      {
+        "codigo": "A.A.14",
+        "descripcion": "Ubicar al estudiante donde mejor pueda ver la pizarra. "
+      },
+      {
+        "codigo": "A.A.15",
+        "descripcion": "Sentar al estudiante en un lugar donde tenga buena iluminación"
+      },
+      {
+        "codigo": "A.A.16",
+        "descripcion": "Considerar colocar los asientos en semicírculo."
+      },
+      {
+        "codigo": "A.A.17",
+        "descripcion": "Rotular objetos y partes importantes de la clase."
+      },
+      {
+        "codigo": "A.A.18",
+        "descripcion": "Organizar y agrupar los y las estudiantes de acuerdo con sus intereses motivacionales"
+      },
+      {
+        "codigo": "A.A.19",
+        "descripcion": "Organizar el tiempo y del espacio para mejorar el clima organizacional."
+      },
+      {
+        "codigo": "A.A.20",
+        "descripcion": "Anotar la fecha de exámenes y entrega de trabajo en un lugar visible."
+      },
+      {
+        "codigo": "A.A.21",
+        "descripcion": "Establecer rutinas de trabajo."
+      },
+      {
+        "codigo": "A.A.22",
+        "descripcion": "Anotar en la pizarra el número de página y/o ejercicios a realizar."
+      },
+      {
+        "codigo": "A.A.23",
+        "descripcion": "Otras:"
+      }
+    ],
+    "materiales": [
+      {
+        "codigo": "A.A.23",
+        "descripcion": "Ampliar la letra al tamaño que el estudiante sienta mejor."
+      },
+      {
+        "codigo": "A.A.24",
+        "descripcion": "Permitir el uso de lámparas y lupas para que pueda tener una mejor visión."
+      },
+      {
+        "codigo": "A.A.25",
+        "descripcion": "Utilización de rotafolios escribiendo con marcador grueso y letra amplia como material de apoyo de temas vistos en clase."
+      },
+      {
+        "codigo": "A.A.26",
+        "descripcion": "Permitir el uso de dispositivos para que realice grabaciones en clases."
+      },
+      {
+        "codigo": "A.A.27",
+        "descripcion": "Usar marcadores gruesos preferiblemente azul o negro para escribir en la pizarra."
+      },
+      {
+        "codigo": "A.A.28",
+        "descripcion": "Permitir el uso del diccionario para ejecución de trabajo cotidiano y pruebas."
+      },
+      {
+        "codigo": "A.A.29",
+        "descripcion": "Usar láminas, mapas, gráficos y vídeos relacionados con los aprendizajes que se desarrollan."
+      },
+      {
+        "codigo": "A.A.30",
+        "descripcion": "Permitir el uso de las tablas de multiplicar para ejecución de trabajo cotidiano y pruebas."
+      },
+      {
+        "codigo": "A.A.31",
+        "descripcion": "Permitir el uso de la calculadora para la ejecución de trabajo cotidiano y pruebas."
+      },
+      {
+        "codigo": "A.A.32",
+        "descripcion": "Permitir el uso de fichas con las fórmulas matemáticas para ejecución de trabajo cotidiano y pruebas."
+      },
+      {
+        "codigo": "A.A.33",
+        "descripcion": "Al utilizar la explicación verbal acompáñela de una explicación visual gráfica."
+      },
+      {
+        "codigo": "A.A.34",
+        "descripcion": "Facilitar el material impreso en caso de ser necesario."
+      },
+      {
+        "codigo": "A.A.35",
+        "descripcion": "Brindar al estudiante fichas que contengan información de los aprendizajes vistos en clases."
+      },
+      {
+        "codigo": "A.A.36",
+        "descripcion": "Facilitar material de reforzamiento para hacer en casa."
+      },
+      {
+        "codigo": "A.A.37",
+        "descripcion": "Facilitar cuestionarios como material de apoyo."
+      },
+      {
+        "codigo": "A.A.38",
+        "descripcion": "Utilizar un diccionario ilustrado de conceptos básicos como palabras claves y estructuras gramaticales."
+      },
+      {
+        "codigo": "A.A.39:",
+        "descripcion": "Otras:"
+      }
+    ],
+    "curriculares": [
+      {
+        "codigo": "A.C.39",
+        "descripcion": "Ajustar los aprendizajes esperados del programa según nivel de funcionamiento."
+      },
+      {
+        "codigo": "A.C.40",
+        "descripcion": "Utilizar canales sensoriales como: auditivos, kinestésico y táctil para transmitir los aprendizajes."
+      },
+      {
+        "codigo": "A.C.41",
+        "descripcion": "Permitir más tiempo para terminar los trabajos cotidianos individualmente.  "
+      },
+      {
+        "codigo": "A.C.42",
+        "descripcion": "Permitir al estudiante que se comunique como mejor pueda."
+      },
+      {
+        "codigo": "A.C.43",
+        "descripcion": "Apoyar en señas y gestos al comunicarse."
+      },
+      {
+        "codigo": "A.C.44",
+        "descripcion": "Hablar siempre frente al estudiante (contacto visual)."
+      },
+      {
+        "codigo": "A.C.45",
+        "descripcion": "De ser necesario disminuir la longitud y la cantidad de las tareas y/o actividades."
+      },
+      {
+        "codigo": "A.C.46",
+        "descripcion": "Utilizar hojas y material de trabajo poco recargados."
+      },
+      {
+        "codigo": "A.C.47",
+        "descripcion": "Involucrar al estudiante durante la lección, es decir participación frecuente utilizando la realimentación.  "
+      },
+      {
+        "codigo": "A.C.48",
+        "descripcion": "Dividir la actividad o tarea en partes y déselas una por una.  "
+      },
+      {
+        "codigo": "A.C.49",
+        "descripcion": "Permitir un rato de descanso entre una actividad y otra."
+      },
+      {
+        "codigo": "A.C.50",
+        "descripcion": "Combinar la teoría con la práctica. "
+      },
+      {
+        "codigo": "A.C.51",
+        "descripcion": "Solicitar al estudiante que repita las indicaciones para asegurarnos de que las haya entendido."
+      },
+      {
+        "codigo": "A.C.52",
+        "descripcion": "Apoyar las indicaciones orales con indicaciones escritas. "
+      },
+      {
+        "codigo": "A.C.53",
+        "descripcion": "Dar las indicaciones de manera clara y correcta."
+      },
+      {
+        "codigo": "A.C.54",
+        "descripcion": "Hacer preguntas de repaso y control de la materia."
+      },
+      {
+        "codigo": "A.C.55",
+        "descripcion": "Describir reiteradamente las acciones solicitadas."
+      },
+      {
+        "codigo": "A.C.56",
+        "descripcion": "Utilizar dentro de la propuesta pedagógica actividades que refuercen la autoestima como: expresión de sentimientos, respeto a la diferencia y la tolerancia."
+      },
+      {
+        "codigo": "A.C.57",
+        "descripcion": "Dar responsabilidades específicas al estudiante dentro del aula para reforzar su autoconfianza generando responsabilidad e independencia."
+      },
+      {
+        "codigo": "A.C.58",
+        "descripcion": "Ajustar y/o modificar las prácticas hechas en clase al ritmo de aprendizaje del estudiante."
+      },
+      {
+        "codigo": "A.C.59",
+        "descripcion": "Tocar su hombro cuando se distrae o establezca un código para llamar su atención."
+      },
+      {
+        "codigo": "A.C.60",
+        "descripcion": "Permitir al estudiante use el dedo como guía al leer."
+      },
+      {
+        "codigo": "A.C.61",
+        "descripcion": "Reforzar constantemente los logros obtenidos."
+      },
+      {
+        "codigo": "A.C.62",
+        "descripcion": "Reducir la cantidad de palabras en una redacción."
+      },
+      {
+        "codigo": "A.C.63",
+        "descripcion": "Devolver los trabajos que realiza muy rápido para que los revise. "
+      },
+      {
+        "codigo": "A.C.64",
+        "descripcion": "Dividir el trabajo de clase de tal manera que, si queda algo pendiente, pueda terminarlo en la casa."
+      },
+      {
+        "codigo": "A.C.65",
+        "descripcion": "Relacionar la escritura del estudiante con su fonética y no evaluar o restar puntos por el error."
+      },
+      {
+        "codigo": "A.C.66",
+        "descripcion": "Desarrollar metodología sobre un solo tema a la vez."
+      },
+      {
+        "codigo": "A.C.67",
+        "descripcion": "Facilitar prácticas de reforzamiento para hacer en casa."
+      },
+      {
+        "codigo": "A.C.68",
+        "descripcion": "Utilizar la técnica de la dramatización."
+      },
+      {
+        "codigo": "A.C.69",
+        "descripcion": "Establecer rutinas de trabajo."
+      },
+      {
+        "codigo": "A.C.70",
+        "descripcion": "Enseñar al estudiante a auto comprobarse utilizando señales."
+      },
+      {
+        "codigo": "A.C.71",
+        "descripcion": "Disminuir la cantidad de ejercicios repetitivos."
+      },
+      {
+        "codigo": "A.C.72",
+        "descripcion": "Trabajar con fichas."
+      },
+      {
+        "codigo": "A.C.73",
+        "descripcion": "Otras:"
+      }
+    ],
+    "evaluativos": [
+      {
+        "codigo": "A.C.73",
+        "descripcion": "Dar tiempo adicional para la realización de los trabajos en clase y las pruebas."
+      },
+      {
+        "codigo": "A.C.74",
+        "descripcion": "Utilizar solamente ítems de selección simple."
+      },
+      {
+        "codigo": "A.C.75",
+        "descripcion": "Resolver la prueba en recinto aparte."
+      },
+      {
+        "codigo": "A.C.76",
+        "descripcion": "Aplicar prueba específica."
+      },
+      {
+        "codigo": "A.C.77",
+        "descripcion": "Omitir la calificación de la caligrafía."
+      },
+      {
+        "codigo": "A.C.78",
+        "descripcion": "Ajustar el tamaño de la letra."
+      },
+      {
+        "codigo": "A.C.79",
+        "descripcion": "Aplicar una prueba por día."
+      },
+      {
+        "codigo": "A.C.80",
+        "descripcion": "Eliminar ítems memorísticos."
+      },
+      {
+        "codigo": "A.C.81",
+        "descripcion": "Aplicar evaluaciones cortas y frecuentes."
+      },
+      {
+        "codigo": "A.C.82",
+        "descripcion": "Tutor especialista."
+      },
+      {
+        "codigo": "A.C.83",
+        "descripcion": "Permitir emitir algunas respuestas de manera oral y la transcripción por parte de la persona docente, ante el rezago en el proceso de lectoescritura."
+      },
+      {
+        "codigo": "A.C.84",
+        "descripcion": "Permitir el uso del diccionario."
+      },
+      {
+        "codigo": "A.C.85",
+        "descripcion": "Usar tablas de multiplicar y formulas."
+      },
+      {
+        "codigo": "A.C.86",
+        "descripcion": "Usar la calculadora."
+      },
+      {
+        "codigo": "A.C.87",
+        "descripcion": "Otras:"
+      }
+    ]
+  }
+}

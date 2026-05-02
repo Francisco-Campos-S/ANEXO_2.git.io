@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Anexo 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .status {
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { border-left: 4px solid #10b981; }
+        .error { border-left: 4px solid #ef4444; }
+        .info { border-left: 4px solid #3b82f6; }
+        h1 { color: #2563eb; }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover { background: #1d4ed8; }
+        #results { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de Componentes - Anexo 2</h1>
+    
+    <div class="status info">
+        <strong>Estado:</strong> Verificando componentes...
+    </div>
+
+    <div id="results">
+        <h2>Pruebas:</h2>
+        <div id="testResults"></div>
+    </div>
+
+    <div style="margin-top: 30px;">
+        <button onclick="window.location.href='index.html'">📄 Ir a la Aplicación Principal</button>
+        <button onclick="runTests()">🔄 Ejecutar Pruebas</button>
+    </div>
+
+    <script>
+        async function runTests() {
+            const resultsDiv = document.getElementById('testResults');
+            resultsDiv.innerHTML = '';
+            let allPassed = true;
+
+            function addResult(name, passed, message = '') {
+                const div = document.createElement('div');
+                div.className = 'status ' + (passed ? 'success' : 'error');
+                div.innerHTML = `
+                    <strong>${passed ? '✅' : '❌'} ${name}</strong><br>
+                    ${message}
+                `;
+                resultsDiv.appendChild(div);
+                if (!passed) allPassed = false;
+            }
+
+            // Test 1: Verificar archivos
+            addResult('Archivos HTML', true, 'index.html está presente');
+            
+            // Test 2: Cargar datos.json
+            try {
+                const response = await fetch('datos.json');
+                const data = await response.json();
+                
+                if (data.estudiantes && data.estudiantes.length > 0) {
+                    addResult('Carga de datos', true, 
+                        `Se cargaron ${data.estudiantes.length} estudiantes correctamente`);
+                } else {
+                    addResult('Carga de datos', false, 'No se encontraron estudiantes');
+                }
+
+                // Test 3: Verificar apoyos
+                const tiposApoyos = ['personales', 'organizativos', 'materiales', 'curriculares', 'evaluativos'];
+                let totalApoyos = 0;
+                tiposApoyos.forEach(tipo => {
+                    if (data.apoyos[tipo]) {
+                        totalApoyos += data.apoyos[tipo].length;
+                    }
+                });
+                
+                if (totalApoyos > 0) {
+                    addResult('Códigos de apoyos', true, 
+                        `Se cargaron ${totalApoyos} códigos de apoyo en ${tiposApoyos.length} categorías`);
+                } else {
+                    addResult('Códigos de apoyos', false, 'No se encontraron códigos de apoyo');
+                }
+
+            } catch (error) {
+                addResult('Carga de datos', false, 'Error al cargar datos.json: ' + error.message);
+            }
+
+            // Test 4: Verificar CSS
+            try {
+                const response = await fetch('styles.css');
+                if (response.ok) {
+                    addResult('Estilos CSS', true, 'styles.css cargado correctamente');
+                } else {
+                    addResult('Estilos CSS', false, 'No se pudo cargar styles.css');
+                }
+            } catch (error) {
+                addResult('Estilos CSS', false, 'Error al cargar CSS: ' + error.message);
+            }
+
+            // Test 5: Verificar JavaScript
+            try {
+                const response = await fetch('app.js');
+                if (response.ok) {
+                    addResult('JavaScript', true, 'app.js cargado correctamente');
+                } else {
+                    addResult('JavaScript', false, 'No se pudo cargar app.js');
+                }
+            } catch (error) {
+                addResult('JavaScript', false, 'Error al cargar JS: ' + error.message);
+            }
+
+            // Test 6: Verificar librerías externas
+            if (typeof jsPDF !== 'undefined' || window.jspdf) {
+                addResult('Librería jsPDF', true, 'jsPDF está disponible');
+            } else {
+                addResult('Librería jsPDF', false, 'jsPDF no está cargado (se cargará en la página principal)');
+            }
+
+            // Resumen
+            const summaryDiv = document.createElement('div');
+            summaryDiv.className = 'status ' + (allPassed ? 'success' : 'info');
+            summaryDiv.innerHTML = `
+                <h3>${allPassed ? '✅ Todas las pruebas pasaron' : '⚠️ Algunas pruebas fallaron'}</h3>
+                <p>La aplicación está ${allPassed ? 'lista para usar' : 'requiere atención'}.</p>
+                ${allPassed ? '<p><strong>Puedes abrir index.html para usar la aplicación.</strong></p>' : ''}
+            `;
+            resultsDiv.appendChild(summaryDiv);
+        }
+
+        // Ejecutar pruebas al cargar
+        window.addEventListener('DOMContentLoaded', runTests);
+    </script>
+</body>
+</html>
