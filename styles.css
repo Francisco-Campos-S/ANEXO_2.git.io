@@ -205,6 +205,42 @@ body::before {
     display: none;
 }
 
+.nav-filtro-seccion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.6rem 1rem;
+    margin-top: 1rem;
+    padding: 0.65rem 1.25rem;
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.nav-filtro-seccion label {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.96);
+}
+
+.select-filtro-seccion-global {
+    min-width: 160px;
+    max-width: min(260px, 90vw);
+    padding: 0.45rem 0.85rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--text-dark);
+    font-size: 0.92rem;
+    cursor: pointer;
+}
+
+.select-filtro-seccion-global:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.45);
+}
+
 /* Secciones */
 .seccion {
     display: none;

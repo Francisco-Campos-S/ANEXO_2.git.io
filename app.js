@@ -44,9 +44,8 @@ async function cargarDatos() {
 function inicializarApp() {
     if (!datos) return;
     
-    // Llenar selectores de estudiantes
-    llenarSelectEstudiantes('estudianteSelect_esp');
-    llenarSelectEstudiantes('estudianteSelect_mat');
+    poblarOpcionesFiltroSeccionGlobal();
+    aplicarFiltroSeccionSoloListas('');
     
     // Llenar guías de códigos
     llenarGuiaCodigos();
@@ -55,11 +54,9 @@ function inicializarApp() {
     // Tablas Anexo 2 y Anexo 10 usan los mismos selectores (.codigo-select-anexo10)
     llenarSelectsCodigosAnexo10();
     
-    // Llenar tabla de estudiantes
-    llenarTablaEstudiantes();
-    
-    // Configurar navegación
+    // Configurar navegación y filtro de sección (solo pantalla)
     configurarNavegacion();
+    configurarFiltroSeccionGlobal();
     
     // Configurar eventos de estudiantes
     configurarEventosEstudiantes();
@@ -93,19 +90,35 @@ function inicializarApp() {
     
     // Configurar barra de progreso
     configurarBarraProgreso();
+
+    document.getElementById('estudianteSelect_esp')?.dispatchEvent(new Event('change'));
+    document.getElementById('estudianteSelect_mat')?.dispatchEvent(new Event('change'));
     
     // Configurar contadores de códigos
     configurarContadores();
 }
 
-// Llenar selector de estudiantes
-function llenarSelectEstudiantes(selectId) {
+/** Normaliza sección (guiones tipográficos, espacios) para filtrar en pantalla. No afecta el PDF. */
+function normalizarClaveSeccion(str) {
+    return String(str || '')
+        .replace(/[\u2013\u2014\u2212]/g, '-')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .toLowerCase();
+}
+
+// Llenar selector de estudiantes (opcional: filtroClaveNorm = clave de sección del filtro global)
+function llenarSelectEstudiantes(selectId, filtroClaveNorm = '') {
     const select = document.getElementById(selectId);
-    if (!select) return;
-    
+    if (!select || !datos?.estudiantes) return;
+
+    const nombrePrevio = select.value;
+    const filtro = filtroClaveNorm ? normalizarClaveSeccion(filtroClaveNorm) : '';
+
     select.innerHTML = '<option value="">Seleccione un estudiante...</option>';
-    
-    datos.estudiantes.forEach(estudiante => {
+
+    datos.estudiantes.forEach((estudiante) => {
+        if (filtro && normalizarClaveSeccion(estudiante.seccion) !== filtro) return;
         const option = document.createElement('option');
         option.value = estudiante.nombre;
         option.textContent = estudiante.nombre;
@@ -113,6 +126,69 @@ function llenarSelectEstudiantes(selectId) {
         option.dataset.observaciones = estudiante.observaciones;
         select.appendChild(option);
     });
+
+    const sigue = Array.from(select.options).some((o) => o.value === nombrePrevio);
+    if (sigue) {
+        select.value = nombrePrevio;
+    } else {
+        select.value = '';
+        const tipo = selectId.includes('_mat') ? 'mat' : 'esp';
+        const autoS = document.getElementById(`seccionAuto_${tipo}`);
+        const autoN = document.getElementById(`nivelAuto_${tipo}`);
+        if (autoS) autoS.textContent = '';
+        if (autoN) autoN.textContent = '';
+    }
+}
+
+function poblarOpcionesFiltroSeccionGlobal() {
+    const sel = document.getElementById('filtroSeccionGlobal');
+    if (!sel || !datos?.estudiantes) return;
+
+    const prev = sel.value;
+    sel.innerHTML = '<option value="">Todas las secciones</option>';
+
+    const unicas = new Map();
+    datos.estudiantes.forEach((e) => {
+        const clave = normalizarClaveSeccion(e.seccion);
+        if (!clave) return;
+        if (!unicas.has(clave)) unicas.set(clave, String(e.seccion || '').trim());
+    });
+
+    [...unicas.entries()]
+        .sort((a, b) => a[1].localeCompare(b[1], 'es', { numeric: true, sensitivity: 'base' }))
+        .forEach(([clave, etiqueta]) => {
+            const option = document.createElement('option');
+            option.value = clave;
+            option.textContent = etiqueta || clave;
+            sel.appendChild(option);
+        });
+
+    if (prev && [...sel.options].some((o) => o.value === prev)) sel.value = prev;
+}
+
+/** Solo rellena listas/tablas sin eventos (útil antes de registrar listeners). */
+function aplicarFiltroSeccionSoloListas(filtroClaveNorm = '') {
+    llenarSelectEstudiantes('estudianteSelect_esp', filtroClaveNorm);
+    llenarSelectEstudiantes('estudianteSelect_mat', filtroClaveNorm);
+    llenarTablaEstudiantes(filtroClaveNorm);
+}
+
+/** Refresca selects + tabla y actualiza estado del formulario (solo interfaz). */
+function refrescarListasEstudiantesPorFiltroActual() {
+    const sel = document.getElementById('filtroSeccionGlobal');
+    const filtroNorm = sel && sel.value ? sel.value.trim() : '';
+    aplicarFiltroSeccionSoloListas(filtroNorm);
+
+    document.getElementById('estudianteSelect_esp')?.dispatchEvent(new Event('change'));
+    document.getElementById('estudianteSelect_mat')?.dispatchEvent(new Event('change'));
+    actualizarBarraProgresoConPorcentaje();
+}
+
+function configurarFiltroSeccionGlobal() {
+    const sel = document.getElementById('filtroSeccionGlobal');
+    if (!sel || sel.dataset.filtroSeccionAttached) return;
+    sel.dataset.filtroSeccionAttached = '1';
+    sel.addEventListener('change', refrescarListasEstudiantesPorFiltroActual);
 }
 
 // Llenar guía de códigos (Español)
@@ -178,17 +254,21 @@ function llenarSelectCodigos(select, apoyos) {
     });
 }
 
-// Llenar tabla de estudiantes
-function llenarTablaEstudiantes() {
+// Llenar tabla de estudiantes (opcional filtro como en los selects)
+function llenarTablaEstudiantes(filtroClaveNorm = '') {
     const tbody = document.getElementById('cuerpoTablaEstudiantes');
-    if (!tbody) return;
-    
+    if (!tbody || !datos?.estudiantes) return;
+
+    const filtro = filtroClaveNorm ? normalizarClaveSeccion(filtroClaveNorm) : '';
     tbody.innerHTML = '';
-    
-    datos.estudiantes.forEach((estudiante, index) => {
+
+    let num = 0;
+    datos.estudiantes.forEach((estudiante) => {
+        if (filtro && normalizarClaveSeccion(estudiante.seccion) !== filtro) return;
+        num++;
         const tr = document.createElement('tr');
         tr.innerHTML = `
-            <td>${index + 1}</td>
+            <td>${num}</td>
             <td>${estudiante.nombre}</td>
             <td>${estudiante.seccion}</td>
             <td>${estudiante.cedula}</td>
@@ -1918,6 +1998,11 @@ function cargarDesdeLocalStorage() {
             const selectEstudiante = document.getElementById(`estudianteSelect_${tipo}`);
             if (selectEstudiante && datos.estudiante) {
                 selectEstudiante.value = datos.estudiante;
+                if (!selectEstudiante.value && document.getElementById('filtroSeccionGlobal')?.value) {
+                    document.getElementById('filtroSeccionGlobal').value = '';
+                    aplicarFiltroSeccionSoloListas('');
+                    selectEstudiante.value = datos.estudiante;
+                }
                 selectEstudiante.dispatchEvent(new Event('change'));
             }
             
