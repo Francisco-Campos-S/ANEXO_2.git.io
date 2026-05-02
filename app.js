@@ -1,5 +1,12 @@
 // Variables globales
 let datos = null;
+/** Observadores IntersectionObserver de la guía lateral (solo sección visible) */
+let observersScrollGuias = [];
+
+function desconectarObservadoresScrollGuias() {
+    observersScrollGuias.forEach((obs) => obs.disconnect());
+    observersScrollGuias = [];
+}
 
 // Cargar datos al iniciar
 document.addEventListener('DOMContentLoaded', async () => {
@@ -45,10 +52,7 @@ function inicializarApp() {
     llenarGuiaCodigos();
     llenarGuiaCodigosMat();
     
-    // Llenar listas desplegables de códigos (ANEXO 2)
-    llenarSelectsCodigos('seccionEspanol');
-    
-    // Llenar listas desplegables de códigos (ANEXO 10)
+    // Tablas Anexo 2 y Anexo 10 usan los mismos selectores (.codigo-select-anexo10)
     llenarSelectsCodigosAnexo10();
     
     // Llenar tabla de estudiantes
@@ -60,10 +64,6 @@ function inicializarApp() {
     // Configurar eventos de estudiantes
     configurarEventosEstudiantes();
     
-    // Configurar eventos de códigos
-    configurarEventosCodigos();
-    
-    // Configurar eventos de códigos ANEXO 10
     configurarEventosCodigosAnexo10();
     
     // Configurar botones PDF y limpiar
@@ -71,6 +71,18 @@ function inicializarApp() {
     
     // Configurar botón para agregar indicadores
     configurarBotonAgregarIndicador();
+    
+    // Configurar botones para eliminar filas
+    configurarBotonesEliminarFila();
+    
+    // Configurar buscador de códigos
+    configurarBuscadorCodigos();
+    
+    // Iniciar sistema de autoguardado
+    iniciarAutoguardado();
+    
+    // Configurar confirmación antes de salir
+    configurarConfirmacionSalida();
     
     // Establecer fecha actual
     actualizarFecha('esp');
@@ -153,37 +165,6 @@ function llenarListaCodigos(containerId, apoyos) {
     });
 }
 
-// Llenar selects de códigos en los formularios
-function llenarSelectsCodigos(seccionId) {
-    const seccion = document.getElementById(seccionId);
-    if (!seccion) return;
-    
-    const selectsPersonales = seccion.querySelectorAll('select[data-tipo="personales"]');
-    selectsPersonales.forEach(select => {
-        llenarSelectCodigos(select, datos.apoyos.personales);
-    });
-    
-    const selectsOrganizativos = seccion.querySelectorAll('select[data-tipo="organizativos"]');
-    selectsOrganizativos.forEach(select => {
-        llenarSelectCodigos(select, datos.apoyos.organizativos);
-    });
-    
-    const selectsMateriales = seccion.querySelectorAll('select[data-tipo="materiales"]');
-    selectsMateriales.forEach(select => {
-        llenarSelectCodigos(select, datos.apoyos.materiales);
-    });
-    
-    const selectsCurriculares = seccion.querySelectorAll('select[data-tipo="curriculares"]');
-    selectsCurriculares.forEach(select => {
-        llenarSelectCodigos(select, datos.apoyos.curriculares);
-    });
-    
-    const selectsEvaluativos = seccion.querySelectorAll('select[data-tipo="evaluativos"]');
-    selectsEvaluativos.forEach(select => {
-        llenarSelectCodigos(select, datos.apoyos.evaluativos);
-    });
-}
-
 // Llenar un select individual con códigos
 function llenarSelectCodigos(select, apoyos) {
     select.innerHTML = '<option value="">Seleccione...</option>';
@@ -232,13 +213,16 @@ function configurarNavegacion() {
 function cambiarSeccion(seccionId, boton) {
     // Ocultar todas las secciones
     document.querySelectorAll('.seccion').forEach(s => s.classList.remove('active'));
-    
+
     // Mostrar la sección seleccionada
     document.getElementById(seccionId).classList.add('active');
-    
+
     // Actualizar botones
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     boton.classList.add('active');
+
+    // IntersectionObserver no funciona bien con panel en display:none hasta que se muestra esta pestaña
+    requestAnimationFrame(() => configurarAnimacionScroll());
 }
 
 // Configurar eventos de selección de estudiantes
@@ -264,47 +248,6 @@ function actualizarInfoEstudiante(tipo) {
     } else {
         document.getElementById(`seccionAuto_${tipo}`).textContent = '';
         document.getElementById(`nivelAuto_${tipo}`).textContent = '';
-    }
-}
-
-// Configurar eventos de selección de códigos
-function configurarEventosCodigos() {
-    const selectsEsp = document.querySelectorAll('#seccionEspanol .codigo-select');
-    const selectsMat = document.querySelectorAll('#seccionMatematica .codigo-select');
-    
-    selectsEsp.forEach(select => {
-        select.addEventListener('change', (e) => actualizarDescripcionApoyo(e.target));
-    });
-    
-    selectsMat.forEach(select => {
-        select.addEventListener('change', (e) => actualizarDescripcionApoyo(e.target));
-    });
-}
-
-// Actualizar descripción del apoyo seleccionado con efectos visuales
-function actualizarDescripcionApoyo(select) {
-    const selectedOption = select.options[select.selectedIndex];
-    const descripcionElement = select.parentElement.querySelector('.descripcion-apoyo');
-    
-    if (selectedOption.value && selectedOption.dataset.descripcion) {
-        // Añadir animación de aparición
-        descripcionElement.style.animation = 'none';
-        setTimeout(() => {
-            descripcionElement.textContent = selectedOption.dataset.descripcion;
-            descripcionElement.style.animation = 'fadeIn 0.5s ease';
-        }, 10);
-        
-        // Marcar select como completado
-        select.classList.add('completado');
-        
-        // Resaltar el código correspondiente en la guía
-        resaltarCodigoEnGuia(selectedOption.value, select.dataset.tipo);
-        
-        // Verificar si la sección está completa
-        verificarSeccionCompleta(select);
-    } else {
-        descripcionElement.textContent = '';
-        select.classList.remove('completado');
     }
 }
 
@@ -347,10 +290,10 @@ function resaltarCodigoEnGuia(codigo, tipo) {
 
 // Verificar si una sección de apoyos está completa
 function verificarSeccionCompleta(select) {
-    const seccionApoyo = select.closest('.seccion-apoyos');
+    const seccionApoyo = select.closest('.seccion-apoyos') || select.closest('.seccion-apoyos-anexo10');
     if (!seccionApoyo) return;
     
-    const selects = seccionApoyo.querySelectorAll('.codigo-select');
+    const selects = seccionApoyo.querySelectorAll('.codigo-select-anexo10, .codigo-select');
     const completados = Array.from(selects).filter(s => s.value).length;
     
     if (completados === selects.length) {
@@ -358,7 +301,8 @@ function verificarSeccionCompleta(select) {
         seccionApoyo.classList.add('seccion-completada');
         
         // Mostrar notificación
-        const titulo = seccionApoyo.querySelector('h4').textContent.split('●')[1].trim();
+        const textoH = seccionApoyo.querySelector('h4').textContent;
+        const titulo = textoH.includes('●') ? textoH.split('●')[1].trim() : textoH.replace('●', '').trim();
         mostrarNotificacion(
             '¡Sección Completada!',
             `Has completado "${titulo}"`,
@@ -546,18 +490,42 @@ async function generarPDFAnexo2(tipo, asignatura) {
     pdf.text(seccion, margen + anchoUtil * 0.75 + 18, y + 5);
     y += alturaFila;
     
-    // Fila 3: Nivel de Funcionamiento y Fecha (con bordes)
-    alturaFila = 12;
+    // Fila 3: Nivel de Funcionamiento y Fecha (altura dinámica + margen inferior para no cortar texto)
+    const anchoTxtNivel = anchoUtil * 0.72;
+    pdf.setFontSize(8);
+    const lineasNivel = nivel && String(nivel).trim()
+        ? pdf.splitTextToSize(String(nivel), anchoTxtNivel)
+        : [''];
+    const lineHeightTxt = 4.5;
+    const padSuperiorNF = 3;
+    const padInferiorNF = 7;
+    const etiquetaDelta = 4.5;
+    alturaFila = Math.max(
+        18,
+        padSuperiorNF + etiquetaDelta + Math.max(lineasNivel.length, 1) * lineHeightTxt + padInferiorNF
+    );
+
+    pdf.setFontSize(9);
     pdf.rect(margen, y, anchoUtil * 0.75, alturaFila);
     pdf.rect(margen + anchoUtil * 0.75, y, anchoUtil * 0.25, alturaFila);
+
     pdf.setFont('helvetica', 'bold');
-    pdf.text('Nivel de Funcionamiento:', margen + 2, y + 5);
+    pdf.text('Nivel de Funcionamiento:', margen + 2, y + padSuperiorNF + 4);
+
     pdf.setFont('helvetica', 'normal');
     pdf.setFontSize(8);
-    const lineasNivel = pdf.splitTextToSize(nivel, anchoUtil * 0.70);
-    pdf.text(lineasNivel, margen + 2, y + 9);
+    const yIniNivel = y + padSuperiorNF + etiquetaDelta + 4;
+    pdf.text(lineasNivel, margen + 2, yIniNivel);
+
     pdf.setFontSize(9);
-    pdf.text(fecha, margen + anchoUtil * 0.75 + 2, y + 7, { align: 'left', maxWidth: anchoUtil * 0.24 });
+    const anchoTxtFecha = anchoUtil * 0.22;
+    const lineasFecha = fecha && String(fecha).trim()
+        ? pdf.splitTextToSize(String(fecha), anchoTxtFecha)
+        : [''];
+    const lhFecha = 4.5;
+    let yIniFecha = y + Math.max((alturaFila - lineasFecha.length * lhFecha) / 2 + lhFecha - 1, padSuperiorNF + lhFecha);
+    pdf.text(lineasFecha, margen + anchoUtil * 0.75 + 2, yIniFecha);
+
     y += alturaFila;
     
     // Fila 4: Docente y Asignatura (con bordes)
@@ -588,7 +556,40 @@ async function generarPDFAnexo2(tipo, asignatura) {
     pdf.text('Descripción del funcionamiento del Estudiante:', margen, y);
     y += 7;
     
+    const seccionFormIdAnexo2 = 'seccionEspanol';
     // ========== FUNCIÓN PARA DIBUJAR TABLAS CON BORDES ==========
+    /** Encuentra el bloque HTML de apoyos que corresponde al título usado en el PDF */
+    function encontrarSeccionApoyoDom(tituloPdf) {
+        const h4s = document.querySelectorAll(`#${seccionFormIdAnexo2} .seccion-apoyos h4, #${seccionFormIdAnexo2} .seccion-apoyos-anexo10 h4`);
+        let candidato = null;
+        const t = tituloPdf.toLowerCase();
+
+        function palabrasClaveEnH4(txt) {
+            const h = txt.toLowerCase();
+            // PDF antiguo: "Evaluación" → HTML "Apoyos Evaluativos"
+            if (t.includes('evaluaci'))
+                return h.includes('evaluativo');
+            if (t.includes('metodolog'))
+                return h.includes('curricular') && !h.includes('evaluativo');
+            if (t.includes('personales'))
+                return h.includes('personales') || h.includes('personal');
+            if (t.includes('organizativos'))
+                return h.includes('organizativ');
+            if (t.includes('materiales') || t.includes('tecnológicos') || t.includes('tecnologicos'))
+                return h.includes('material') || h.includes('tecnológ') || h.includes('tecnolog');
+            if (t.includes('curricular'))
+                return h.includes('curricular');
+            return false;
+        }
+
+        h4s.forEach(h4 => {
+            const textoH4 = h4.textContent.replace('●', '').trim();
+            if (palabrasClaveEnH4(textoH4))
+                candidato = h4.closest('.seccion-apoyos') || h4.closest('.seccion-apoyos-anexo10');
+        });
+        return candidato;
+    }
+
     function dibujarTablaApoyos(titulo) {
         // Verificar espacio
         if (y > 240) {
@@ -615,17 +616,7 @@ async function generarPDFAnexo2(tipo, asignatura) {
         pdf.text('Resultados', margen + col1Width + col2Width + col3Width/2, y + 4.5, { align: 'center' });
         y += alturaEncabezado;
         
-        // Obtener los apoyos seleccionados
-        const seccionForm = 'seccionEspanol';
-        const selects = document.querySelectorAll(`#${seccionForm} .seccion-apoyos h4`);
-        let seccionActual = null;
-        
-        selects.forEach(h4 => {
-            const textoH4 = h4.textContent.replace('●', '').trim();
-            if (textoH4.includes(titulo.split('(')[0].trim())) {
-                seccionActual = h4.closest('.seccion-apoyos');
-            }
-        });
+        const seccionActual = encontrarSeccionApoyoDom(titulo);
         
         if (!seccionActual) {
             // Si no hay apoyos, mostrar fila vacía con bordes
@@ -637,7 +628,7 @@ async function generarPDFAnexo2(tipo, asignatura) {
             return;
         }
         
-        const codigoSelects = seccionActual.querySelectorAll('.codigo-select');
+        const codigoSelects = seccionActual.querySelectorAll('.codigo-select-anexo10, .codigo-select');
         let hayApoyos = false;
         
         pdf.setFont('helvetica', 'normal');
@@ -655,7 +646,7 @@ async function generarPDFAnexo2(tipo, asignatura) {
                 }
                 
                 const descripcion = select.options[select.selectedIndex].dataset.descripcion || '';
-                const resultado = seccionActual.querySelectorAll('.resultado textarea')[index]?.value || '';
+                const resultado = seccionActual.querySelectorAll('tbody tr textarea')[index]?.value || '';
                 
                 const lineasDesc = pdf.splitTextToSize(descripcion, col2Width - 4);
                 const lineasRes = pdf.splitTextToSize(resultado, col3Width - 4);
@@ -695,7 +686,7 @@ async function generarPDFAnexo2(tipo, asignatura) {
     }
     
     // Generar todas las secciones de apoyos con tablas
-    dibujarTablaApoyos('Apoyos personales');
+    dibujarTablaApoyos('Apoyos personales aplicados');
     dibujarTablaApoyos('Apoyos Organizativos (A.A)');
     dibujarTablaApoyos('Apoyos Materiales y Tecnológicos (A.A)');
     
@@ -706,7 +697,7 @@ async function generarPDFAnexo2(tipo, asignatura) {
     }
     
     dibujarTablaApoyos('Apoyos Curriculares (Metodología)(A.C.)');
-    dibujarTablaApoyos('Apoyos Curriculares (Evaluación)(A.C)');
+    dibujarTablaApoyos('Apoyos Evaluativos (A.C.)');
     
     // ========== SECCIÓN FINAL ==========
     if (y > 220) {
@@ -742,11 +733,13 @@ async function generarPDFAnexo2(tipo, asignatura) {
     
     // Firmas
     pdf.setFontSize(8);
-    pdf.text('Firma del Profesor (a)', margen + 15, y);
-    pdf.text('VB. Comité de Apoyo', margen + 120, y);
-    y += 2;
+    // Dibujar líneas primero
     pdf.line(margen, y, margen + 70, y);
     pdf.line(margen + 105, y, margen + anchoUtil, y);
+    y += 5;
+    // Textos debajo de las líneas
+    pdf.text('Firma del Profesor (a)', margen + 15, y);
+    pdf.text('VB. Comité de Apoyo', margen + 120, y);
     y += 8;
     
     pdf.text('Cc/ Expediente Único', margen, y);
@@ -878,18 +871,42 @@ async function generarPDFAnexo10(asignatura) {
     pdf.text(seccion, margen + anchoUtil * 0.75 + 18, y + 5);
     y += alturaFila;
     
-    // Nivel de funcionamiento y Fecha
-    alturaFila = 12;
+    // Nivel de funcionamiento y Fecha (altura dinámica + margen para no cortar texto)
+    const anchoTxtNivel10 = anchoUtil * 0.72;
+    pdf.setFontSize(8);
+    const lineasNivel = nivel && String(nivel).trim()
+        ? pdf.splitTextToSize(String(nivel), anchoTxtNivel10)
+        : [''];
+    const lineHeightTxt10 = 4.5;
+    const padSuperiorNF10 = 3;
+    const padInferiorNF10 = 7;
+    const etiquetaDelta10 = 4.5;
+    alturaFila = Math.max(
+        18,
+        padSuperiorNF10 + etiquetaDelta10 + Math.max(lineasNivel.length, 1) * lineHeightTxt10 + padInferiorNF10
+    );
+
+    pdf.setFontSize(9);
     pdf.rect(margen, y, anchoUtil * 0.75, alturaFila);
     pdf.rect(margen + anchoUtil * 0.75, y, anchoUtil * 0.25, alturaFila);
+
     pdf.setFont('helvetica', 'bold');
-    pdf.text('Nivel de Funcionamiento:', margen + 2, y + 5);
+    pdf.text('Nivel de Funcionamiento:', margen + 2, y + padSuperiorNF10 + 4);
+
     pdf.setFont('helvetica', 'normal');
     pdf.setFontSize(8);
-    const lineasNivel = pdf.splitTextToSize(nivel, anchoUtil * 0.70);
-    pdf.text(lineasNivel, margen + 2, y + 9);
+    const yIniNivel10 = y + padSuperiorNF10 + etiquetaDelta10 + 4;
+    pdf.text(lineasNivel, margen + 2, yIniNivel10);
+
     pdf.setFontSize(9);
-    pdf.text(fecha, margen + anchoUtil * 0.75 + 2, y + 7, { align: 'left', maxWidth: anchoUtil * 0.24 });
+    const anchoTxtFecha10 = anchoUtil * 0.22;
+    const lineasFecha10 = fecha && String(fecha).trim()
+        ? pdf.splitTextToSize(String(fecha), anchoTxtFecha10)
+        : [''];
+    const lhFecha10 = 4.5;
+    let yIniFecha10 = y + Math.max((alturaFila - lineasFecha10.length * lhFecha10) / 2 + lhFecha10 - 1, padSuperiorNF10 + lhFecha10);
+    pdf.text(lineasFecha10, margen + anchoUtil * 0.75 + 2, yIniFecha10);
+
     y += alturaFila;
     
     // Docente y Asignatura
@@ -1122,11 +1139,13 @@ async function generarPDFAnexo10(asignatura) {
     y += 10;
     pdf.setFontSize(8);
     pdf.setFont('helvetica', 'normal');
-    pdf.text('Firma del Profesor (a)', margen + 20, y);
-    pdf.text('VB. Comité de Apoyo', margen + 120, y);
-    y += 2;
+    // Dibujar líneas primero
     pdf.line(margen, y, margen + 70, y);
     pdf.line(margen + 105, y, margen + anchoUtil, y);
+    y += 5;
+    // Textos debajo de las líneas
+    pdf.text('Firma del Profesor (a)', margen + 20, y);
+    pdf.text('VB. Comité de Apoyo', margen + 120, y);
     y += 8;
     
     pdf.text('Cc/ Expediente Único', margen, y);
@@ -1163,19 +1182,16 @@ function limpiarFormulario(tipo) {
             document.getElementById(`nivelAuto_${tipo}`).textContent = '';
             
             if (tipo === 'esp') {
-                // Limpiar ANEXO 2 (formato original)
                 const seccion = 'seccionEspanol';
-                const selects = document.querySelectorAll(`#${seccion} .codigo-select`);
-                selects.forEach(select => {
+                document.querySelectorAll(`#${seccion} .codigo-select-anexo10`).forEach((select) => {
                     select.value = '';
-                    const descripcion = select.parentElement.querySelector('.descripcion-apoyo');
-                    if (descripcion) {
-                        descripcion.textContent = '';
-                    }
+                    const row = select.closest('tr');
+                    const descripcion = row?.querySelector('.descripcion-apoyo-anexo10');
+                    if (descripcion) descripcion.textContent = '';
                 });
                 
                 // Limpiar todos los textareas de resultados
-                const textareas = document.querySelectorAll(`#${seccion} .resultado textarea`);
+                const textareas = document.querySelectorAll(`#${seccion} textarea`);
                 textareas.forEach(textarea => {
                     textarea.value = '';
                 });
@@ -1203,8 +1219,7 @@ function limpiarFormulario(tipo) {
                     });
                 }
                 
-                // Limpiar selectores de códigos ANEXO 10
-                const selects = document.querySelectorAll('.codigo-select-anexo10');
+                const selects = document.querySelectorAll('#seccionMatematica .codigo-select-anexo10');
                 selects.forEach(select => {
                     select.value = '';
                     const row = select.closest('tr');
@@ -1309,39 +1324,50 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Configurar animación de scroll para mostrar códigos automáticamente
 function configurarAnimacionScroll() {
-    // Configurar para ambas secciones (Español y Matemática)
-    configurarScrollSeccion('seccionEspanol');
-    configurarScrollSeccion('seccionMatematica');
+    desconectarObservadoresScrollGuias();
+
+    const seccionVisible = document.querySelector('.seccion.active');
+    if (!seccionVisible || seccionVisible.id === 'seccionLista') {
+        return;
+    }
+
+    configurarScrollSeccion(seccionVisible.id);
+}
+
+function resolverGuiaIdPorTitulo(seccionId, titulo) {
+    const t = (titulo || '').toLowerCase();
+    const sufijo = seccionId === 'seccionEspanol' ? '' : '_mat';
+    // ANEXO 10 puede usar títulos distintos; se resuelve por palabras clave
+    if (t.includes('personales')) return `listaApoyosPersonales${sufijo}`;
+    if (t.includes('organizativos')) return `listaApoyosOrganizativos${sufijo}`;
+    if (t.includes('materiales') || t.includes('tecnológicos') || t.includes('tecnologicos'))
+        return `listaApoyosMateriales${sufijo}`;
+    if (t.includes('evaluativos')) return `listaApoyosEvaluativos${sufijo}`;
+    if (t.includes('curriculares')) return `listaApoyosCurriculares${sufijo}`;
+    return null;
 }
 
 function configurarScrollSeccion(seccionId) {
     const seccion = document.getElementById(seccionId);
-    if (!seccion) return;
+    if (!seccion || !seccion.classList.contains('active')) return;
     
-    // Obtener todas las secciones de apoyos
-    const seccionesApoyos = seccion.querySelectorAll('.seccion-apoyos');
-    
-    // Mapeo de títulos a IDs de listas en la guía
-    const mapeoGuias = {
-        'Apoyos personales': seccionId === 'seccionEspanol' ? 'listaApoyosPersonales' : 'listaApoyosPersonales_mat',
-        'Apoyos Organizativos (A.A)': seccionId === 'seccionEspanol' ? 'listaApoyosOrganizativos' : 'listaApoyosOrganizativos_mat',
-        'Apoyos Materiales y Tecnológicos (A.A)': seccionId === 'seccionEspanol' ? 'listaApoyosMateriales' : 'listaApoyosMateriales_mat',
-        'Apoyos Curriculares': seccionId === 'seccionEspanol' ? 'listaApoyosCurriculares' : 'listaApoyosCurriculares_mat',
-        'Apoyos Evaluativos': seccionId === 'seccionEspanol' ? 'listaApoyosEvaluativos' : 'listaApoyosEvaluativos_mat'
-    };
+    // ANEXO 2 usa .seccion-apoyos-anexo10; algunas vistas antiguas usaban .seccion-apoyos
+    const seccionesApoyos = seccion.querySelectorAll('.seccion-apoyos, .seccion-apoyos-anexo10');
     
     // Crear observador de intersección
     const observerOptions = {
         root: null,
-        rootMargin: '-100px 0px -100px 0px',
-        threshold: 0.3
+        rootMargin: '-12% 0px -18% 0px',
+        threshold: [0.08, 0.22, 0.45]
     };
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const titulo = entry.target.querySelector('h4').textContent.replace('●', '').trim();
-                const guiaId = mapeoGuias[titulo];
+                const h4 = entry.target.querySelector('h4');
+                if (!h4) return;
+                const titulo = h4.textContent.replace('●', '').trim();
+                const guiaId = resolverGuiaIdPorTitulo(seccionId, titulo);
                 
                 if (guiaId) {
                     // Resaltar la sección correspondiente en la guía
@@ -1358,6 +1384,7 @@ function configurarScrollSeccion(seccionId) {
     seccionesApoyos.forEach(seccionApoyo => {
         observer.observe(seccionApoyo);
     });
+    observersScrollGuias.push(observer);
 }
 
 // Resaltar la sección de la guía cuando se hace scroll
@@ -1411,9 +1438,6 @@ function animarCodigosGuia(guiaId) {
 
 // Configurar barra de progreso del formulario
 function configurarBarraProgreso() {
-    const seccionesEsp = ['#estudianteSelect_esp', '#asignatura_esp'];
-    const seccionesApoyosEsp = document.querySelectorAll('#seccionEspanol .codigo-select');
-    
     function actualizarProgreso(tipo) {
         const seccion = tipo === 'esp' ? 'seccionEspanol' : 'seccionMatematica';
         const estudiante = document.getElementById(`estudianteSelect_${tipo}`).value;
@@ -1426,7 +1450,7 @@ function configurarBarraProgreso() {
         if (asignatura) camposCompletados++;
         
         // Contar códigos seleccionados
-        const codigosSelects = document.querySelectorAll(`#${seccion} .codigo-select`);
+        const codigosSelects = document.querySelectorAll(`#${seccion} .codigo-select-anexo10`);
         const codigosCompletados = Array.from(codigosSelects).filter(s => s.value).length;
         
         totalCampos += codigosSelects.length;
@@ -1437,6 +1461,8 @@ function configurarBarraProgreso() {
         const progressBar = document.getElementById('progressBar');
         if (progressBar) {
             progressBar.style.width = porcentaje + '%';
+            // Actualizar el texto del porcentaje
+            actualizarBarraProgresoConPorcentaje();
         }
         
         return porcentaje;
@@ -1466,7 +1492,7 @@ function configurarBarraProgreso() {
         }
         
         const seccion = tipo === 'esp' ? 'seccionEspanol' : 'seccionMatematica';
-        const codigosSelects = document.querySelectorAll(`#${seccion} .codigo-select`);
+        const codigosSelects = document.querySelectorAll(`#${seccion} .codigo-select-anexo10`);
         
         codigosSelects.forEach(select => {
             select.addEventListener('change', () => {
@@ -1484,10 +1510,10 @@ function configurarContadores() {
         
         if (!seccionElement) return;
         
-        const seccionesApoyos = seccionElement.querySelectorAll('.seccion-apoyos');
+        const seccionesApoyos = seccionElement.querySelectorAll('.seccion-apoyos, .seccion-apoyos-anexo10');
         
         seccionesApoyos.forEach(seccionApoyo => {
-            const selects = seccionApoyo.querySelectorAll('.codigo-select');
+            const selects = seccionApoyo.querySelectorAll('.codigo-select-anexo10, .codigo-select');
             const titulo = seccionApoyo.querySelector('h4');
             
             function actualizarContador() {
@@ -1580,7 +1606,7 @@ function observarElementos() {
     });
     
     // Observar todos los campos y secciones
-    document.querySelectorAll('.campo, .seccion-apoyos, .guia-seccion').forEach(el => {
+    document.querySelectorAll('.campo, .seccion-apoyos, .seccion-apoyos-anexo10, .guia-seccion').forEach(el => {
         observer.observe(el);
     });
 }
@@ -1630,21 +1656,26 @@ function configurarEventosCodigosAnexo10() {
     });
 }
 
-// Actualizar descripción del apoyo en ANEXO 10
+// Actualizar descripción del apoyo (Anexo 2 y Anexo 10, misma tabla)
 function actualizarDescripcionApoyoAnexo10(select) {
     const selectedOption = select.options[select.selectedIndex];
     const row = select.closest('tr');
-    const descripcionElement = row.querySelector('.descripcion-apoyo-anexo10');
+    const descripcionElement = row?.querySelector('.descripcion-apoyo-anexo10');
+    if (!descripcionElement) return;
     
     if (selectedOption.value && selectedOption.dataset.descripcion) {
-        descripcionElement.textContent = selectedOption.dataset.descripcion;
+        descripcionElement.style.animation = 'none';
+        setTimeout(() => {
+            descripcionElement.textContent = selectedOption.dataset.descripcion;
+            descripcionElement.style.animation = 'fadeIn 0.5s ease';
+        }, 10);
         select.classList.add('completado');
-        
-        // Resaltar el código correspondiente en la guía
         resaltarCodigoEnGuia(selectedOption.value, select.dataset.tipo);
+        verificarSeccionCompleta(select);
     } else {
         descripcionElement.textContent = '';
         select.classList.remove('completado');
+        verificarSeccionCompleta(select);
     }
 }
 
@@ -1663,10 +1694,14 @@ function configurarBotonAgregarIndicador() {
             <td><input type="checkbox" class="checkbox-nivel"></td>
             <td><input type="checkbox" class="checkbox-nivel"></td>
             <td><input type="checkbox" class="checkbox-nivel"></td>
-            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+            <td><textarea rows="4" placeholder="Resultados..."></textarea></td>
+            <td><button class="btn-eliminar-fila" title="Eliminar fila">✕</button></td>
         `;
         
         tbody.appendChild(nuevaFila);
+        
+        // Configurar evento para el botón de eliminar
+        configurarBotonesEliminarFila();
         
         // Animar la nueva fila
         nuevaFila.style.animation = 'fadeIn 0.5s ease';
@@ -1677,3 +1712,262 @@ function configurarBotonAgregarIndicador() {
         mostrarNotificacion('Indicador agregado', 'Se ha agregado una nueva fila para indicadores.', 'exito');
     });
 }
+
+// ========== NUEVAS FUNCIONALIDADES ==========
+
+// Configurar botones para eliminar filas de indicadores
+function configurarBotonesEliminarFila() {
+    const botones = document.querySelectorAll('.btn-eliminar-fila');
+    
+    botones.forEach(boton => {
+        // Remover eventos previos
+        boton.replaceWith(boton.cloneNode(true));
+    });
+    
+    // Volver a obtener los botones y agregar eventos
+    document.querySelectorAll('.btn-eliminar-fila').forEach(boton => {
+        boton.addEventListener('click', (e) => {
+            const fila = e.target.closest('tr');
+            const tbody = fila.closest('tbody');
+            
+            // No permitir eliminar si solo hay 1 fila
+            if (tbody.querySelectorAll('tr').length <= 1) {
+                mostrarNotificacion('No se puede eliminar', 'Debe mantener al menos una fila en la tabla.', 'error');
+                return;
+            }
+            
+            // Animación de salida
+            fila.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => {
+                fila.remove();
+                mostrarNotificacion('Fila eliminada', 'La fila ha sido eliminada correctamente.', 'exito');
+            }, 300);
+        });
+    });
+}
+
+// Configurar buscador de códigos
+function configurarBuscadorCodigos() {
+    ['esp', 'mat'].forEach(tipo => {
+        const buscador = document.getElementById(`buscadorCodigos_${tipo}`);
+        const resultadosSpan = document.getElementById(`resultadosBusqueda_${tipo}`);
+        
+        if (!buscador) return;
+        
+        buscador.addEventListener('input', (e) => {
+            const termino = e.target.value.toLowerCase().trim();
+            const sufijo = tipo === 'esp' ? '' : '_mat';
+            
+            // Obtener todas las listas de códigos de esta sección
+            const listas = [
+                `listaApoyosPersonales${sufijo}`,
+                `listaApoyosOrganizativos${sufijo}`,
+                `listaApoyosMateriales${sufijo}`,
+                `listaApoyosCurriculares${sufijo}`,
+                `listaApoyosEvaluativos${sufijo}`
+            ];
+            
+            let totalResultados = 0;
+            let totalCodigos = 0;
+            
+            listas.forEach(listaId => {
+                const lista = document.getElementById(listaId);
+                if (!lista) return;
+                
+                const items = lista.querySelectorAll('.codigo-item');
+                
+                items.forEach(item => {
+                    totalCodigos++;
+                    const texto = item.textContent.toLowerCase();
+                    
+                    if (termino === '' || texto.includes(termino)) {
+                        item.classList.remove('oculto');
+                        if (termino !== '') {
+                            item.classList.add('destacado');
+                            totalResultados++;
+                        } else {
+                            item.classList.remove('destacado');
+                        }
+                    } else {
+                        item.classList.add('oculto');
+                        item.classList.remove('destacado');
+                    }
+                });
+            });
+            
+            // Actualizar contador de resultados
+            if (termino === '') {
+                resultadosSpan.textContent = '';
+            } else {
+                resultadosSpan.textContent = `${totalResultados} de ${totalCodigos} códigos encontrados`;
+            }
+        });
+    });
+}
+
+// Sistema de autoguardado
+let datosFormulario = {
+    esp: {},
+    mat: {}
+};
+let intervaloAutoguardado = null;
+let hayCambiosSinGuardar = false;
+
+function iniciarAutoguardado() {
+    // Guardar cada 30 segundos
+    intervaloAutoguardado = setInterval(() => {
+        if (hayCambiosSinGuardar) {
+            guardarEnLocalStorage();
+        }
+    }, 30000);
+    
+    // Cargar datos guardados al inicio
+    cargarDesdeLocalStorage();
+    
+    // Marcar campos como modificados
+    document.querySelectorAll('input, textarea, select').forEach(campo => {
+        campo.addEventListener('input', () => {
+            hayCambiosSinGuardar = true;
+            campo.classList.add('campo-modificado');
+        });
+    });
+}
+
+function guardarEnLocalStorage() {
+    try {
+        // Guardar datos de ambos formularios
+        ['esp', 'mat'].forEach(tipo => {
+            datosFormulario[tipo] = {
+                estudiante: document.getElementById(`estudianteSelect_${tipo}`)?.value || '',
+                asignatura: document.getElementById(`asignatura_${tipo}`)?.value || '',
+                periodo: document.querySelector(`input[name="periodo_${tipo}"]:checked`)?.value || 'primero',
+                timestamp: new Date().toISOString()
+            };
+        });
+        
+        // Guardar indicadores del ANEXO 10
+        const tablaIndicadores = document.getElementById('tablaIndicadores_mat');
+        if (tablaIndicadores) {
+            const indicadores = [];
+            tablaIndicadores.querySelectorAll('tr').forEach(fila => {
+                const indicador = fila.querySelector('.input-indicador')?.value || '';
+                const checkboxes = Array.from(fila.querySelectorAll('.checkbox-nivel')).map(cb => cb.checked);
+                const resultados = fila.querySelector('td:last-child textarea')?.value || '';
+                
+                if (indicador || resultados) {
+                    indicadores.push({ indicador, niveles: checkboxes, resultados });
+                }
+            });
+            datosFormulario.mat.indicadores = indicadores;
+        }
+        
+        localStorage.setItem('anexo_formularios', JSON.stringify(datosFormulario));
+        hayCambiosSinGuardar = false;
+        
+        mostrarIndicadorAutoguardado('✓ Guardado automáticamente', 'exito');
+    } catch (error) {
+        console.error('Error al guardar:', error);
+        mostrarIndicadorAutoguardado('✕ Error al guardar', 'error');
+    }
+}
+
+function cargarDesdeLocalStorage() {
+    try {
+        const datosGuardados = localStorage.getItem('anexo_formularios');
+        if (!datosGuardados) return;
+        
+        datosFormulario = JSON.parse(datosGuardados);
+        
+        // Restaurar datos de ambos formularios
+        ['esp', 'mat'].forEach(tipo => {
+            const datos = datosFormulario[tipo];
+            if (!datos) return;
+            
+            const selectEstudiante = document.getElementById(`estudianteSelect_${tipo}`);
+            if (selectEstudiante && datos.estudiante) {
+                selectEstudiante.value = datos.estudiante;
+                selectEstudiante.dispatchEvent(new Event('change'));
+            }
+            
+            const inputAsignatura = document.getElementById(`asignatura_${tipo}`);
+            if (inputAsignatura && datos.asignatura) {
+                inputAsignatura.value = datos.asignatura;
+            }
+            
+            if (datos.periodo) {
+                const radioPeriodo = document.querySelector(`input[name="periodo_${tipo}"][value="${datos.periodo}"]`);
+                if (radioPeriodo) radioPeriodo.checked = true;
+            }
+        });
+        
+        // Restaurar indicadores del ANEXO 10
+        if (datosFormulario.mat?.indicadores) {
+            // Implementar restauración de indicadores si es necesario
+        }
+        
+        hayCambiosSinGuardar = false;
+    } catch (error) {
+        console.error('Error al cargar:', error);
+    }
+}
+
+function mostrarIndicadorAutoguardado(mensaje, tipo) {
+    let indicador = document.querySelector('.autoguardado-indicator');
+    
+    if (!indicador) {
+        indicador = document.createElement('div');
+        indicador.className = 'autoguardado-indicator';
+        document.body.appendChild(indicador);
+    }
+    
+    indicador.textContent = mensaje;
+    indicador.className = `autoguardado-indicator ${tipo} show`;
+    
+    setTimeout(() => {
+        indicador.classList.remove('show');
+    }, 3000);
+}
+
+// Actualizar barra de progreso con porcentaje
+function actualizarBarraProgresoConPorcentaje() {
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    
+    if (!progressBar || !progressText) return;
+    
+    // Obtener porcentaje actual del ancho
+    const porcentaje = parseInt(progressBar.style.width) || 0;
+    progressText.textContent = porcentaje + '%';
+    
+    // Cambiar color según el progreso
+    if (porcentaje === 100) {
+        progressBar.style.background = 'linear-gradient(90deg, #10b981, #059669)';
+        // Animación de celebración
+        setTimeout(() => crearConfetti(), 300);
+    } else if (porcentaje >= 75) {
+        progressBar.style.background = 'linear-gradient(90deg, #3b82f6, #2563eb)';
+    } else if (porcentaje >= 50) {
+        progressBar.style.background = 'linear-gradient(90deg, #f59e0b, #d97706)';
+    }
+}
+
+// Confirmación antes de salir
+function configurarConfirmacionSalida() {
+    window.addEventListener('beforeunload', (e) => {
+        if (hayCambiosSinGuardar) {
+            e.preventDefault();
+            e.returnValue = '';
+            return '';
+        }
+    });
+}
+
+// Animación fadeOut
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeOut {
+        from { opacity: 1; transform: scale(1); }
+        to { opacity: 0; transform: scale(0.8); }
+    }
+`;
+document.head.appendChild(style);
