@@ -31,8 +31,8 @@
                     <h1>ANEXO 2: REGISTRO DE APOYOS EDUCATIVOS</h1>
                 </div>
                 <div class="nav-buttons">
-                    <button id="btnEspanol" class="nav-btn active">📝 Formulario 1</button>
-                    <button id="btnMatematica" class="nav-btn">📊 Formulario 2</button>
+                    <button id="btnEspanol" class="nav-btn active">📝 Anexo 2</button>
+                    <button id="btnMatematica" class="nav-btn">📊 Anexo 10</button>
                     <button id="btnLista" class="nav-btn">👥 Lista de Estudiantes</button>
                 </div>
             </div>
@@ -449,15 +449,15 @@
                             <h2>ÁREA DE TRABAJO PARA EL INFORME</h2>
                             
                             <div class="header-form">
-                                <h3 class="titulo-principal">ANEXO 2: REGISTRO DE APOYOS EDUCATIVOS</h3>
+                                <h3 class="titulo-principal">ANEXO 10: INFORME DE CONTROL DE AVANCE POR PERÍODO<br>(APOYO CURRICULAR SIGNIFICATIVO)</h3>
                                 <p class="curso-lectivo">Curso lectivo 2025</p>
                             </div>
 
                             <div class="info-institucion">
-                <div class="campo">
-                    <label>Institución:</label>
-                    <input type="text" id="institucion_mat" value="CTP Sabalito">
-                </div>
+                                <div class="campo">
+                                    <label>Institución:</label>
+                                    <input type="text" id="institucion_mat" value="CTP Sabalito">
+                                </div>
                                 <div class="campo">
                                     <label>Circuito:</label>
                                     <input type="text" id="circuito_mat" value="06">
@@ -494,10 +494,10 @@
                                     <label>Docente responsable:</label>
                                     <input type="text" id="docente_mat" value="Gerardo Ramirez Rojas">
                                 </div>
-                <div class="campo">
-                    <label>Asignatura:</label>
-                    <input type="text" id="asignatura_mat" value="" placeholder="Escriba la materia...">
-                </div>
+                                <div class="campo">
+                                    <label>Asignatura:</label>
+                                    <input type="text" id="asignatura_mat" value="" placeholder="Escriba la materia...">
+                                </div>
                             </div>
 
                             <div class="periodo">
@@ -512,214 +512,273 @@
                             </div>
 
                             <div class="descripcion-funcionamiento">
-                                <h4>Descripción del funcionamiento del Estudiante:</h4>
+                                <h4>Aprendizajes Logrados según Operacionalización de la PEI en el Planeamiento Didáctico:</h4>
                                 <p class="hint">ELIJA UN CÓDIGO Y SE DESPLIEGA LA INFORMACIÓN</p>
                             </div>
 
-                            <!-- Las mismas secciones de apoyos que en Español -->
-                            <div class="seccion-apoyos">
-                                <h4>Apoyos personales</h4>
-                                <div class="grid-apoyos">
-                                    <div class="apoyo-item">
-                                        <label>Código:</label>
-                                        <select class="codigo-select" data-tipo="personales" data-index="0">
-                                            <option value="">Seleccione...</option>
-                                        </select>
-                                        <p class="descripcion-apoyo"></p>
-                                    </div>
-                                    <div class="resultado">
-                                        <label>Resultados:</label>
-                                        <textarea rows="3"></textarea>
-                                    </div>
-
-                                    <div class="apoyo-item">
-                                        <label>Código:</label>
-                                        <select class="codigo-select" data-tipo="personales" data-index="1">
-                                            <option value="">Seleccione...</option>
-                                        </select>
-                                        <p class="descripcion-apoyo"></p>
-                                    </div>
-                                    <div class="resultado">
-                                        <label>Resultados:</label>
-                                        <textarea rows="3"></textarea>
-                                    </div>
-
-                                    <div class="apoyo-item">
-                                        <label>Código:</label>
-                                        <select class="codigo-select" data-tipo="personales" data-index="2">
-                                            <option value="">Seleccione...</option>
-                                        </select>
-                                        <p class="descripcion-apoyo"></p>
-                                    </div>
-                                    <div class="resultado">
-                                        <label>Resultados:</label>
-                                        <textarea rows="3"></textarea>
-                                    </div>
-                                </div>
+                            <!-- Tabla de Indicadores de Aprendizaje -->
+                            <div class="tabla-indicadores">
+                                <table class="tabla-aprendizajes">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 40%;">Indicador</th>
+                                            <th style="width: 12%;">INICIAL</th>
+                                            <th style="width: 12%;">INTERMEDIO</th>
+                                            <th style="width: 12%;">AVANZADO</th>
+                                            <th style="width: 24%;">Resultados</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tablaIndicadores_mat">
+                                        <tr>
+                                            <td><textarea class="input-indicador" rows="2" placeholder="Escriba el indicador..."></textarea></td>
+                                            <td><input type="checkbox" class="checkbox-nivel"></td>
+                                            <td><input type="checkbox" class="checkbox-nivel"></td>
+                                            <td><input type="checkbox" class="checkbox-nivel"></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td><textarea class="input-indicador" rows="2" placeholder="Escriba el indicador..."></textarea></td>
+                                            <td><input type="checkbox" class="checkbox-nivel"></td>
+                                            <td><input type="checkbox" class="checkbox-nivel"></td>
+                                            <td><input type="checkbox" class="checkbox-nivel"></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td><textarea class="input-indicador" rows="2" placeholder="Escriba el indicador..."></textarea></td>
+                                            <td><input type="checkbox" class="checkbox-nivel"></td>
+                                            <td><input type="checkbox" class="checkbox-nivel"></td>
+                                            <td><input type="checkbox" class="checkbox-nivel"></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button type="button" class="btn-agregar-fila" id="btnAgregarIndicador_mat">+ Agregar Indicador</button>
                             </div>
 
-                            <div class="seccion-apoyos">
+                            <!-- Secciones de Apoyos Aplicados - Formato Tabla ANEXO 10 -->
+                            <div class="seccion-apoyos-anexo10">
+                                <h4>Apoyos personales aplicados</h4>
+                                <table class="tabla-apoyos-anexo10">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 15%;">Código</th>
+                                            <th style="width: 50%;">Apoyos personales aplicados</th>
+                                            <th style="width: 35%;">Resultados</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tablaApoyosPersonales_mat">
+                                        <tr>
+                                            <td>
+                                                <select class="codigo-select-anexo10" data-tipo="personales" data-index="0">
+                                                    <option value="">Seleccione...</option>
+                                                </select>
+                                            </td>
+                                            <td><span class="descripcion-apoyo-anexo10"></span></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="codigo-select-anexo10" data-tipo="personales" data-index="1">
+                                                    <option value="">Seleccione...</option>
+                                                </select>
+                                            </td>
+                                            <td><span class="descripcion-apoyo-anexo10"></span></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="codigo-select-anexo10" data-tipo="personales" data-index="2">
+                                                    <option value="">Seleccione...</option>
+                                                </select>
+                                            </td>
+                                            <td><span class="descripcion-apoyo-anexo10"></span></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="seccion-apoyos-anexo10">
                                 <h4>Apoyos Organizativos (A.A)</h4>
-                                <div class="grid-apoyos">
-                                    <div class="apoyo-item">
-                                        <label>Código:</label>
-                                        <select class="codigo-select" data-tipo="organizativos" data-index="0">
-                                            <option value="">Seleccione...</option>
-                                        </select>
-                                        <p class="descripcion-apoyo"></p>
-                                    </div>
-                                    <div class="resultado">
-                                        <label>Resultados:</label>
-                                        <textarea rows="3"></textarea>
-                                    </div>
-
-                                    <div class="apoyo-item">
-                                        <label>Código:</label>
-                                        <select class="codigo-select" data-tipo="organizativos" data-index="1">
-                                            <option value="">Seleccione...</option>
-                                        </select>
-                                        <p class="descripcion-apoyo"></p>
-                                    </div>
-                                    <div class="resultado">
-                                        <label>Resultados:</label>
-                                        <textarea rows="3"></textarea>
-                                    </div>
-
-                                    <div class="apoyo-item">
-                                        <label>Código:</label>
-                                        <select class="codigo-select" data-tipo="organizativos" data-index="2">
-                                            <option value="">Seleccione...</option>
-                                        </select>
-                                        <p class="descripcion-apoyo"></p>
-                                    </div>
-                                    <div class="resultado">
-                                        <label>Resultados:</label>
-                                        <textarea rows="3"></textarea>
-                                    </div>
-                                </div>
+                                <table class="tabla-apoyos-anexo10">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 15%;">Código</th>
+                                            <th style="width: 50%;">Apoyos Organizativos (A.A)</th>
+                                            <th style="width: 35%;">Resultados</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tablaApoyosOrganizativos_mat">
+                                        <tr>
+                                            <td>
+                                                <select class="codigo-select-anexo10" data-tipo="organizativos" data-index="0">
+                                                    <option value="">Seleccione...</option>
+                                                </select>
+                                            </td>
+                                            <td><span class="descripcion-apoyo-anexo10"></span></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="codigo-select-anexo10" data-tipo="organizativos" data-index="1">
+                                                    <option value="">Seleccione...</option>
+                                                </select>
+                                            </td>
+                                            <td><span class="descripcion-apoyo-anexo10"></span></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="codigo-select-anexo10" data-tipo="organizativos" data-index="2">
+                                                    <option value="">Seleccione...</option>
+                                                </select>
+                                            </td>
+                                            <td><span class="descripcion-apoyo-anexo10"></span></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
 
-                            <div class="seccion-apoyos">
+                            <div class="seccion-apoyos-anexo10">
                                 <h4>Apoyos Materiales y Tecnológicos (A.A)</h4>
-                                <div class="grid-apoyos">
-                                    <div class="apoyo-item">
-                                        <label>Código:</label>
-                                        <select class="codigo-select" data-tipo="materiales" data-index="0">
-                                            <option value="">Seleccione...</option>
-                                        </select>
-                                        <p class="descripcion-apoyo"></p>
-                                    </div>
-                                    <div class="resultado">
-                                        <label>Resultados:</label>
-                                        <textarea rows="3"></textarea>
-                                    </div>
-
-                                    <div class="apoyo-item">
-                                        <label>Código:</label>
-                                        <select class="codigo-select" data-tipo="materiales" data-index="1">
-                                            <option value="">Seleccione...</option>
-                                        </select>
-                                        <p class="descripcion-apoyo"></p>
-                                    </div>
-                                    <div class="resultado">
-                                        <label>Resultados:</label>
-                                        <textarea rows="3"></textarea>
-                                    </div>
-
-                                    <div class="apoyo-item">
-                                        <label>Código:</label>
-                                        <select class="codigo-select" data-tipo="materiales" data-index="2">
-                                            <option value="">Seleccione...</option>
-                                        </select>
-                                        <p class="descripcion-apoyo"></p>
-                                    </div>
-                                    <div class="resultado">
-                                        <label>Resultados:</label>
-                                        <textarea rows="3"></textarea>
-                                    </div>
-                                </div>
+                                <table class="tabla-apoyos-anexo10">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 15%;">Código</th>
+                                            <th style="width: 50%;">Apoyos Materiales y Tecnológicos (A.A)</th>
+                                            <th style="width: 35%;">Resultados</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tablaApoyosMateriales_mat">
+                                        <tr>
+                                            <td>
+                                                <select class="codigo-select-anexo10" data-tipo="materiales" data-index="0">
+                                                    <option value="">Seleccione...</option>
+                                                </select>
+                                            </td>
+                                            <td><span class="descripcion-apoyo-anexo10"></span></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="codigo-select-anexo10" data-tipo="materiales" data-index="1">
+                                                    <option value="">Seleccione...</option>
+                                                </select>
+                                            </td>
+                                            <td><span class="descripcion-apoyo-anexo10"></span></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="codigo-select-anexo10" data-tipo="materiales" data-index="2">
+                                                    <option value="">Seleccione...</option>
+                                                </select>
+                                            </td>
+                                            <td><span class="descripcion-apoyo-anexo10"></span></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
 
-                            <div class="seccion-apoyos">
-                                <h4>Apoyos Curriculares</h4>
-                                <div class="grid-apoyos">
-                                    <div class="apoyo-item">
-                                        <label>Código:</label>
-                                        <select class="codigo-select" data-tipo="curriculares" data-index="0">
-                                            <option value="">Seleccione...</option>
-                                        </select>
-                                        <p class="descripcion-apoyo"></p>
-                                    </div>
-                                    <div class="resultado">
-                                        <label>Resultados:</label>
-                                        <textarea rows="3"></textarea>
-                                    </div>
-
-                                    <div class="apoyo-item">
-                                        <label>Código:</label>
-                                        <select class="codigo-select" data-tipo="curriculares" data-index="1">
-                                            <option value="">Seleccione...</option>
-                                        </select>
-                                        <p class="descripcion-apoyo"></p>
-                                    </div>
-                                    <div class="resultado">
-                                        <label>Resultados:</label>
-                                        <textarea rows="3"></textarea>
-                                    </div>
-
-                                    <div class="apoyo-item">
-                                        <label>Código:</label>
-                                        <select class="codigo-select" data-tipo="curriculares" data-index="2">
-                                            <option value="">Seleccione...</option>
-                                        </select>
-                                        <p class="descripcion-apoyo"></p>
-                                    </div>
-                                    <div class="resultado">
-                                        <label>Resultados:</label>
-                                        <textarea rows="3"></textarea>
-                                    </div>
-                                </div>
+                            <div class="seccion-apoyos-anexo10">
+                                <h4>Apoyos Curriculares (Metodología)(A.C.)</h4>
+                                <table class="tabla-apoyos-anexo10">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 15%;">Código</th>
+                                            <th style="width: 50%;">Apoyos Curriculares (Metodología)(A.C.)</th>
+                                            <th style="width: 35%;">Resultados</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tablaApoyosCurriculares_mat">
+                                        <tr>
+                                            <td>
+                                                <select class="codigo-select-anexo10" data-tipo="curriculares" data-index="0">
+                                                    <option value="">Seleccione...</option>
+                                                </select>
+                                            </td>
+                                            <td><span class="descripcion-apoyo-anexo10"></span></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="codigo-select-anexo10" data-tipo="curriculares" data-index="1">
+                                                    <option value="">Seleccione...</option>
+                                                </select>
+                                            </td>
+                                            <td><span class="descripcion-apoyo-anexo10"></span></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="codigo-select-anexo10" data-tipo="curriculares" data-index="2">
+                                                    <option value="">Seleccione...</option>
+                                                </select>
+                                            </td>
+                                            <td><span class="descripcion-apoyo-anexo10"></span></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
 
-                            <div class="seccion-apoyos">
-                                <h4>Apoyos Evaluativos</h4>
-                                <div class="grid-apoyos">
-                                    <div class="apoyo-item">
-                                        <label>Código:</label>
-                                        <select class="codigo-select" data-tipo="evaluativos" data-index="0">
-                                            <option value="">Seleccione...</option>
-                                        </select>
-                                        <p class="descripcion-apoyo"></p>
-                                    </div>
-                                    <div class="resultado">
-                                        <label>Resultados:</label>
-                                        <textarea rows="3"></textarea>
-                                    </div>
+                            <div class="seccion-apoyos-anexo10">
+                                <h4>Apoyos Evaluativos (A.C.)</h4>
+                                <table class="tabla-apoyos-anexo10">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 15%;">Código</th>
+                                            <th style="width: 50%;">Apoyos Evaluativos (A.C.)</th>
+                                            <th style="width: 35%;">Resultados</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tablaApoyosEvaluativos_mat">
+                                        <tr>
+                                            <td>
+                                                <select class="codigo-select-anexo10" data-tipo="evaluativos" data-index="0">
+                                                    <option value="">Seleccione...</option>
+                                                </select>
+                                            </td>
+                                            <td><span class="descripcion-apoyo-anexo10"></span></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="codigo-select-anexo10" data-tipo="evaluativos" data-index="1">
+                                                    <option value="">Seleccione...</option>
+                                                </select>
+                                            </td>
+                                            <td><span class="descripcion-apoyo-anexo10"></span></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="codigo-select-anexo10" data-tipo="evaluativos" data-index="2">
+                                                    <option value="">Seleccione...</option>
+                                                </select>
+                                            </td>
+                                            <td><span class="descripcion-apoyo-anexo10"></span></td>
+                                            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
-                                    <div class="apoyo-item">
-                                        <label>Código:</label>
-                                        <select class="codigo-select" data-tipo="evaluativos" data-index="1">
-                                            <option value="">Seleccione...</option>
-                                        </select>
-                                        <p class="descripcion-apoyo"></p>
+                            <!-- Sección de Firmas -->
+                            <div class="seccion-firmas">
+                                <div class="linea-firma">
+                                    <div class="firma-item">
+                                        <div class="firma-linea"></div>
+                                        <p>Firma del Profesor (a)</p>
                                     </div>
-                                    <div class="resultado">
-                                        <label>Resultados:</label>
-                                        <textarea rows="3"></textarea>
-                                    </div>
-
-                                    <div class="apoyo-item">
-                                        <label>Código:</label>
-                                        <select class="codigo-select" data-tipo="evaluativos" data-index="2">
-                                            <option value="">Seleccione...</option>
-                                        </select>
-                                        <p class="descripcion-apoyo"></p>
-                                    </div>
-                                    <div class="resultado">
-                                        <label>Resultados:</label>
-                                        <textarea rows="3"></textarea>
+                                    <div class="firma-item">
+                                        <div class="firma-linea"></div>
+                                        <p>VB. Comité de Apoyo</p>
                                     </div>
                                 </div>
+                                <p class="cc-expediente">Cc/ Expediente Único</p>
                             </div>
                         </div>
 

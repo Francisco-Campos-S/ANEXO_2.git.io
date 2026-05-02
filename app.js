@@ -45,9 +45,11 @@ function inicializarApp() {
     llenarGuiaCodigos();
     llenarGuiaCodigosMat();
     
-    // Llenar listas desplegables de códigos
+    // Llenar listas desplegables de códigos (ANEXO 2)
     llenarSelectsCodigos('seccionEspanol');
-    llenarSelectsCodigos('seccionMatematica');
+    
+    // Llenar listas desplegables de códigos (ANEXO 10)
+    llenarSelectsCodigosAnexo10();
     
     // Llenar tabla de estudiantes
     llenarTablaEstudiantes();
@@ -61,8 +63,14 @@ function inicializarApp() {
     // Configurar eventos de códigos
     configurarEventosCodigos();
     
+    // Configurar eventos de códigos ANEXO 10
+    configurarEventosCodigosAnexo10();
+    
     // Configurar botones PDF y limpiar
     configurarBotones();
+    
+    // Configurar botón para agregar indicadores
+    configurarBotonAgregarIndicador();
     
     // Establecer fecha actual
     actualizarFecha('esp');
@@ -403,341 +411,20 @@ async function generarPDF(tipo) {
     boton.disabled = true;
     
     try {
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF({
-            orientation: 'portrait',
-            unit: 'mm',
-            format: 'letter'
-        });
-        
-        // Configuración de márgenes y dimensiones
-        const margen = 15;
-        const anchoUtil = 185;
-        let y = 20;
-        
-        // Obtener datos del formulario
-        const institucion = document.getElementById(`institucion_${tipo}`).value;
-        const circuito = document.getElementById(`circuito_${tipo}`).value;
-        const nombreEstudiante = estudianteSelect.value;
-        const seccion = document.getElementById(`seccionAuto_${tipo}`).textContent;
-        const nivel = document.getElementById(`nivelAuto_${tipo}`).textContent;
-        const fecha = document.getElementById(`fechaAuto_${tipo}`).textContent;
-        const docente = document.getElementById(`docente_${tipo}`).value;
-        const asignatura = document.getElementById(`asignatura_${tipo}`).value;
-        const periodoSeleccionado = document.querySelector(`input[name="periodo_${tipo}"]:checked`).value;
-        
-        // ========== CARGAR Y AGREGAR IMAGEN DE ENCABEZADO ==========
-        try {
-            const response = await fetch('encabezado.png');
-            const blob = await response.blob();
-            const reader = new FileReader();
-            
-            await new Promise((resolve) => {
-                reader.onloadend = () => {
-                    const imgData = reader.result;
-                    // Agregar imagen al PDF
-                    pdf.addImage(imgData, 'PNG', margen, y, anchoUtil, 20);
-                    resolve();
-                };
-                reader.readAsDataURL(blob);
-            });
-            
-            y += 25;
-        } catch (error) {
-            console.warn('No se pudo cargar la imagen, usando texto:', error);
-            // Fallback: texto si falla la imagen
-            pdf.setLineWidth(0.5);
-            pdf.rect(margen, y, anchoUtil, 20);
-            pdf.setFillColor(0, 51, 153);
-            pdf.rect(margen + 2, y + 2, 35, 16, 'F');
-            pdf.setTextColor(255, 255, 255);
-            pdf.setFontSize(6);
-            pdf.setFont('helvetica', 'bold');
-            pdf.text('MINISTERIO DE', margen + 4, y + 6);
-            pdf.text('EDUCACIÓN PÚBLICA', margen + 4, y + 9);
-            pdf.setTextColor(0, 0, 0);
-            pdf.setFontSize(7);
-            pdf.text('Dirección Regional de Educación de Coto', margen + 40, y + 5);
-            pdf.setFontSize(6.5);
-            pdf.text('Supervisión de Centros Educativos, Circuito 06', margen + 40, y + 9);
-            pdf.text(`${institucion}`, margen + 40, y + 13);
-            y += 25;
+        if (tipo === 'mat') {
+            // Generar PDF ANEXO 10
+            await generarPDFAnexo10(asignatura);
+        } else {
+            // Generar PDF ANEXO 2 (formato original)
+            await generarPDFAnexo2(tipo, asignatura);
         }
-        
-        // Título principal centrado
-        pdf.setFontSize(14);
-        pdf.setFont('helvetica', 'bold');
-        pdf.text('ANEXO 2: REGISTRO DE APOYOS EDUCATIVOS', 108, y, { align: 'center' });
-        y += 8;
-        
-        pdf.setFontSize(11);
-        pdf.text('Curso lectivo 2025', 108, y, { align: 'center' });
-        y += 10;
-        
-        // ========== TABLA DE INFORMACIÓN CON BORDES ==========
-        pdf.setLineWidth(0.3);
-        pdf.setDrawColor(0, 0, 0);
-        pdf.setFont('helvetica', 'bold');
-        pdf.setFontSize(9);
-        
-        // Fila 1: Institución y Circuito (con bordes)
-        let alturaFila = 7;
-        pdf.rect(margen, y, anchoUtil * 0.75, alturaFila);
-        pdf.rect(margen + anchoUtil * 0.75, y, anchoUtil * 0.25, alturaFila);
-        pdf.text('Institución:', margen + 2, y + 5);
-        pdf.setFont('helvetica', 'normal');
-        pdf.text(institucion, margen + 25, y + 5);
-        pdf.setFont('helvetica', 'bold');
-        pdf.text('Circuito:', margen + anchoUtil * 0.75 + 2, y + 5);
-        pdf.setFont('helvetica', 'normal');
-        pdf.text(circuito, margen + anchoUtil * 0.75 + 18, y + 5);
-        y += alturaFila;
-        
-        // Fila 2: Nombre del estudiante y Sección (con bordes)
-        pdf.rect(margen, y, anchoUtil * 0.75, alturaFila);
-        pdf.rect(margen + anchoUtil * 0.75, y, anchoUtil * 0.25, alturaFila);
-        pdf.setFont('helvetica', 'bold');
-        pdf.text('Nombre del estudiante:', margen + 2, y + 5);
-        pdf.setFont('helvetica', 'normal');
-        const nombreCorto = nombreEstudiante.length > 35 ? nombreEstudiante.substring(0, 32) + '...' : nombreEstudiante;
-        pdf.text(nombreCorto, margen + 45, y + 5);
-        pdf.setFont('helvetica', 'bold');
-        pdf.text('Sección:', margen + anchoUtil * 0.75 + 2, y + 5);
-        pdf.setFont('helvetica', 'normal');
-        pdf.text(seccion, margen + anchoUtil * 0.75 + 18, y + 5);
-        y += alturaFila;
-        
-        // Fila 3: Nivel de Funcionamiento y Fecha (con bordes)
-        alturaFila = 12;
-        pdf.rect(margen, y, anchoUtil * 0.75, alturaFila);
-        pdf.rect(margen + anchoUtil * 0.75, y, anchoUtil * 0.25, alturaFila);
-        pdf.setFont('helvetica', 'bold');
-        pdf.text('Nivel de Funcionamiento:', margen + 2, y + 5);
-        pdf.setFont('helvetica', 'normal');
-        pdf.setFontSize(8);
-        const lineasNivel = pdf.splitTextToSize(nivel, anchoUtil * 0.70);
-        pdf.text(lineasNivel, margen + 2, y + 9);
-        pdf.setFontSize(9);
-        pdf.text(fecha, margen + anchoUtil * 0.75 + 2, y + 7, { align: 'left', maxWidth: anchoUtil * 0.24 });
-        y += alturaFila;
-        
-        // Fila 4: Docente y Asignatura (con bordes)
-        alturaFila = 7;
-        pdf.rect(margen, y, anchoUtil * 0.60, alturaFila);
-        pdf.rect(margen + anchoUtil * 0.60, y, anchoUtil * 0.40, alturaFila);
-        pdf.setFont('helvetica', 'bold');
-        pdf.text('Docente responsable:', margen + 2, y + 5);
-        pdf.setFont('helvetica', 'normal');
-        pdf.text(docente, margen + 38, y + 5);
-        pdf.setFont('helvetica', 'bold');
-        pdf.text('Asignatura:', margen + anchoUtil * 0.60 + 2, y + 5);
-        pdf.setFont('helvetica', 'normal');
-        pdf.text(asignatura, margen + anchoUtil * 0.60 + 22, y + 5);
-        y += alturaFila;
-        
-        // Fila 5: Períodos (con bordes)
-        alturaFila = 6;
-        pdf.rect(margen, y, anchoUtil * 0.50, alturaFila);
-        pdf.rect(margen + anchoUtil * 0.50, y, anchoUtil * 0.50, alturaFila);
-        const marca1 = periodoSeleccionado === 'primero' ? 'X' : '  ';
-        const marca2 = periodoSeleccionado === 'segundo' ? 'X' : '  ';
-        pdf.setFont('helvetica', 'bold');
-        pdf.text(`Primer Período ( ${marca1} )`, margen + 2, y + 4.5);
-        pdf.text(`Segundo Período ( ${marca2} )`, margen + anchoUtil * 0.50 + 2, y + 4.5);
-        y += alturaFila + 5;
-        
-        pdf.text('Descripción del funcionamiento del Estudiante:', margen, y);
-        y += 7;
-        
-        // ========== FUNCIÓN PARA DIBUJAR TABLAS CON BORDES ==========
-        function dibujarTablaApoyos(titulo) {
-            // Verificar espacio
-            if (y > 240) {
-                pdf.addPage();
-                y = 20;
-            }
-            
-            // Dimensiones de columnas
-            const col1Width = 20;
-            const col2Width = anchoUtil - col1Width - 50;
-            const col3Width = 50;
-            
-            // Encabezado de la tabla con fondo gris y bordes
-            const alturaEncabezado = 7;
-            pdf.setFillColor(220, 220, 220);
-            pdf.rect(margen, y, col1Width, alturaEncabezado, 'FD');
-            pdf.rect(margen + col1Width, y, col2Width, alturaEncabezado, 'FD');
-            pdf.rect(margen + col1Width + col2Width, y, col3Width, alturaEncabezado, 'FD');
-            
-            pdf.setFont('helvetica', 'bold');
-            pdf.setFontSize(9);
-            pdf.text('Código', margen + col1Width/2, y + 4.5, { align: 'center' });
-            pdf.text(titulo, margen + col1Width + col2Width/2, y + 4.5, { align: 'center' });
-            pdf.text('Resultados', margen + col1Width + col2Width + col3Width/2, y + 4.5, { align: 'center' });
-            y += alturaEncabezado;
-            
-            // Obtener los apoyos seleccionados
-            const seccionForm = tipo === 'esp' ? 'seccionEspanol' : 'seccionMatematica';
-            const selects = document.querySelectorAll(`#${seccionForm} .seccion-apoyos h4`);
-            let seccionActual = null;
-            
-            selects.forEach(h4 => {
-                const textoH4 = h4.textContent.replace('●', '').trim();
-                if (textoH4.includes(titulo.split('(')[0].trim())) {
-                    seccionActual = h4.closest('.seccion-apoyos');
-                }
-            });
-            
-            if (!seccionActual) {
-                // Si no hay apoyos, mostrar fila vacía con bordes
-                const alturaFilaVacia = 8;
-                pdf.rect(margen, y, col1Width, alturaFilaVacia);
-                pdf.rect(margen + col1Width, y, col2Width, alturaFilaVacia);
-                pdf.rect(margen + col1Width + col2Width, y, col3Width, alturaFilaVacia);
-                y += alturaFilaVacia;
-                return;
-            }
-            
-            const codigoSelects = seccionActual.querySelectorAll('.codigo-select');
-            let hayApoyos = false;
-            
-            pdf.setFont('helvetica', 'normal');
-            pdf.setFontSize(8);
-            
-            codigoSelects.forEach((select, index) => {
-                const codigo = select.value;
-                if (codigo) {
-                    hayApoyos = true;
-                    
-                    // Verificar espacio
-                    if (y > 250) {
-                        pdf.addPage();
-                        y = 20;
-                    }
-                    
-                    const descripcion = select.options[select.selectedIndex].dataset.descripcion || '';
-                    const resultado = seccionActual.querySelectorAll('.resultado textarea')[index]?.value || '';
-                    
-                    const lineasDesc = pdf.splitTextToSize(descripcion, col2Width - 4);
-                    const lineasRes = pdf.splitTextToSize(resultado, col3Width - 4);
-                    const alturaFila = Math.max(lineasDesc.length * 4 + 4, lineasRes.length * 4 + 4, 10);
-                    
-                    // Dibujar celdas con bordes
-                    pdf.rect(margen, y, col1Width, alturaFila);
-                    pdf.rect(margen + col1Width, y, col2Width, alturaFila);
-                    pdf.rect(margen + col1Width + col2Width, y, col3Width, alturaFila);
-                    
-                    // Código (centrado y negrita)
-                    pdf.setFont('helvetica', 'bold');
-                    pdf.text(codigo, margen + col1Width/2, y + 6, { align: 'center' });
-                    
-                    // Descripción
-                    pdf.setFont('helvetica', 'normal');
-                    pdf.text(lineasDesc, margen + col1Width + 2, y + 5);
-                    
-                    // Resultados
-                    if (resultado) {
-                        pdf.text(lineasRes, margen + col1Width + col2Width + 2, y + 5);
-                    }
-                    
-                    y += alturaFila;
-                }
-            });
-            
-            if (!hayApoyos) {
-                const alturaFilaVacia = 8;
-                pdf.rect(margen, y, col1Width, alturaFilaVacia);
-                pdf.rect(margen + col1Width, y, col2Width, alturaFilaVacia);
-                pdf.rect(margen + col1Width + col2Width, y, col3Width, alturaFilaVacia);
-                y += alturaFilaVacia;
-            }
-            
-            y += 3;
-        }
-        
-        // Generar todas las secciones de apoyos con tablas
-        dibujarTablaApoyos('Apoyos personales');
-        dibujarTablaApoyos('Apoyos Organizativos (A.A)');
-        dibujarTablaApoyos('Apoyos Materiales y Tecnológicos (A.A)');
-        
-        // Verificar si necesitamos nueva página
-        if (y > 200) {
-            pdf.addPage();
-            y = 20;
-        }
-        
-        dibujarTablaApoyos('Apoyos Curriculares (Metodología)(A.C.)');
-        dibujarTablaApoyos('Apoyos Curriculares (Evaluación)(A.C)');
-        
-        // ========== SECCIÓN FINAL ==========
-        if (y > 220) {
-            pdf.addPage();
-            y = 20;
-        }
-        
-        y += 5;
-        pdf.setFontSize(9);
-        pdf.setFont('helvetica', 'bold');
-        pdf.text('Marque con X los Apoyos Personales Específicos que recibe esta persona estudiante:', margen, y);
-        y += 6;
-        
-        pdf.setFont('helvetica', 'normal');
-        pdf.setFontSize(8);
-        pdf.text('(   ) Terapia de Lenguaje', margen, y);
-        pdf.text('(   ) Terapia Física', margen + 50, y);
-        pdf.text('(   ) Problemas Emocionales', margen + 95, y);
-        pdf.text('(   ) Discap. Visual', margen + 145, y);
-        y += 5;
-        pdf.text('(   ) Problemas de Aprendizaje', margen, y);
-        y += 10;
-        
-        // Recomendaciones
-        pdf.setFont('helvetica', 'bold');
-        pdf.setFontSize(9);
-        pdf.text('Recomendaciones:', margen, y);
-        y += 6;
-        pdf.setFont('helvetica', 'normal');
-        pdf.line(margen, y, margen + 85, y);
-        pdf.line(margen + 100, y, margen + anchoUtil, y);
-        y += 12;
-        
-        // Firmas
-        pdf.setFontSize(8);
-        pdf.text('Firma del Profesor (a)', margen + 15, y);
-        pdf.text('VB. Comité de Apoyo', margen + 120, y);
-        y += 2;
-        pdf.line(margen, y, margen + 70, y);
-        pdf.line(margen + 105, y, margen + anchoUtil, y);
-        y += 8;
-        
-        pdf.text('Cc/ Expediente Único', margen, y);
-        
-        // Pie de página oficial
-        pdf.setFontSize(6);
-        pdf.setFont('helvetica', 'italic');
-        pdf.text('Puntarenas, Coto Brus - Supervisión de Centros Educativos, Circuito 06', 108, 270, { align: 'center' });
-        pdf.text(`${institucion}`, 108, 274, { align: 'center' });
-        
-        // Numeración de páginas con formato "-- 1 de 2 --"
-        const totalPaginas = pdf.internal.pages.length - 1;
-        for (let i = 1; i <= totalPaginas; i++) {
-            pdf.setPage(i);
-            pdf.setFontSize(8);
-            pdf.setFont('helvetica', 'normal');
-            pdf.text(`-- ${i} de ${totalPaginas} --`, 108, 278, { align: 'center' });
-        }
-        
-        // Generar nombre del archivo
-        const nombreArchivo = `Anexo2_${asignatura}_${nombreEstudiante.replace(/\s+/g, '_')}.pdf`;
-        
-        // Descargar PDF
-        pdf.save(nombreArchivo);
         
         // Mensaje de éxito con confetti
         setTimeout(() => {
+            const nombreAnexo = tipo === 'mat' ? 'ANEXO 10' : 'ANEXO 2';
             mostrarNotificacion(
                 '¡PDF Generado!', 
-                `Formato oficial MEP descargado correctamente.`, 
+                `${nombreAnexo} descargado correctamente.`, 
                 'exito'
             );
             crearConfetti();
@@ -753,6 +440,717 @@ async function generarPDF(tipo) {
     }
 }
 
+// Generar PDF para ANEXO 2 (formato original)
+async function generarPDFAnexo2(tipo, asignatura) {
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'letter'
+    });
+    
+    // Configuración de márgenes y dimensiones
+    const margen = 15;
+    const anchoUtil = 185;
+    let y = 20;
+    
+    // Obtener datos del formulario
+    const estudianteSelect = document.getElementById(`estudianteSelect_${tipo}`);
+    const institucion = document.getElementById(`institucion_${tipo}`).value;
+    const circuito = document.getElementById(`circuito_${tipo}`).value;
+    const nombreEstudiante = estudianteSelect.value;
+    const seccion = document.getElementById(`seccionAuto_${tipo}`).textContent;
+    const nivel = document.getElementById(`nivelAuto_${tipo}`).textContent;
+    const fecha = document.getElementById(`fechaAuto_${tipo}`).textContent;
+    const docente = document.getElementById(`docente_${tipo}`).value;
+    const periodoSeleccionado = document.querySelector(`input[name="periodo_${tipo}"]:checked`).value;
+    
+    // ========== CARGAR Y AGREGAR IMAGEN DE ENCABEZADO ==========
+    try {
+        const response = await fetch('encabezado.png');
+        const blob = await response.blob();
+        const reader = new FileReader();
+        
+        await new Promise((resolve) => {
+            reader.onloadend = () => {
+                const imgData = reader.result;
+                // Agregar imagen al PDF
+                pdf.addImage(imgData, 'PNG', margen, y, anchoUtil, 20);
+                resolve();
+            };
+            reader.readAsDataURL(blob);
+        });
+        
+        y += 25;
+    } catch (error) {
+        console.warn('No se pudo cargar la imagen, usando texto:', error);
+        // Fallback: texto si falla la imagen
+        pdf.setLineWidth(0.5);
+        pdf.rect(margen, y, anchoUtil, 20);
+        pdf.setFillColor(0, 51, 153);
+        pdf.rect(margen + 2, y + 2, 35, 16, 'F');
+        pdf.setTextColor(255, 255, 255);
+        pdf.setFontSize(6);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('MINISTERIO DE', margen + 4, y + 6);
+        pdf.text('EDUCACIÓN PÚBLICA', margen + 4, y + 9);
+        pdf.setTextColor(0, 0, 0);
+        pdf.setFontSize(7);
+        pdf.text('Dirección Regional de Educación de Coto', margen + 40, y + 5);
+        pdf.setFontSize(6.5);
+        pdf.text('Supervisión de Centros Educativos, Circuito 06', margen + 40, y + 9);
+        pdf.text(`${institucion}`, margen + 40, y + 13);
+        y += 25;
+    }
+    
+    // Título principal centrado
+    pdf.setFontSize(14);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('ANEXO 2: REGISTRO DE APOYOS EDUCATIVOS', 108, y, { align: 'center' });
+    y += 8;
+    
+    pdf.setFontSize(11);
+    pdf.text('Curso lectivo 2025', 108, y, { align: 'center' });
+    y += 10;
+    
+    // ========== TABLA DE INFORMACIÓN CON BORDES ==========
+    pdf.setLineWidth(0.3);
+    pdf.setDrawColor(0, 0, 0);
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(9);
+    
+    // Fila 1: Institución y Circuito (con bordes)
+    let alturaFila = 7;
+    pdf.rect(margen, y, anchoUtil * 0.75, alturaFila);
+    pdf.rect(margen + anchoUtil * 0.75, y, anchoUtil * 0.25, alturaFila);
+    pdf.text('Institución:', margen + 2, y + 5);
+    pdf.setFont('helvetica', 'normal');
+    pdf.text(institucion, margen + 25, y + 5);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('Circuito:', margen + anchoUtil * 0.75 + 2, y + 5);
+    pdf.setFont('helvetica', 'normal');
+    pdf.text(circuito, margen + anchoUtil * 0.75 + 18, y + 5);
+    y += alturaFila;
+    
+    // Fila 2: Nombre del estudiante y Sección (con bordes)
+    pdf.rect(margen, y, anchoUtil * 0.75, alturaFila);
+    pdf.rect(margen + anchoUtil * 0.75, y, anchoUtil * 0.25, alturaFila);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('Nombre del estudiante:', margen + 2, y + 5);
+    pdf.setFont('helvetica', 'normal');
+    const nombreCorto = nombreEstudiante.length > 35 ? nombreEstudiante.substring(0, 32) + '...' : nombreEstudiante;
+    pdf.text(nombreCorto, margen + 45, y + 5);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('Sección:', margen + anchoUtil * 0.75 + 2, y + 5);
+    pdf.setFont('helvetica', 'normal');
+    pdf.text(seccion, margen + anchoUtil * 0.75 + 18, y + 5);
+    y += alturaFila;
+    
+    // Fila 3: Nivel de Funcionamiento y Fecha (con bordes)
+    alturaFila = 12;
+    pdf.rect(margen, y, anchoUtil * 0.75, alturaFila);
+    pdf.rect(margen + anchoUtil * 0.75, y, anchoUtil * 0.25, alturaFila);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('Nivel de Funcionamiento:', margen + 2, y + 5);
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(8);
+    const lineasNivel = pdf.splitTextToSize(nivel, anchoUtil * 0.70);
+    pdf.text(lineasNivel, margen + 2, y + 9);
+    pdf.setFontSize(9);
+    pdf.text(fecha, margen + anchoUtil * 0.75 + 2, y + 7, { align: 'left', maxWidth: anchoUtil * 0.24 });
+    y += alturaFila;
+    
+    // Fila 4: Docente y Asignatura (con bordes)
+    alturaFila = 7;
+    pdf.rect(margen, y, anchoUtil * 0.60, alturaFila);
+    pdf.rect(margen + anchoUtil * 0.60, y, anchoUtil * 0.40, alturaFila);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('Docente responsable:', margen + 2, y + 5);
+    pdf.setFont('helvetica', 'normal');
+    pdf.text(docente, margen + 38, y + 5);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('Asignatura:', margen + anchoUtil * 0.60 + 2, y + 5);
+    pdf.setFont('helvetica', 'normal');
+    pdf.text(asignatura, margen + anchoUtil * 0.60 + 22, y + 5);
+    y += alturaFila;
+    
+    // Fila 5: Períodos (con bordes)
+    alturaFila = 6;
+    pdf.rect(margen, y, anchoUtil * 0.50, alturaFila);
+    pdf.rect(margen + anchoUtil * 0.50, y, anchoUtil * 0.50, alturaFila);
+    const marca1 = periodoSeleccionado === 'primero' ? 'X' : '  ';
+    const marca2 = periodoSeleccionado === 'segundo' ? 'X' : '  ';
+    pdf.setFont('helvetica', 'bold');
+    pdf.text(`Primer Período ( ${marca1} )`, margen + 2, y + 4.5);
+    pdf.text(`Segundo Período ( ${marca2} )`, margen + anchoUtil * 0.50 + 2, y + 4.5);
+    y += alturaFila + 5;
+    
+    pdf.text('Descripción del funcionamiento del Estudiante:', margen, y);
+    y += 7;
+    
+    // ========== FUNCIÓN PARA DIBUJAR TABLAS CON BORDES ==========
+    function dibujarTablaApoyos(titulo) {
+        // Verificar espacio
+        if (y > 240) {
+            pdf.addPage();
+            y = 20;
+        }
+        
+        // Dimensiones de columnas
+        const col1Width = 20;
+        const col2Width = anchoUtil - col1Width - 50;
+        const col3Width = 50;
+        
+        // Encabezado de la tabla con fondo gris y bordes
+        const alturaEncabezado = 7;
+        pdf.setFillColor(220, 220, 220);
+        pdf.rect(margen, y, col1Width, alturaEncabezado, 'FD');
+        pdf.rect(margen + col1Width, y, col2Width, alturaEncabezado, 'FD');
+        pdf.rect(margen + col1Width + col2Width, y, col3Width, alturaEncabezado, 'FD');
+        
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(9);
+        pdf.text('Código', margen + col1Width/2, y + 4.5, { align: 'center' });
+        pdf.text(titulo, margen + col1Width + col2Width/2, y + 4.5, { align: 'center' });
+        pdf.text('Resultados', margen + col1Width + col2Width + col3Width/2, y + 4.5, { align: 'center' });
+        y += alturaEncabezado;
+        
+        // Obtener los apoyos seleccionados
+        const seccionForm = 'seccionEspanol';
+        const selects = document.querySelectorAll(`#${seccionForm} .seccion-apoyos h4`);
+        let seccionActual = null;
+        
+        selects.forEach(h4 => {
+            const textoH4 = h4.textContent.replace('●', '').trim();
+            if (textoH4.includes(titulo.split('(')[0].trim())) {
+                seccionActual = h4.closest('.seccion-apoyos');
+            }
+        });
+        
+        if (!seccionActual) {
+            // Si no hay apoyos, mostrar fila vacía con bordes
+            const alturaFilaVacia = 8;
+            pdf.rect(margen, y, col1Width, alturaFilaVacia);
+            pdf.rect(margen + col1Width, y, col2Width, alturaFilaVacia);
+            pdf.rect(margen + col1Width + col2Width, y, col3Width, alturaFilaVacia);
+            y += alturaFilaVacia;
+            return;
+        }
+        
+        const codigoSelects = seccionActual.querySelectorAll('.codigo-select');
+        let hayApoyos = false;
+        
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(8);
+        
+        codigoSelects.forEach((select, index) => {
+            const codigo = select.value;
+            if (codigo) {
+                hayApoyos = true;
+                
+                // Verificar espacio
+                if (y > 250) {
+                    pdf.addPage();
+                    y = 20;
+                }
+                
+                const descripcion = select.options[select.selectedIndex].dataset.descripcion || '';
+                const resultado = seccionActual.querySelectorAll('.resultado textarea')[index]?.value || '';
+                
+                const lineasDesc = pdf.splitTextToSize(descripcion, col2Width - 4);
+                const lineasRes = pdf.splitTextToSize(resultado, col3Width - 4);
+                const alturaFila = Math.max(lineasDesc.length * 4 + 4, lineasRes.length * 4 + 4, 10);
+                
+                // Dibujar celdas con bordes
+                pdf.rect(margen, y, col1Width, alturaFila);
+                pdf.rect(margen + col1Width, y, col2Width, alturaFila);
+                pdf.rect(margen + col1Width + col2Width, y, col3Width, alturaFila);
+                
+                // Código (centrado y negrita)
+                pdf.setFont('helvetica', 'bold');
+                pdf.text(codigo, margen + col1Width/2, y + 6, { align: 'center' });
+                
+                // Descripción
+                pdf.setFont('helvetica', 'normal');
+                pdf.text(lineasDesc, margen + col1Width + 2, y + 5);
+                
+                // Resultados
+                if (resultado) {
+                    pdf.text(lineasRes, margen + col1Width + col2Width + 2, y + 5);
+                }
+                
+                y += alturaFila;
+            }
+        });
+        
+        if (!hayApoyos) {
+            const alturaFilaVacia = 8;
+            pdf.rect(margen, y, col1Width, alturaFilaVacia);
+            pdf.rect(margen + col1Width, y, col2Width, alturaFilaVacia);
+            pdf.rect(margen + col1Width + col2Width, y, col3Width, alturaFilaVacia);
+            y += alturaFilaVacia;
+        }
+        
+        y += 3;
+    }
+    
+    // Generar todas las secciones de apoyos con tablas
+    dibujarTablaApoyos('Apoyos personales');
+    dibujarTablaApoyos('Apoyos Organizativos (A.A)');
+    dibujarTablaApoyos('Apoyos Materiales y Tecnológicos (A.A)');
+    
+    // Verificar si necesitamos nueva página
+    if (y > 200) {
+        pdf.addPage();
+        y = 20;
+    }
+    
+    dibujarTablaApoyos('Apoyos Curriculares (Metodología)(A.C.)');
+    dibujarTablaApoyos('Apoyos Curriculares (Evaluación)(A.C)');
+    
+    // ========== SECCIÓN FINAL ==========
+    if (y > 220) {
+        pdf.addPage();
+        y = 20;
+    }
+    
+    y += 5;
+    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('Marque con X los Apoyos Personales Específicos que recibe esta persona estudiante:', margen, y);
+    y += 6;
+    
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(8);
+    pdf.text('(   ) Terapia de Lenguaje', margen, y);
+    pdf.text('(   ) Terapia Física', margen + 50, y);
+    pdf.text('(   ) Problemas Emocionales', margen + 95, y);
+    pdf.text('(   ) Discap. Visual', margen + 145, y);
+    y += 5;
+    pdf.text('(   ) Problemas de Aprendizaje', margen, y);
+    y += 10;
+    
+    // Recomendaciones
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(9);
+    pdf.text('Recomendaciones:', margen, y);
+    y += 6;
+    pdf.setFont('helvetica', 'normal');
+    pdf.line(margen, y, margen + 85, y);
+    pdf.line(margen + 100, y, margen + anchoUtil, y);
+    y += 12;
+    
+    // Firmas
+    pdf.setFontSize(8);
+    pdf.text('Firma del Profesor (a)', margen + 15, y);
+    pdf.text('VB. Comité de Apoyo', margen + 120, y);
+    y += 2;
+    pdf.line(margen, y, margen + 70, y);
+    pdf.line(margen + 105, y, margen + anchoUtil, y);
+    y += 8;
+    
+    pdf.text('Cc/ Expediente Único', margen, y);
+    
+    // Pie de página oficial
+    pdf.setFontSize(6);
+    pdf.setFont('helvetica', 'italic');
+    pdf.text('Puntarenas, Coto Brus - Supervisión de Centros Educativos, Circuito 06', 108, 270, { align: 'center' });
+    pdf.text(`${institucion}`, 108, 274, { align: 'center' });
+    
+    // Numeración de páginas con formato "-- 1 de 2 --"
+    const totalPaginas = pdf.internal.pages.length - 1;
+    for (let i = 1; i <= totalPaginas; i++) {
+        pdf.setPage(i);
+        pdf.setFontSize(8);
+        pdf.setFont('helvetica', 'normal');
+        pdf.text(`-- ${i} de ${totalPaginas} --`, 108, 278, { align: 'center' });
+    }
+    
+    // Generar nombre del archivo
+    const nombreArchivo = `Anexo2_${asignatura}_${nombreEstudiante.replace(/\s+/g, '_')}.pdf`;
+    
+    // Descargar PDF
+    pdf.save(nombreArchivo);
+}
+
+// Generar PDF para ANEXO 10 (con tabla de indicadores)
+async function generarPDFAnexo10(asignatura) {
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'letter'
+    });
+    
+    const margen = 15;
+    const anchoUtil = 185;
+    let y = 20;
+    const tipo = 'mat';
+    
+    // Obtener datos del formulario
+    const estudianteSelect = document.getElementById(`estudianteSelect_${tipo}`);
+    const institucion = document.getElementById(`institucion_${tipo}`).value;
+    const circuito = document.getElementById(`circuito_${tipo}`).value;
+    const nombreEstudiante = estudianteSelect.value;
+    const seccion = document.getElementById(`seccionAuto_${tipo}`).textContent;
+    const nivel = document.getElementById(`nivelAuto_${tipo}`).textContent;
+    const fecha = document.getElementById(`fechaAuto_${tipo}`).textContent;
+    const docente = document.getElementById(`docente_${tipo}`).value;
+    const periodoSeleccionado = document.querySelector(`input[name="periodo_${tipo}"]:checked`).value;
+    
+    // ========== CARGAR Y AGREGAR IMAGEN DE ENCABEZADO ==========
+    try {
+        const response = await fetch('encabezado.png');
+        const blob = await response.blob();
+        const reader = new FileReader();
+        
+        await new Promise((resolve) => {
+            reader.onloadend = () => {
+                const imgData = reader.result;
+                pdf.addImage(imgData, 'PNG', margen, y, anchoUtil, 20);
+                resolve();
+            };
+            reader.readAsDataURL(blob);
+        });
+        y += 25;
+    } catch (error) {
+        console.warn('No se pudo cargar la imagen, usando texto:', error);
+        pdf.setLineWidth(0.5);
+        pdf.rect(margen, y, anchoUtil, 20);
+        pdf.setFillColor(0, 51, 153);
+        pdf.rect(margen + 2, y + 2, 35, 16, 'F');
+        pdf.setTextColor(255, 255, 255);
+        pdf.setFontSize(6);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('MINISTERIO DE', margen + 4, y + 6);
+        pdf.text('EDUCACIÓN PÚBLICA', margen + 4, y + 9);
+        pdf.setTextColor(0, 0, 0);
+        pdf.setFontSize(7);
+        pdf.text('Dirección Regional de Educación de Coto', margen + 40, y + 5);
+        pdf.setFontSize(6.5);
+        pdf.text('Supervisión de Centros Educativos, Circuito 06', margen + 40, y + 9);
+        pdf.text(`${institucion}`, margen + 40, y + 13);
+        y += 25;
+    }
+    
+    // Título principal
+    pdf.setFontSize(12);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('ANEXO 10: INFORME DE CONTROL DE AVANCE POR PERÍODO', 108, y, { align: 'center' });
+    y += 5;
+    pdf.setFontSize(10);
+    pdf.text('(APOYO CURRICULAR SIGNIFICATIVO)', 108, y, { align: 'center' });
+    y += 6;
+    pdf.setFontSize(11);
+    pdf.text('Curso lectivo 2025', 108, y, { align: 'center' });
+    y += 10;
+    
+    // ========== INFORMACIÓN BÁSICA ==========
+    pdf.setLineWidth(0.3);
+    pdf.setDrawColor(0, 0, 0);
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(9);
+    
+    let alturaFila = 7;
+    // Institución y Circuito
+    pdf.rect(margen, y, anchoUtil * 0.75, alturaFila);
+    pdf.rect(margen + anchoUtil * 0.75, y, anchoUtil * 0.25, alturaFila);
+    pdf.text('Institución:', margen + 2, y + 5);
+    pdf.setFont('helvetica', 'normal');
+    pdf.text(institucion, margen + 25, y + 5);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('Circuito:', margen + anchoUtil * 0.75 + 2, y + 5);
+    pdf.setFont('helvetica', 'normal');
+    pdf.text(circuito, margen + anchoUtil * 0.75 + 18, y + 5);
+    y += alturaFila;
+    
+    // Estudiante y Sección
+    pdf.rect(margen, y, anchoUtil * 0.75, alturaFila);
+    pdf.rect(margen + anchoUtil * 0.75, y, anchoUtil * 0.25, alturaFila);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('Nombre del estudiante:', margen + 2, y + 5);
+    pdf.setFont('helvetica', 'normal');
+    const nombreCorto = nombreEstudiante.length > 35 ? nombreEstudiante.substring(0, 32) + '...' : nombreEstudiante;
+    pdf.text(nombreCorto, margen + 45, y + 5);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('Sección:', margen + anchoUtil * 0.75 + 2, y + 5);
+    pdf.setFont('helvetica', 'normal');
+    pdf.text(seccion, margen + anchoUtil * 0.75 + 18, y + 5);
+    y += alturaFila;
+    
+    // Nivel de funcionamiento y Fecha
+    alturaFila = 12;
+    pdf.rect(margen, y, anchoUtil * 0.75, alturaFila);
+    pdf.rect(margen + anchoUtil * 0.75, y, anchoUtil * 0.25, alturaFila);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('Nivel de Funcionamiento:', margen + 2, y + 5);
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(8);
+    const lineasNivel = pdf.splitTextToSize(nivel, anchoUtil * 0.70);
+    pdf.text(lineasNivel, margen + 2, y + 9);
+    pdf.setFontSize(9);
+    pdf.text(fecha, margen + anchoUtil * 0.75 + 2, y + 7, { align: 'left', maxWidth: anchoUtil * 0.24 });
+    y += alturaFila;
+    
+    // Docente y Asignatura
+    alturaFila = 7;
+    pdf.rect(margen, y, anchoUtil * 0.60, alturaFila);
+    pdf.rect(margen + anchoUtil * 0.60, y, anchoUtil * 0.40, alturaFila);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('Docente responsable:', margen + 2, y + 5);
+    pdf.setFont('helvetica', 'normal');
+    pdf.text(docente, margen + 38, y + 5);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('Asignatura:', margen + anchoUtil * 0.60 + 2, y + 5);
+    pdf.setFont('helvetica', 'normal');
+    pdf.text(asignatura, margen + anchoUtil * 0.60 + 22, y + 5);
+    y += alturaFila;
+    
+    // Períodos
+    alturaFila = 6;
+    pdf.rect(margen, y, anchoUtil * 0.50, alturaFila);
+    pdf.rect(margen + anchoUtil * 0.50, y, anchoUtil * 0.50, alturaFila);
+    const marca1 = periodoSeleccionado === 'primero' ? 'X' : '  ';
+    const marca2 = periodoSeleccionado === 'segundo' ? 'X' : '  ';
+    pdf.setFont('helvetica', 'bold');
+    pdf.text(`Primer Período ( ${marca1} )`, margen + 2, y + 4.5);
+    pdf.text(`Segundo Período ( ${marca2} )`, margen + anchoUtil * 0.50 + 2, y + 4.5);
+    y += alturaFila + 5;
+    
+    // Título de aprendizajes
+    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('Aprendizajes Logrados según Operacionalización de la PEI:', margen, y);
+    y += 7;
+    
+    // ========== TABLA DE INDICADORES ==========
+    const tablaIndicadores = document.getElementById('tablaIndicadores_mat');
+    if (tablaIndicadores) {
+        const filas = tablaIndicadores.querySelectorAll('tr');
+        
+        // Anchos de columnas
+        const colIndicador = 70;
+        const colNivel = 22;
+        const colResultados = anchoUtil - colIndicador - (colNivel * 3);
+        
+        // Encabezado
+        pdf.setFillColor(220, 220, 220);
+        pdf.setFontSize(7);
+        pdf.setFont('helvetica', 'bold');
+        
+        const alturaEncabezado = 6;
+        pdf.rect(margen, y, colIndicador, alturaEncabezado, 'FD');
+        pdf.rect(margen + colIndicador, y, colNivel, alturaEncabezado, 'FD');
+        pdf.rect(margen + colIndicador + colNivel, y, colNivel, alturaEncabezado, 'FD');
+        pdf.rect(margen + colIndicador + colNivel * 2, y, colNivel, alturaEncabezado, 'FD');
+        pdf.rect(margen + colIndicador + colNivel * 3, y, colResultados, alturaEncabezado, 'FD');
+        
+        pdf.text('Indicador', margen + 2, y + 4);
+        pdf.text('INICIAL', margen + colIndicador + 2, y + 4);
+        pdf.text('INTERMEDIO', margen + colIndicador + colNivel + 2, y + 4);
+        pdf.text('AVANZADO', margen + colIndicador + colNivel * 2 + 2, y + 4);
+        pdf.text('Resultados', margen + colIndicador + colNivel * 3 + 2, y + 4);
+        y += alturaEncabezado;
+        
+        // Filas de datos
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(7);
+        
+        filas.forEach((fila) => {
+            const indicador = fila.querySelector('.input-indicador')?.value || '';
+            const checkboxes = fila.querySelectorAll('.checkbox-nivel');
+            const resultados = fila.querySelector('td:last-child textarea')?.value || '';
+            
+            // Solo incluir filas con contenido
+            if (indicador.trim() || resultados.trim()) {
+                if (y > 250) {
+                    pdf.addPage();
+                    y = 20;
+                }
+                
+                const lineasIndicador = pdf.splitTextToSize(indicador, colIndicador - 4);
+                const lineasResultados = pdf.splitTextToSize(resultados, colResultados - 4);
+                const alturaFila = Math.max(lineasIndicador.length * 4 + 3, lineasResultados.length * 4 + 3, 8);
+                
+                // Dibujar celdas
+                pdf.rect(margen, y, colIndicador, alturaFila);
+                pdf.rect(margen + colIndicador, y, colNivel, alturaFila);
+                pdf.rect(margen + colIndicador + colNivel, y, colNivel, alturaFila);
+                pdf.rect(margen + colIndicador + colNivel * 2, y, colNivel, alturaFila);
+                pdf.rect(margen + colIndicador + colNivel * 3, y, colResultados, alturaFila);
+                
+                // Indicador
+                pdf.text(lineasIndicador, margen + 2, y + 4);
+                
+                // Checkboxes (X si está marcado)
+                pdf.setFont('helvetica', 'bold');
+                if (checkboxes[0]?.checked) {
+                    pdf.text('X', margen + colIndicador + colNivel/2 - 1, y + alturaFila/2 + 1);
+                }
+                if (checkboxes[1]?.checked) {
+                    pdf.text('X', margen + colIndicador + colNivel + colNivel/2 - 1, y + alturaFila/2 + 1);
+                }
+                if (checkboxes[2]?.checked) {
+                    pdf.text('X', margen + colIndicador + colNivel * 2 + colNivel/2 - 1, y + alturaFila/2 + 1);
+                }
+                pdf.setFont('helvetica', 'normal');
+                
+                // Resultados
+                pdf.text(lineasResultados, margen + colIndicador + colNivel * 3 + 2, y + 4);
+                
+                y += alturaFila;
+            }
+        });
+        
+        y += 5;
+    }
+    
+    // ========== TABLAS DE APOYOS ANEXO 10 ==========
+    function dibujarTablaApoyosAnexo10(titulo, idTabla) {
+        if (y > 240) {
+            pdf.addPage();
+            y = 20;
+        }
+        
+        pdf.setFontSize(9);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text(titulo, margen, y);
+        y += 5;
+        
+        // Anchos de columnas
+        const colCodigo = 20;
+        const colDescripcion = 95;
+        const colResultados = anchoUtil - colCodigo - colDescripcion;
+        
+        // Encabezado
+        const alturaEncabezado = 6;
+        pdf.setFillColor(240, 240, 240);
+        pdf.rect(margen, y, colCodigo, alturaEncabezado, 'FD');
+        pdf.rect(margen + colCodigo, y, colDescripcion, alturaEncabezado, 'FD');
+        pdf.rect(margen + colCodigo + colDescripcion, y, colResultados, alturaEncabezado, 'FD');
+        
+        pdf.setFontSize(8);
+        pdf.text('Código', margen + 2, y + 4);
+        pdf.text('Descripción', margen + colCodigo + 2, y + 4);
+        pdf.text('Resultados', margen + colCodigo + colDescripcion + 2, y + 4);
+        y += alturaEncabezado;
+        
+        // Obtener datos de la tabla
+        const tbody = document.getElementById(idTabla);
+        if (tbody) {
+            const filas = tbody.querySelectorAll('tr');
+            let hayDatos = false;
+            
+            pdf.setFont('helvetica', 'normal');
+            pdf.setFontSize(7);
+            
+            filas.forEach(fila => {
+                const select = fila.querySelector('.codigo-select-anexo10');
+                const codigo = select?.value || '';
+                const descripcion = fila.querySelector('.descripcion-apoyo-anexo10')?.textContent || '';
+                const resultados = fila.querySelector('textarea')?.value || '';
+                
+                if (codigo) {
+                    hayDatos = true;
+                    
+                    if (y > 250) {
+                        pdf.addPage();
+                        y = 20;
+                    }
+                    
+                    const lineasDesc = pdf.splitTextToSize(descripcion, colDescripcion - 4);
+                    const lineasRes = pdf.splitTextToSize(resultados, colResultados - 4);
+                    const alturaFila = Math.max(lineasDesc.length * 4 + 3, lineasRes.length * 4 + 3, 8);
+                    
+                    // Dibujar celdas
+                    pdf.rect(margen, y, colCodigo, alturaFila);
+                    pdf.rect(margen + colCodigo, y, colDescripcion, alturaFila);
+                    pdf.rect(margen + colCodigo + colDescripcion, y, colResultados, alturaFila);
+                    
+                    // Código
+                    pdf.setFont('helvetica', 'bold');
+                    pdf.text(codigo, margen + colCodigo/2, y + alturaFila/2 + 1, { align: 'center' });
+                    
+                    // Descripción
+                    pdf.setFont('helvetica', 'normal');
+                    pdf.text(lineasDesc, margen + colCodigo + 2, y + 4);
+                    
+                    // Resultados
+                    pdf.text(lineasRes, margen + colCodigo + colDescripcion + 2, y + 4);
+                    
+                    y += alturaFila;
+                }
+            });
+            
+            if (!hayDatos) {
+                const alturaVacia = 8;
+                pdf.rect(margen, y, colCodigo, alturaVacia);
+                pdf.rect(margen + colCodigo, y, colDescripcion, alturaVacia);
+                pdf.rect(margen + colCodigo + colDescripcion, y, colResultados, alturaVacia);
+                y += alturaVacia;
+            }
+        }
+        
+        y += 3;
+    }
+    
+    // Generar todas las tablas de apoyos
+    dibujarTablaApoyosAnexo10('Apoyos personales aplicados', 'tablaApoyosPersonales_mat');
+    dibujarTablaApoyosAnexo10('Apoyos Organizativos (A.A)', 'tablaApoyosOrganizativos_mat');
+    
+    if (y > 200) {
+        pdf.addPage();
+        y = 20;
+    }
+    
+    dibujarTablaApoyosAnexo10('Apoyos Materiales y Tecnológicos (A.A)', 'tablaApoyosMateriales_mat');
+    dibujarTablaApoyosAnexo10('Apoyos Curriculares (Metodología)(A.C.)', 'tablaApoyosCurriculares_mat');
+    
+    if (y > 200) {
+        pdf.addPage();
+        y = 20;
+    }
+    
+    dibujarTablaApoyosAnexo10('Apoyos Evaluativos (A.C.)', 'tablaApoyosEvaluativos_mat');
+    
+    // ========== FIRMAS ==========
+    if (y > 250) {
+        pdf.addPage();
+        y = 20;
+    }
+    
+    y += 10;
+    pdf.setFontSize(8);
+    pdf.setFont('helvetica', 'normal');
+    pdf.text('Firma del Profesor (a)', margen + 20, y);
+    pdf.text('VB. Comité de Apoyo', margen + 120, y);
+    y += 2;
+    pdf.line(margen, y, margen + 70, y);
+    pdf.line(margen + 105, y, margen + anchoUtil, y);
+    y += 8;
+    
+    pdf.text('Cc/ Expediente Único', margen, y);
+    
+    // Pie de página
+    pdf.setFontSize(6);
+    pdf.setFont('helvetica', 'italic');
+    pdf.text('Puntarenas, Coto Brus - Supervisión de Centros Educativos, Circuito 06', 108, 270, { align: 'center' });
+    pdf.text(`${institucion}`, 108, 274, { align: 'center' });
+    
+    // Numeración de páginas
+    const totalPaginas = pdf.internal.pages.length - 1;
+    for (let i = 1; i <= totalPaginas; i++) {
+        pdf.setPage(i);
+        pdf.setFontSize(8);
+        pdf.setFont('helvetica', 'normal');
+        pdf.text(`-- ${i} de ${totalPaginas} --`, 108, 278, { align: 'center' });
+    }
+    
+    // Descargar PDF
+    const nombreArchivo = `Anexo10_${asignatura}_${nombreEstudiante.replace(/\s+/g, '_')}.pdf`;
+    pdf.save(nombreArchivo);
+}
+
 // Limpiar formulario
 function limpiarFormulario(tipo) {
     mostrarAlerta(
@@ -764,22 +1162,60 @@ function limpiarFormulario(tipo) {
             document.getElementById(`seccionAuto_${tipo}`).textContent = '';
             document.getElementById(`nivelAuto_${tipo}`).textContent = '';
             
-            // Limpiar todos los selects de códigos
-            const seccion = tipo === 'esp' ? 'seccionEspanol' : 'seccionMatematica';
-            const selects = document.querySelectorAll(`#${seccion} .codigo-select`);
-            selects.forEach(select => {
-                select.value = '';
-                const descripcion = select.parentElement.querySelector('.descripcion-apoyo');
-                if (descripcion) {
-                    descripcion.textContent = '';
+            if (tipo === 'esp') {
+                // Limpiar ANEXO 2 (formato original)
+                const seccion = 'seccionEspanol';
+                const selects = document.querySelectorAll(`#${seccion} .codigo-select`);
+                selects.forEach(select => {
+                    select.value = '';
+                    const descripcion = select.parentElement.querySelector('.descripcion-apoyo');
+                    if (descripcion) {
+                        descripcion.textContent = '';
+                    }
+                });
+                
+                // Limpiar todos los textareas de resultados
+                const textareas = document.querySelectorAll(`#${seccion} .resultado textarea`);
+                textareas.forEach(textarea => {
+                    textarea.value = '';
+                });
+            } else if (tipo === 'mat') {
+                // Limpiar ANEXO 10 (formato tabla)
+                
+                // Limpiar tabla de indicadores
+                const tablaIndicadores = document.getElementById('tablaIndicadores_mat');
+                if (tablaIndicadores) {
+                    const filas = tablaIndicadores.querySelectorAll('tr');
+                    // Mantener solo 3 filas y limpiar su contenido
+                    filas.forEach((fila, index) => {
+                        if (index < 3) {
+                            const textarea = fila.querySelector('.input-indicador');
+                            const checkboxes = fila.querySelectorAll('.checkbox-nivel');
+                            const resultados = fila.querySelector('td:last-child textarea');
+                            
+                            if (textarea) textarea.value = '';
+                            checkboxes.forEach(cb => cb.checked = false);
+                            if (resultados) resultados.value = '';
+                        } else {
+                            // Eliminar filas adicionales
+                            fila.remove();
+                        }
+                    });
                 }
-            });
-            
-            // Limpiar todos los textareas de resultados
-            const textareas = document.querySelectorAll(`#${seccion} .resultado textarea`);
-            textareas.forEach(textarea => {
-                textarea.value = '';
-            });
+                
+                // Limpiar selectores de códigos ANEXO 10
+                const selects = document.querySelectorAll('.codigo-select-anexo10');
+                selects.forEach(select => {
+                    select.value = '';
+                    const row = select.closest('tr');
+                    if (row) {
+                        const descripcion = row.querySelector('.descripcion-apoyo-anexo10');
+                        const resultado = row.querySelector('textarea');
+                        if (descripcion) descripcion.textContent = '';
+                        if (resultado) resultado.value = '';
+                    }
+                });
+            }
             
             // Resetear periodo al primero
             const periodoRadios = document.getElementsByName(`periodo_${tipo}`);
@@ -1154,3 +1590,90 @@ console.log('%c🎓 ANEXO 2: Sistema de Registro de Apoyos Educativos', 'color: 
 console.log('%cDesarrollado para GitHub Pages', 'color: #6b7280; font-size: 12px;');
 console.log('%c✨ Versión mejorada con animaciones y efectos visuales', 'color: #10b981; font-size: 12px;');
 console.log('%c🎨 UI/UX Design: Gradientes, animaciones y microinteracciones', 'color: #ec4899; font-size: 12px;');
+
+// ========== FUNCIONES ESPECÍFICAS PARA ANEXO 10 ==========
+
+// Llenar selectores de códigos para el ANEXO 10
+function llenarSelectsCodigosAnexo10() {
+    const selectsPersonales = document.querySelectorAll('.codigo-select-anexo10[data-tipo="personales"]');
+    selectsPersonales.forEach(select => {
+        llenarSelectCodigos(select, datos.apoyos.personales);
+    });
+    
+    const selectsOrganizativos = document.querySelectorAll('.codigo-select-anexo10[data-tipo="organizativos"]');
+    selectsOrganizativos.forEach(select => {
+        llenarSelectCodigos(select, datos.apoyos.organizativos);
+    });
+    
+    const selectsMateriales = document.querySelectorAll('.codigo-select-anexo10[data-tipo="materiales"]');
+    selectsMateriales.forEach(select => {
+        llenarSelectCodigos(select, datos.apoyos.materiales);
+    });
+    
+    const selectsCurriculares = document.querySelectorAll('.codigo-select-anexo10[data-tipo="curriculares"]');
+    selectsCurriculares.forEach(select => {
+        llenarSelectCodigos(select, datos.apoyos.curriculares);
+    });
+    
+    const selectsEvaluativos = document.querySelectorAll('.codigo-select-anexo10[data-tipo="evaluativos"]');
+    selectsEvaluativos.forEach(select => {
+        llenarSelectCodigos(select, datos.apoyos.evaluativos);
+    });
+}
+
+// Configurar eventos para los selectores del ANEXO 10
+function configurarEventosCodigosAnexo10() {
+    const selects = document.querySelectorAll('.codigo-select-anexo10');
+    
+    selects.forEach(select => {
+        select.addEventListener('change', (e) => actualizarDescripcionApoyoAnexo10(e.target));
+    });
+}
+
+// Actualizar descripción del apoyo en ANEXO 10
+function actualizarDescripcionApoyoAnexo10(select) {
+    const selectedOption = select.options[select.selectedIndex];
+    const row = select.closest('tr');
+    const descripcionElement = row.querySelector('.descripcion-apoyo-anexo10');
+    
+    if (selectedOption.value && selectedOption.dataset.descripcion) {
+        descripcionElement.textContent = selectedOption.dataset.descripcion;
+        select.classList.add('completado');
+        
+        // Resaltar el código correspondiente en la guía
+        resaltarCodigoEnGuia(selectedOption.value, select.dataset.tipo);
+    } else {
+        descripcionElement.textContent = '';
+        select.classList.remove('completado');
+    }
+}
+
+// Configurar botón para agregar indicadores
+function configurarBotonAgregarIndicador() {
+    const btnAgregar = document.getElementById('btnAgregarIndicador_mat');
+    if (!btnAgregar) return;
+    
+    btnAgregar.addEventListener('click', () => {
+        const tbody = document.getElementById('tablaIndicadores_mat');
+        if (!tbody) return;
+        
+        const nuevaFila = document.createElement('tr');
+        nuevaFila.innerHTML = `
+            <td><textarea class="input-indicador" rows="2" placeholder="Escriba el indicador..."></textarea></td>
+            <td><input type="checkbox" class="checkbox-nivel"></td>
+            <td><input type="checkbox" class="checkbox-nivel"></td>
+            <td><input type="checkbox" class="checkbox-nivel"></td>
+            <td><textarea rows="2" placeholder="Resultados..."></textarea></td>
+        `;
+        
+        tbody.appendChild(nuevaFila);
+        
+        // Animar la nueva fila
+        nuevaFila.style.animation = 'fadeIn 0.5s ease';
+        
+        // Scroll suave hacia la nueva fila
+        nuevaFila.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        mostrarNotificacion('Indicador agregado', 'Se ha agregado una nueva fila para indicadores.', 'exito');
+    });
+}

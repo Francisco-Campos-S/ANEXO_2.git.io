@@ -1856,3 +1856,291 @@ tbody tr:nth-child(5) { animation-delay: 0.25s; }
         transform: translateY(-30px) translateX(5px);
     }
 }
+
+/* ========== ESTILOS ESPECÍFICOS PARA ANEXO 10 ========== */
+
+/* Tabla de indicadores */
+.tabla-indicadores {
+    margin: 1.5rem 0;
+    overflow-x: auto;
+}
+
+.tabla-aprendizajes {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.tabla-aprendizajes thead {
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    color: white;
+}
+
+.tabla-aprendizajes th {
+    padding: 12px 8px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tabla-aprendizajes th:last-child {
+    border-right: none;
+}
+
+.tabla-aprendizajes tbody tr {
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s ease;
+}
+
+.tabla-aprendizajes tbody tr:hover {
+    background-color: #f0f9ff;
+}
+
+.tabla-aprendizajes td {
+    padding: 10px 8px;
+    text-align: center;
+    border-right: 1px solid var(--border-color);
+}
+
+.tabla-aprendizajes td:first-child {
+    text-align: left;
+}
+
+.tabla-aprendizajes td:last-child {
+    border-right: none;
+}
+
+.input-indicador {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.input-indicador:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.checkbox-nivel {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.tabla-aprendizajes tbody td textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 0.85rem;
+}
+
+.tabla-aprendizajes tbody td textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.btn-agregar-fila {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-agregar-fila:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-agregar-fila:active {
+    transform: translateY(0);
+}
+
+/* Secciones de apoyos ANEXO 10 */
+.seccion-apoyos-anexo10 {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+.seccion-apoyos-anexo10:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.seccion-apoyos-anexo10 h4 {
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    border-radius: 6px;
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Tabla de apoyos ANEXO 10 */
+.tabla-apoyos-anexo10 {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.tabla-apoyos-anexo10 thead {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+}
+
+.tabla-apoyos-anexo10 th {
+    padding: 12px 10px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.tabla-apoyos-anexo10 tbody tr {
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s ease;
+}
+
+.tabla-apoyos-anexo10 tbody tr:hover {
+    background-color: #fafafa;
+}
+
+.tabla-apoyos-anexo10 td {
+    padding: 12px 10px;
+    vertical-align: top;
+}
+
+.codigo-select-anexo10 {
+    width: 100%;
+    padding: 8px 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    background: white;
+    cursor: pointer;
+}
+
+.codigo-select-anexo10:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.codigo-select-anexo10.completado {
+    border-color: var(--success-color);
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+}
+
+.descripcion-apoyo-anexo10 {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    min-height: 20px;
+}
+
+.tabla-apoyos-anexo10 tbody td textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 60px;
+    font-family: inherit;
+    font-size: 0.85rem;
+}
+
+.tabla-apoyos-anexo10 tbody td textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Sección de firmas */
+.seccion-firmas {
+    margin: 3rem 0 2rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+}
+
+.linea-firma {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.firma-item {
+    flex: 1;
+    text-align: center;
+}
+
+.firma-linea {
+    width: 100%;
+    height: 2px;
+    background: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.firma-item p {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.cc-expediente {
+    text-align: left;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    margin-top: 1rem;
+}
+
+/* Ajustes para el título del ANEXO 10 */
+.titulo-principal br {
+    display: inline;
+}
+
+/* Responsivo para tablas ANEXO 10 */
+@media (max-width: 768px) {
+    .tabla-aprendizajes, .tabla-apoyos-anexo10 {
+        font-size: 0.8rem;
+    }
+    
+    .tabla-aprendizajes th, .tabla-aprendizajes td,
+    .tabla-apoyos-anexo10 th, .tabla-apoyos-anexo10 td {
+        padding: 8px 5px;
+    }
+    
+    .linea-firma {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
