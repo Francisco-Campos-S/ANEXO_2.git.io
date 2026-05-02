@@ -45,7 +45,6 @@ function inicializarApp() {
     if (!datos) return;
     
     poblarOpcionesFiltroSeccionGlobal();
-    aplicarFiltroSeccionSoloListas('');
     
     // Llenar guías de códigos
     llenarGuiaCodigos();
@@ -77,6 +76,7 @@ function inicializarApp() {
     
     // Iniciar sistema de autoguardado
     iniciarAutoguardado();
+    configurarPersistenciaDocenteAsignatura();
     
     // Configurar confirmación antes de salir
     configurarConfirmacionSalida();
@@ -105,6 +105,28 @@ function normalizarClaveSeccion(str) {
         .replace(/\s+/g, ' ')
         .trim()
         .toLowerCase();
+}
+
+/** Clave de filtro seleccionada (como está en data-clave; vacío = todas). */
+function obtenerClaveFiltroSeccionActiva() {
+    const pressed = document.querySelector('#filtroSeccionBotones .filtro-seccion-btn[aria-pressed="true"]');
+    if (!pressed) return '';
+    const raw = pressed.getAttribute('data-clave');
+    return raw === null ? '' : String(raw).trim();
+}
+
+function marcarFiltroSeccionActivo(valorSeleccionado = '') {
+    const cont = document.getElementById('filtroSeccionBotones');
+    if (!cont) return;
+    const normObj = valorSeleccionado ? normalizarClaveSeccion(valorSeleccionado) : '';
+
+    cont.querySelectorAll('.filtro-seccion-btn').forEach((btn) => {
+        const raw = btn.getAttribute('data-clave');
+        const k = raw === null ? '' : String(raw);
+        const normBtn = k ? normalizarClaveSeccion(k) : '';
+        const activo = normObj === '' ? normBtn === '' : normBtn === normObj;
+        btn.setAttribute('aria-pressed', activo ? 'true' : 'false');
+    });
 }
 
 // Llenar selector de estudiantes (opcional: filtroClaveNorm = clave de sección del filtro global)
@@ -141,11 +163,18 @@ function llenarSelectEstudiantes(selectId, filtroClaveNorm = '') {
 }
 
 function poblarOpcionesFiltroSeccionGlobal() {
-    const sel = document.getElementById('filtroSeccionGlobal');
-    if (!sel || !datos?.estudiantes) return;
+    const cont = document.getElementById('filtroSeccionBotones');
+    if (!cont || !datos?.estudiantes) return;
 
-    const prev = sel.value;
-    sel.innerHTML = '<option value="">Todas las secciones</option>';
+    const prev = obtenerClaveFiltroSeccionActiva();
+    cont.innerHTML = '';
+
+    const btnTodas = document.createElement('button');
+    btnTodas.type = 'button';
+    btnTodas.className = 'filtro-seccion-btn';
+    btnTodas.setAttribute('data-clave', '');
+    btnTodas.textContent = 'Todas';
+    cont.appendChild(btnTodas);
 
     const unicas = new Map();
     datos.estudiantes.forEach((e) => {
@@ -157,13 +186,19 @@ function poblarOpcionesFiltroSeccionGlobal() {
     [...unicas.entries()]
         .sort((a, b) => a[1].localeCompare(b[1], 'es', { numeric: true, sensitivity: 'base' }))
         .forEach(([clave, etiqueta]) => {
-            const option = document.createElement('option');
-            option.value = clave;
-            option.textContent = etiqueta || clave;
-            sel.appendChild(option);
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'filtro-seccion-btn';
+            btn.setAttribute('data-clave', clave);
+            btn.title = etiqueta || clave;
+            btn.textContent = etiqueta || clave;
+            cont.appendChild(btn);
         });
 
-    if (prev && [...sel.options].some((o) => o.value === prev)) sel.value = prev;
+    if (prev && unicas.has(prev)) marcarFiltroSeccionActivo(prev);
+    else marcarFiltroSeccionActivo('');
+
+    aplicarFiltroSeccionSoloListas(obtenerClaveFiltroSeccionActiva());
 }
 
 /** Solo rellena listas/tablas sin eventos (útil antes de registrar listeners). */
@@ -175,20 +210,23 @@ function aplicarFiltroSeccionSoloListas(filtroClaveNorm = '') {
 
 /** Refresca selects + tabla y actualiza estado del formulario (solo interfaz). */
 function refrescarListasEstudiantesPorFiltroActual() {
-    const sel = document.getElementById('filtroSeccionGlobal');
-    const filtroNorm = sel && sel.value ? sel.value.trim() : '';
-    aplicarFiltroSeccionSoloListas(filtroNorm);
-
+    aplicarFiltroSeccionSoloListas(obtenerClaveFiltroSeccionActiva());
     document.getElementById('estudianteSelect_esp')?.dispatchEvent(new Event('change'));
     document.getElementById('estudianteSelect_mat')?.dispatchEvent(new Event('change'));
     actualizarBarraProgresoConPorcentaje();
 }
 
 function configurarFiltroSeccionGlobal() {
-    const sel = document.getElementById('filtroSeccionGlobal');
-    if (!sel || sel.dataset.filtroSeccionAttached) return;
-    sel.dataset.filtroSeccionAttached = '1';
-    sel.addEventListener('change', refrescarListasEstudiantesPorFiltroActual);
+    const cont = document.getElementById('filtroSeccionBotones');
+    if (!cont || cont.dataset.filtroSeccionAttached) return;
+    cont.dataset.filtroSeccionAttached = '1';
+    cont.addEventListener('click', (e) => {
+        const btn = e.target.closest('.filtro-seccion-btn');
+        if (!btn || !cont.contains(btn)) return;
+        const clave = btn.getAttribute('data-clave') === null ? '' : String(btn.getAttribute('data-clave')).trim();
+        marcarFiltroSeccionActivo(clave);
+        refrescarListasEstudiantesPorFiltroActual();
+    });
 }
 
 // Llenar guía de códigos (Español)
@@ -1945,13 +1983,30 @@ function iniciarAutoguardado() {
     });
 }
 
-function guardarEnLocalStorage() {
+/** Docente y asignatura: guardado al salir del campo (sin mensaje repetitivo). */
+function configurarPersistenciaDocenteAsignatura() {
+    ['esp', 'mat'].forEach((tipo) => {
+        ['docente_', 'asignatura_'].forEach((pref) => {
+            const id = pref + tipo;
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.addEventListener('blur', () => {
+                hayCambiosSinGuardar = true;
+                guardarEnLocalStorage({ silent: true });
+            });
+        });
+    });
+}
+
+function guardarEnLocalStorage(opciones = {}) {
+    const silent = opciones.silent === true;
     try {
         // Guardar datos de ambos formularios
         ['esp', 'mat'].forEach(tipo => {
             datosFormulario[tipo] = {
                 estudiante: document.getElementById(`estudianteSelect_${tipo}`)?.value || '',
-                asignatura: document.getElementById(`asignatura_${tipo}`)?.value || '',
+                docente: document.getElementById(`docente_${tipo}`)?.value?.trim() || '',
+                asignatura: document.getElementById(`asignatura_${tipo}`)?.value?.trim() || '',
                 periodo: document.querySelector(`input[name="periodo_${tipo}"]:checked`)?.value || 'primero',
                 timestamp: new Date().toISOString()
             };
@@ -1976,10 +2031,14 @@ function guardarEnLocalStorage() {
         localStorage.setItem('anexo_formularios', JSON.stringify(datosFormulario));
         hayCambiosSinGuardar = false;
         
-        mostrarIndicadorAutoguardado('✓ Guardado automáticamente', 'exito');
+        if (!silent) {
+            mostrarIndicadorAutoguardado('✓ Guardado automáticamente', 'exito');
+        }
     } catch (error) {
         console.error('Error al guardar:', error);
-        mostrarIndicadorAutoguardado('✕ Error al guardar', 'error');
+        if (!silent) {
+            mostrarIndicadorAutoguardado('✕ Error al guardar', 'error');
+        }
     }
 }
 
@@ -1998,12 +2057,17 @@ function cargarDesdeLocalStorage() {
             const selectEstudiante = document.getElementById(`estudianteSelect_${tipo}`);
             if (selectEstudiante && datos.estudiante) {
                 selectEstudiante.value = datos.estudiante;
-                if (!selectEstudiante.value && document.getElementById('filtroSeccionGlobal')?.value) {
-                    document.getElementById('filtroSeccionGlobal').value = '';
+                if (!selectEstudiante.value && obtenerClaveFiltroSeccionActiva()) {
+                    marcarFiltroSeccionActivo('');
                     aplicarFiltroSeccionSoloListas('');
                     selectEstudiante.value = datos.estudiante;
                 }
                 selectEstudiante.dispatchEvent(new Event('change'));
+            }
+            
+            const inputDocente = document.getElementById(`docente_${tipo}`);
+            if (inputDocente && datos.docente) {
+                inputDocente.value = datos.docente;
             }
             
             const inputAsignatura = document.getElementById(`asignatura_${tipo}`);

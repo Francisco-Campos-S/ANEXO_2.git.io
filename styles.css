@@ -218,27 +218,55 @@ body::before {
     border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-.nav-filtro-seccion label {
+.nav-filtro-seccion-label {
     font-size: 0.92rem;
     font-weight: 600;
     color: rgba(255, 255, 255, 0.96);
 }
 
-.select-filtro-seccion-global {
-    min-width: 160px;
-    max-width: min(260px, 90vw);
-    padding: 0.45rem 0.85rem;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    background: rgba(255, 255, 255, 0.95);
-    color: var(--text-dark);
-    font-size: 0.92rem;
-    cursor: pointer;
+.filtro-seccion-botones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem 0.5rem;
+    max-width: min(720px, 100%);
 }
 
-.select-filtro-seccion-global:focus {
+.filtro-seccion-btn {
+    appearance: none;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.42rem 0.95rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.filtro-seccion-btn:hover {
+    background: rgba(255, 255, 255, 0.32);
+}
+
+.filtro-seccion-btn:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+.filtro-seccion-btn[aria-pressed="true"] {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--text-dark);
+    border-color: rgba(255, 255, 255, 0.85);
+}
+
+.filtro-seccion-btn[aria-pressed="true"]:hover {
+    background: white;
 }
 
 /* Secciones */
@@ -846,13 +874,38 @@ body::before {
     }
 }
 
-/* Botones de acción */
+/* Botones de acción: barra fija inferior para PDF / limpiar siempre visible al hacer scroll */
 .action-buttons {
     display: flex;
     gap: 1rem;
     margin-top: 2rem;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     padding: 1rem 0;
+}
+
+@media screen {
+    #seccionEspanol.active .action-buttons,
+    #seccionMatematica.active .action-buttons {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 95;
+        margin-top: 0;
+        padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-top: 1px solid rgba(203, 213, 225, 0.95);
+        box-shadow: 0 -8px 28px rgba(15, 23, 42, 0.1);
+    }
+
+    #seccionEspanol.active .area-trabajo,
+    #seccionMatematica.active .area-trabajo {
+        padding-bottom: 5.75rem;
+    }
 }
 
 .btn-primary,
@@ -1141,7 +1194,9 @@ tbody tr:nth-child(5) { animation-delay: 0.25s; }
 @media print {
     .top-nav,
     .nav-buttons,
+    .nav-filtro-seccion,
     .guia-codigos,
+    .progress-bar-container,
     .action-buttons {
         display: none !important;
     }

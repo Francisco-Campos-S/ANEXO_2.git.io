@@ -37,10 +37,14 @@
                     <button id="btnLista" class="nav-btn">👥 Lista de Estudiantes</button>
                 </div>
                 <div class="nav-filtro-seccion" role="toolbar" aria-label="Filtro de estudiantes por sección">
-                    <label for="filtroSeccionGlobal">Sección:</label>
-                    <select id="filtroSeccionGlobal" class="select-filtro-seccion-global" title="Lista solo estudiantes de esa sección (solo vista en pantalla)">
-                        <option value="">Todas las secciones</option>
-                    </select>
+                    <span class="nav-filtro-seccion-label" id="filtroSeccionLabel">Sección:</span>
+                    <div id="filtroSeccionBotones"
+                         class="filtro-seccion-botones"
+                         role="group"
+                         aria-labelledby="filtroSeccionLabel"
+                         title="Muestra solo estudiantes de esa sección (solo vista en pantalla)">
+                        <!-- Botones generados desde datos -->
+                    </div>
                 </div>
             </div>
         </nav>
@@ -171,12 +175,13 @@
 
                             <div class="info-docente">
                                 <div class="campo">
-                                    <label>Docente responsable:</label>
-                                    <input type="text" id="docente_esp" value="Gerardo Ramirez Rojas">
+                                    <label for="docente_esp">Ingresar docente (por defecto):</label>
+                                    <input type="text" id="docente_esp" value="" placeholder="Nombre completo del docente" autocomplete="name">
+                                    <p class="hint">Docente y asignatura se guardan en este equipo al escribir.</p>
                                 </div>
                 <div class="campo">
-                    <label>Asignatura:</label>
-                    <input type="text" id="asignatura_esp" value="" placeholder="Escriba la materia...">
+                    <label for="asignatura_esp">Asignatura:</label>
+                    <input type="text" id="asignatura_esp" value="" placeholder="Escriba la materia..." autocomplete="off">
                 </div>
                             </div>
 
@@ -516,12 +521,13 @@
 
                             <div class="info-docente">
                                 <div class="campo">
-                                    <label>Docente responsable:</label>
-                                    <input type="text" id="docente_mat" value="Gerardo Ramirez Rojas">
+                                    <label for="docente_mat">Ingresar docente (por defecto):</label>
+                                    <input type="text" id="docente_mat" value="" placeholder="Nombre completo del docente" autocomplete="name">
+                                    <p class="hint">Docente y asignatura se guardan en este equipo al escribir.</p>
                                 </div>
                                 <div class="campo">
-                                    <label>Asignatura:</label>
-                                    <input type="text" id="asignatura_mat" value="" placeholder="Escriba la materia...">
+                                    <label for="asignatura_mat">Asignatura:</label>
+                                    <input type="text" id="asignatura_mat" value="" placeholder="Escriba la materia..." autocomplete="off">
                                 </div>
                             </div>
 
