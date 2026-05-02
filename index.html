@@ -8,15 +8,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
+    <!-- Loader inicial -->
+    <div class="page-loader">
+        <img src="logo.png" alt="Logo" class="loader-logo">
+        <div class="loader-text">Cargando Sistema...</div>
+        <div class="loader-spinner"></div>
+    </div>
+
     <div class="container">
+        <!-- Barra de progreso -->
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
         <!-- Menú de navegación -->
         <nav class="top-nav">
             <div class="nav-content">
-                <h1>ANEXO 2: REGISTRO DE APOYOS EDUCATIVOS</h1>
+                <div class="nav-header">
+                    <div class="logo-container">
+                        <img src="logo.png" alt="Logo Institucional">
+                    </div>
+                    <h1>ANEXO 2: REGISTRO DE APOYOS EDUCATIVOS</h1>
+                </div>
                 <div class="nav-buttons">
-                    <button id="btnEspanol" class="nav-btn active">Formulario 1</button>
-                    <button id="btnMatematica" class="nav-btn">Formulario 2</button>
-                    <button id="btnLista" class="nav-btn">Lista de Estudiantes</button>
+                    <button id="btnEspanol" class="nav-btn active">📝 Formulario 1</button>
+                    <button id="btnMatematica" class="nav-btn">📊 Formulario 2</button>
+                    <button id="btnLista" class="nav-btn">👥 Lista de Estudiantes</button>
                 </div>
             </div>
         </nav>
