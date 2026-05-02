@@ -384,6 +384,26 @@ async function generarPDF(tipo) {
     }
 }
 
+/** Nombre institución en varias líneas para el PDF (métricas según fuente actual). */
+function lineasInstitucionPdf(pdf, institucion, maxWidthMm, opciones = {}) {
+    const fontSize = opciones.fontSize ?? 8;
+    const fuente = opciones.estiloFuente ?? 'normal';
+    pdf.setFont('helvetica', fuente);
+    pdf.setFontSize(fontSize);
+    return pdf.splitTextToSize(String(institucion || '').trim(), maxWidthMm);
+}
+
+/** Solo numeración de página en cada hoja (sin texto de supervisión ni institución al final). */
+function aplicarPiePaginasAnexoPdf(pdf) {
+    const totalPaginas = pdf.internal.pages.length - 1;
+    for (let i = 1; i <= totalPaginas; i++) {
+        pdf.setPage(i);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(8);
+        pdf.text(`-- ${i} de ${totalPaginas} --`, 108, 278, { align: 'center' });
+    }
+}
+
 // Generar PDF para ANEXO 2 (formato original)
 async function generarPDFAnexo2(tipo, asignatura) {
     const { jsPDF } = window.jspdf;
@@ -443,7 +463,16 @@ async function generarPDFAnexo2(tipo, asignatura) {
         pdf.text('Dirección Regional de Educación de Coto', margen + 40, y + 5);
         pdf.setFontSize(6.5);
         pdf.text('Supervisión de Centros Educativos, Circuito 06', margen + 40, y + 9);
-        pdf.text(`${institucion}`, margen + 40, y + 13);
+        const xCabInst = margen + 39;
+        const anchoCabInst = Math.max(40, margen + anchoUtil - xCabInst - 2);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(5.5);
+        const lineasCabInst = pdf.splitTextToSize(String(institucion || '').trim(), Math.max(40, anchoCabInst));
+        let yyCab = y + 13;
+        lineasCabInst.forEach((ln) => {
+            pdf.text(ln, xCabInst, yyCab);
+            yyCab += 3.1;
+        });
         y += 25;
     }
     
@@ -463,20 +492,30 @@ async function generarPDFAnexo2(tipo, asignatura) {
     pdf.setFont('helvetica', 'bold');
     pdf.setFontSize(9);
     
-    // Fila 1: Institución y Circuito (con bordes)
-    let alturaFila = 7;
+    // Fila 1: Institución y Circuito — altura dinámica (nombre completo institución)
+    const xValorInst = margen + 28;
+    const anchoValorInst = Math.max(55, margen + anchoUtil * 0.75 - xValorInst - 2);
+    const lineasInstTabla = lineasInstitucionPdf(pdf, institucion, anchoValorInst);
+    const lhInst = 3.95;
+    let alturaFila = Math.max(7.5, 5.5 + lineasInstTabla.length * lhInst);
+    pdf.setFontSize(9);
     pdf.rect(margen, y, anchoUtil * 0.75, alturaFila);
     pdf.rect(margen + anchoUtil * 0.75, y, anchoUtil * 0.25, alturaFila);
+    pdf.setFont('helvetica', 'bold');
     pdf.text('Institución:', margen + 2, y + 5);
     pdf.setFont('helvetica', 'normal');
-    pdf.text(institucion, margen + 25, y + 5);
+    pdf.setFontSize(8);
+    pdf.text(lineasInstTabla, xValorInst, y + 5);
     pdf.setFont('helvetica', 'bold');
-    pdf.text('Circuito:', margen + anchoUtil * 0.75 + 2, y + 5);
+    pdf.setFontSize(9);
+    const yCircuit = y + alturaFila / 2 + 2;
+    pdf.text('Circuito:', margen + anchoUtil * 0.75 + 2, yCircuit);
     pdf.setFont('helvetica', 'normal');
-    pdf.text(circuito, margen + anchoUtil * 0.75 + 18, y + 5);
+    pdf.text(String(circuito || ''), margen + anchoUtil * 0.75 + 18, yCircuit);
     y += alturaFila;
     
     // Fila 2: Nombre del estudiante y Sección (con bordes)
+    alturaFila = 7;
     pdf.rect(margen, y, anchoUtil * 0.75, alturaFila);
     pdf.rect(margen + anchoUtil * 0.75, y, anchoUtil * 0.25, alturaFila);
     pdf.setFont('helvetica', 'bold');
@@ -744,20 +783,7 @@ async function generarPDFAnexo2(tipo, asignatura) {
     
     pdf.text('Cc/ Expediente Único', margen, y);
     
-    // Pie de página oficial
-    pdf.setFontSize(6);
-    pdf.setFont('helvetica', 'italic');
-    pdf.text('Puntarenas, Coto Brus - Supervisión de Centros Educativos, Circuito 06', 108, 270, { align: 'center' });
-    pdf.text(`${institucion}`, 108, 274, { align: 'center' });
-    
-    // Numeración de páginas con formato "-- 1 de 2 --"
-    const totalPaginas = pdf.internal.pages.length - 1;
-    for (let i = 1; i <= totalPaginas; i++) {
-        pdf.setPage(i);
-        pdf.setFontSize(8);
-        pdf.setFont('helvetica', 'normal');
-        pdf.text(`-- ${i} de ${totalPaginas} --`, 108, 278, { align: 'center' });
-    }
+    aplicarPiePaginasAnexoPdf(pdf);
     
     // Generar nombre del archivo
     const nombreArchivo = `Anexo2_${asignatura}_${nombreEstudiante.replace(/\s+/g, '_')}.pdf`;
@@ -822,7 +848,16 @@ async function generarPDFAnexo10(asignatura) {
         pdf.text('Dirección Regional de Educación de Coto', margen + 40, y + 5);
         pdf.setFontSize(6.5);
         pdf.text('Supervisión de Centros Educativos, Circuito 06', margen + 40, y + 9);
-        pdf.text(`${institucion}`, margen + 40, y + 13);
+        const xCabInst10 = margen + 39;
+        const anchoCabInst10 = Math.max(40, margen + anchoUtil - xCabInst10 - 2);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(5.5);
+        const lineasCabInst10 = pdf.splitTextToSize(String(institucion || '').trim(), anchoCabInst10);
+        let yyCab10 = y + 13;
+        lineasCabInst10.forEach((ln) => {
+            pdf.text(ln, xCabInst10, yyCab10);
+            yyCab10 += 3.1;
+        });
         y += 25;
     }
     
@@ -844,20 +879,30 @@ async function generarPDFAnexo10(asignatura) {
     pdf.setFont('helvetica', 'bold');
     pdf.setFontSize(9);
     
-    let alturaFila = 7;
-    // Institución y Circuito
+    // Institución y Circuito (altura dinámica)
+    const xValorInst10 = margen + 28;
+    const anchoValorInst10 = Math.max(55, margen + anchoUtil * 0.75 - xValorInst10 - 2);
+    const lineasInstTabla10 = lineasInstitucionPdf(pdf, institucion, anchoValorInst10);
+    const lhInst10 = 3.95;
+    let alturaFila = Math.max(7.5, 5.5 + lineasInstTabla10.length * lhInst10);
+    pdf.setFontSize(9);
     pdf.rect(margen, y, anchoUtil * 0.75, alturaFila);
     pdf.rect(margen + anchoUtil * 0.75, y, anchoUtil * 0.25, alturaFila);
+    pdf.setFont('helvetica', 'bold');
     pdf.text('Institución:', margen + 2, y + 5);
     pdf.setFont('helvetica', 'normal');
-    pdf.text(institucion, margen + 25, y + 5);
+    pdf.setFontSize(8);
+    pdf.text(lineasInstTabla10, xValorInst10, y + 5);
     pdf.setFont('helvetica', 'bold');
-    pdf.text('Circuito:', margen + anchoUtil * 0.75 + 2, y + 5);
+    pdf.setFontSize(9);
+    const yCircuit10 = y + alturaFila / 2 + 2;
+    pdf.text('Circuito:', margen + anchoUtil * 0.75 + 2, yCircuit10);
     pdf.setFont('helvetica', 'normal');
-    pdf.text(circuito, margen + anchoUtil * 0.75 + 18, y + 5);
+    pdf.text(String(circuito || ''), margen + anchoUtil * 0.75 + 18, yCircuit10);
     y += alturaFila;
     
     // Estudiante y Sección
+    alturaFila = 7;
     pdf.rect(margen, y, anchoUtil * 0.75, alturaFila);
     pdf.rect(margen + anchoUtil * 0.75, y, anchoUtil * 0.25, alturaFila);
     pdf.setFont('helvetica', 'bold');
@@ -1150,20 +1195,7 @@ async function generarPDFAnexo10(asignatura) {
     
     pdf.text('Cc/ Expediente Único', margen, y);
     
-    // Pie de página
-    pdf.setFontSize(6);
-    pdf.setFont('helvetica', 'italic');
-    pdf.text('Puntarenas, Coto Brus - Supervisión de Centros Educativos, Circuito 06', 108, 270, { align: 'center' });
-    pdf.text(`${institucion}`, 108, 274, { align: 'center' });
-    
-    // Numeración de páginas
-    const totalPaginas = pdf.internal.pages.length - 1;
-    for (let i = 1; i <= totalPaginas; i++) {
-        pdf.setPage(i);
-        pdf.setFontSize(8);
-        pdf.setFont('helvetica', 'normal');
-        pdf.text(`-- ${i} de ${totalPaginas} --`, 108, 278, { align: 'center' });
-    }
+    aplicarPiePaginasAnexoPdf(pdf);
     
     // Descargar PDF
     const nombreArchivo = `Anexo10_${asignatura}_${nombreEstudiante.replace(/\s+/g, '_')}.pdf`;
