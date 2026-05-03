@@ -1508,6 +1508,34 @@ function resolverGuiaIdPorTitulo(seccionId, titulo) {
     return null;
 }
 
+/** No mover la guía ni el viewport mientras se escribe en cabecera (evita saltos al tipear docente/asignatura). */
+function focoEnCabeceraOEstudianteAnexo() {
+    const el = document.activeElement;
+    if (!el) return false;
+    if (!el.matches('input, textarea, select')) return false;
+    return !!(
+        el.closest('.header-form') ||
+        el.closest('.info-docente') ||
+        el.closest('.info-institucion') ||
+        el.closest('.info-estudiante')
+    );
+}
+
+/** Desplaza solo el panel .guia-codigos, sin scrollIntoView en el documento (evita “saltos” globales). */
+function desplazarGuiaLateralHaciaSeccion(guiaSeccionEl) {
+    const panel = guiaSeccionEl?.closest('.guia-codigos');
+    if (!panel || !guiaSeccionEl) return;
+    const padRect = panel.getBoundingClientRect();
+    const elRect = guiaSeccionEl.getBoundingClientRect();
+    const margen = 12;
+    const delta = elRect.top - padRect.top - margen;
+    if (Math.abs(delta) < 6) return;
+    panel.scrollTo({
+        top: Math.max(0, panel.scrollTop + delta),
+        behavior: 'smooth'
+    });
+}
+
 function configurarScrollSeccion(seccionId) {
     const seccion = document.getElementById(seccionId);
     if (!seccion || !seccion.classList.contains('active')) return;
@@ -1523,6 +1551,7 @@ function configurarScrollSeccion(seccionId) {
     };
     
     const observer = new IntersectionObserver((entries) => {
+        if (focoEnCabeceraOEstudianteAnexo()) return;
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const h4 = entry.target.querySelector('h4');
@@ -1567,12 +1596,9 @@ function resaltarGuiaCodigos(guiaId) {
         const parent = guiaActual.closest('.guia-seccion');
         if (parent) {
             parent.classList.add('seccion-activa');
-            
-            // Hacer scroll suave hacia la guía resaltada
-            parent.scrollIntoView({
-                behavior: 'smooth',
-                block: 'nearest'
-            });
+            if (!focoEnCabeceraOEstudianteAnexo()) {
+                desplazarGuiaLateralHaciaSeccion(parent);
+            }
         }
     }
 }
@@ -2092,6 +2118,7 @@ function configurarIAResultadosIndicadores() {
 
 /**
  * IA para columna Resultados de la tabla de indicadores (Anexo 10).
+ * Regenera al cambiar el nivel o el texto del indicador (sobrescribe resultados previos).
  * Prompt: máximo 30 palabras, docente, sin nombre, con nivel Inicial/Intermedio/Avanzado.
  */
 async function solicitarResultadoIAIndicador(fila) {
@@ -2105,7 +2132,7 @@ async function solicitarResultadoIAIndicador(fila) {
     if (!temaBase) return;
 
     const taRes = obtenerTextareaResultadosIndicador(fila);
-    if (!taRes || taRes.value.trim() !== '') return;
+    if (!taRes) return;
 
     const nivel = obtenerNivelIndicadorDesdeFila(fila);
     const asignMat = document.getElementById('asignatura_mat')?.value?.trim() || '';
@@ -2155,8 +2182,8 @@ Responde solo con el informe, en español, sin saludo ni título.`;
 }
 
 /**
- * Rellena automáticamente el textarea "Resultados" al elegir un código (solo si está vacío).
- * Prompt pedido: informe breve máx. 40 palabras, docente, sin nombre del estudiante.
+ * Genera o regenera el textarea "Resultados" al elegir o cambiar un código (sobrescribe el texto anterior).
+ * Prompt: informe breve máx. 40 palabras, docente, sin nombre del estudiante.
  */
 async function solicitarResultadoIAApoyo(select) {
     if (!geminiIAHabilitadaTrasCarga) return;
@@ -2168,7 +2195,7 @@ async function solicitarResultadoIAApoyo(select) {
     if (!row || !select.closest('.tabla-apoyos-anexo10')) return;
 
     const textareaRes = row.querySelector('td:last-child textarea');
-    if (!textareaRes || textareaRes.value.trim() !== '') return;
+    if (!textareaRes) return;
 
     const selectedOption = select.options[select.selectedIndex];
     if (!selectedOption?.value) return;
