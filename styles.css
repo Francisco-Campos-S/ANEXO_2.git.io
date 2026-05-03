@@ -1176,10 +1176,6 @@ tbody tr:nth-child(5) { animation-delay: 0.25s; }
     border-radius: 10px;
 }
 
-.guia-codigos::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary-color);
-}
-
 /* Responsive */
 @media (max-width: 1200px) {
     .layout-grid {
@@ -2330,6 +2326,11 @@ tbody tr:nth-child(5) { animation-delay: 0.25s; }
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+textarea.ia-cargando {
+    opacity: 0.82;
+    cursor: wait;
 }
 
 /* Sección de firmas */
