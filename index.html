@@ -831,15 +831,6 @@
         </section>
     </div>
 
-    <!-- Gemini: 1) gemini-config.js (Actions rellena al publicar / plantilla vacía en local) 2) config.local.js opcional 3) localStorage -->
-    <script src="gemini-config.js"></script>
-    <script src="config.local.js"></script>
-    <script>
-        window.GEMINI_API_KEY =
-            (typeof window.GEMINI_API_KEY === 'string' && window.GEMINI_API_KEY.trim()) ||
-            localStorage.getItem('GEMINI_API_KEY') ||
-            '';
-    </script>
     <script src="app.js"></script>
 </body>
 </html>

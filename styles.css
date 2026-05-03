@@ -2328,11 +2328,6 @@ tbody tr:nth-child(5) { animation-delay: 0.25s; }
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-textarea.ia-cargando {
-    opacity: 0.82;
-    cursor: wait;
-}
-
 /* Sección de firmas */
 .seccion-firmas {
     margin: 3rem 0 2rem;
