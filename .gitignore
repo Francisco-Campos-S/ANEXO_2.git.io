@@ -29,3 +29,6 @@ desktop.ini
 # Archivos temporales
 *.tmp
 *.bak
+
+# Clave API Gemini (nunca subir)
+config.local.js

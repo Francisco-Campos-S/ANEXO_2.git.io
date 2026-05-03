@@ -1815,8 +1815,7 @@ function obtenerClaveGemini() {
 }
 
 /**
- * Respaldo si ListModels falla: mismo nombre probado en v1 y v1beta.
- * Los 404 suelen ser por API version (v1beta vs v1), no solo por el nombre.
+ * Respaldo si ListModels falla. Sin alias `-latest` ni `gemini-1.5-flash` sin versión (404 en muchos proyectos).
  */
 const GEMINI_MODELOS_INTENTO = [
     'gemini-2.0-flash-lite',
@@ -1824,10 +1823,16 @@ const GEMINI_MODELOS_INTENTO = [
     'gemini-2.0-flash-001',
     'gemini-1.5-flash-002',
     'gemini-1.5-flash-001',
-    'gemini-1.5-flash-8b',
-    'gemini-1.5-flash',
-    'gemini-1.5-flash-latest'
+    'gemini-1.5-flash-8b'
 ];
+
+/** Alias que ListModels aún lista pero generateContent rechaza en varios proyectos. */
+function nombreModeloGeminiEvitar(shortName) {
+    const n = String(shortName || '').toLowerCase();
+    if (/-latest$/i.test(n)) return true;
+    if (n === 'gemini-1.5-flash') return true;
+    return false;
+}
 
 const GEMINI_MAX_INTENTOS_GENERACION = 36;
 
@@ -1888,10 +1893,11 @@ async function construirPlanIntentosGemini(key, signal) {
     }
 
     const ordenados = Array.from(porNombre.entries())
-        .filter(([name]) => puntuarNombreModeloGemini(name) < 850)
+        .filter(([name]) => puntuarNombreModeloGemini(name) < 850 && !nombreModeloGeminiEvitar(name))
         .sort((a, b) => puntuarNombreModeloGemini(a[0]) - puntuarNombreModeloGemini(b[0]));
 
     const plan = [];
+    /* Priorizar v1 sobre v1beta (menos 404 con el mismo nombre en cuentas nuevas). */
     for (const [short, versiones] of ordenados) {
         for (const apiVer of ['v1', 'v1beta']) {
             if (versiones.has(apiVer)) {

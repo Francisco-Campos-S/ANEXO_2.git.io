@@ -29,6 +29,32 @@ git push -u origin main
 
 Mira el video de demostración: https://youtu.be/wF6TR_aaiRc
 
+## 🔑 Gemini (texto sugerido con IA)
+
+**No pegues la clave en `index.html` en un repo público.** Usa una de estas formas:
+
+### A) Automático en GitHub Pages (recomendado)
+
+1. Crea o **rota** tu clave en [Google AI Studio](https://aistudio.google.com/apikey).
+2. En el repo de GitHub: **Settings → Secrets and variables → Actions → New repository secret**
+   - Nombre: `GEMINI_API_KEY`
+   - Valor: tu clave (solo se usa en el servidor de Actions, no aparece en el código del branch).
+3. **Settings → Pages → Build and deployment → Source: GitHub Actions** (no “Deploy from a branch” si quieres usar este flujo).
+4. Haz **push** a `main` (o `master`). El workflow `.github/workflows/deploy-github-pages.yml` genera `gemini-config.js` al publicar y despliega el sitio.
+5. Restringe la clave por **HTTP referrer** en Google: `https://TU-USUARIO.github.io/NOMBRE-DEL-REPO/*` y, si pruebas en local, `http://localhost:*` y `http://127.0.0.1:*`.
+
+### B) Solo en tu PC
+
+Copia `config.local.example.js` como `config.local.js`, pon la clave ahí (está en `.gitignore`).
+
+### C) Sin archivo (navegador)
+
+En la consola (F12): `localStorage.setItem('GEMINI_API_KEY','…');` y recarga.
+
+### Orden de prioridad
+
+`config.local.js` (si existe) sustituye lo demás al cargar; luego `gemini-config.js`; luego `localStorage`.
+
 ## 💡 Consejos
 
 - **Chrome** es el navegador recomendado para generar PDFs
