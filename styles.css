@@ -686,7 +686,8 @@ body::before {
 .seccion-apoyos h4 {
     color: var(--primary-color);
     margin-bottom: 1rem;
-    font-size: 1.1rem;
+    font-size: 1.35rem;
+    font-weight: 700;
     padding: 0.75rem;
     background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
     border-radius: 8px;
@@ -696,6 +697,7 @@ body::before {
     justify-content: space-between;
     gap: 0.5rem;
     box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
+    letter-spacing: 0.2px;
 }
 
 .seccion-apoyos h4::before {
@@ -801,8 +803,9 @@ body::before {
     padding: 0.75rem;
     background: white;
     border-radius: 6px;
-    font-size: 0.875rem;
-    color: var(--text-light);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-dark);
     min-height: 60px;
     border-left: 3px solid var(--primary-color);
     transition: all 0.3s ease;
@@ -1044,10 +1047,10 @@ thead {
 thead th {
     padding: 1rem;
     text-align: left;
-    font-weight: 600;
-    font-size: 0.9rem;
+    font-weight: 700;
+    font-size: 1rem;
     text-transform: uppercase;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.7px;
 }
 
 tbody tr {
@@ -2217,8 +2220,9 @@ tbody tr:nth-child(even) {
 
 .descripcion-apoyo-anexo10 {
     display: block;
-    font-size: 0.85rem;
-    color: var(--text-light);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-dark);
     line-height: 1.5;
     min-height: 20px;
 }
