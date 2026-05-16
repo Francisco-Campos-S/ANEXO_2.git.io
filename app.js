@@ -414,8 +414,22 @@ function resaltarCodigoEnGuia(codigo, tipo) {
         if (strong && strong.textContent.trim() === codigo) {
             // Agregar clase de resaltado temporal
             item.classList.add('codigo-seleccionado');
-            item.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
+
+            // Intentar desplazar el panel lateral hacia la sección donde está el código
+            const guiaSeccion = item.closest('.guia-seccion');
+            if (guiaSeccion && typeof desplazarGuiaLateralHaciaSeccion === 'function') {
+                if (!focoEnCabeceraOEstudianteAnexo()) {
+                    desplazarGuiaLateralHaciaSeccion(guiaSeccion);
+                } else {
+                    // Si el foco está en cabecera, evitar mover el panel para no interrumpir al usuario
+                    // Pero aún aseguramos intentar un scroll suave del elemento en el documento.
+                    item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            } else {
+                // Fallback: scroll al elemento en el documento
+                item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
             // Remover después de 3 segundos
             setTimeout(() => {
                 item.classList.remove('codigo-seleccionado');
@@ -2160,6 +2174,29 @@ function configurarBuscadorCodigos() {
                 resultadosSpan.textContent = '';
             } else {
                 resultadosSpan.textContent = `${totalResultados} de ${totalCodigos} códigos encontrados`;
+            }
+        
+            // Si hay resultados, desplazar automáticamente al primer destacado
+            if (termino !== '' && totalResultados > 0) {
+                for (const listaId of listas) {
+                    const lista = document.getElementById(listaId);
+                    if (!lista) continue;
+                    const primero = lista.querySelector('.codigo-item.destacado');
+                    if (primero) {
+                        const guiaSeccion = primero.closest('.guia-seccion');
+                        if (guiaSeccion && typeof desplazarGuiaLateralHaciaSeccion === 'function') {
+                            // solo desplazar si no se está escribiendo en cabecera
+                            if (!focoEnCabeceraOEstudianteAnexo()) {
+                                desplazarGuiaLateralHaciaSeccion(guiaSeccion);
+                            } else {
+                                primero.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                        } else {
+                            primero.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                        break;
+                    }
+                }
             }
         });
     });

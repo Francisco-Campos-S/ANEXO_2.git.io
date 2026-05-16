@@ -119,12 +119,14 @@ body::before {
 }
 
 .nav-content h1 {
-    font-size: clamp(1.3rem, 2.5vw, 1.7rem);
-    font-weight: 800;
-    line-height: 1.2;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 900;
+    line-height: 1.05;
     text-align: center;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    letter-spacing: 0.05em;
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+    letter-spacing: 0.06em;
+    color: #ffffff;
+    margin: 0;
     max-width: min(920px, 100%);
 }
 
@@ -136,18 +138,19 @@ body::before {
 }
 
 .nav-btn {
-    background-color: rgba(255, 255, 255, 0.15);
-    color: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 0.75rem 1.4rem;
+    border-radius: 999px;
     cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    box-shadow: none;
 }
 
 .nav-btn::before {
@@ -169,18 +172,18 @@ body::before {
 }
 
 .nav-btn:hover {
-    background-color: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    background-color: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.45);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.14);
 }
 
 .nav-btn.active {
-    background-color: white;
+    background-color: #ffffff;
     color: var(--primary-color);
-    border-color: white;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    font-weight: 600;
+    border-color: rgba(255,255,255,0.95);
+    box-shadow: 0 10px 30px rgba(2,6,23,0.12);
+    transform: translateY(-2px);
 }
 
 .nav-filtro-seccion {
