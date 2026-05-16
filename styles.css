@@ -2248,6 +2248,7 @@ tbody tr:nth-child(even) {
 
 /* Sección de firmas */
 .seccion-firmas {
+    display: none;
     margin: 3rem 0 2rem;
     padding: 2rem;
     background: white;
