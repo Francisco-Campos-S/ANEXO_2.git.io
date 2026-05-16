@@ -71,6 +71,12 @@ function inicializarApp() {
     // Configurar botones para eliminar filas
     configurarBotonesEliminarFila();
     
+    // Configurar botones para agregar filas en apoyos
+    configurarBotonesAgregarFilasApoyos();
+    
+    // Configurar botones de eliminar filas en apoyos
+    configurarBotonesEliminarFilasApoyos();
+    
     // Configurar buscador de códigos
     configurarBuscadorCodigos();
     
@@ -1932,6 +1938,172 @@ function configurarBotonesEliminarFila() {
             }, 300);
         });
     });
+}
+
+// Configurar botones para agregar filas en tablas de apoyos
+function configurarBotonesAgregarFilasApoyos() {
+    const tablas = document.querySelectorAll('.tabla-apoyos-anexo10');
+    
+    tablas.forEach((tabla, indice) => {
+        // Verificar si ya existe un botón de agregar
+        const tablaContenedor = tabla.parentElement;
+        let botonAgregarExistente = tablaContenedor.querySelector('.btn-agregar-fila-apoyo');
+        
+        // Si el botón ya existe, removerlo para evitar duplicados
+        if (botonAgregarExistente) {
+            botonAgregarExistente.remove();
+        }
+        
+        // Crear botón "Agregar fila"
+        const botonAgregar = document.createElement('button');
+        botonAgregar.type = 'button';
+        botonAgregar.className = 'btn-agregar-fila-apoyo';
+        botonAgregar.innerHTML = '+ Agregar fila';
+        botonAgregar.style.cssText = `
+            margin-top: 0.75rem;
+            padding: 0.5rem 1rem;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        `;
+        
+        botonAgregar.addEventListener('mouseover', () => {
+            botonAgregar.style.backgroundColor = '#1d4ed8';
+        });
+        botonAgregar.addEventListener('mouseout', () => {
+            botonAgregar.style.backgroundColor = '#2563eb';
+        });
+        
+        // Insertar botón después de la tabla
+        tabla.parentElement.insertBefore(botonAgregar, tabla.nextSibling);
+        
+        // Agregar evento al botón
+        botonAgregar.addEventListener('click', () => {
+            agregarFilaApoyo(tabla);
+        });
+    });
+}
+
+// Configurar botones de eliminar para filas de apoyos
+function configurarBotonesEliminarFilasApoyos() {
+    const botones = document.querySelectorAll('.btn-eliminar-fila-apoyo');
+    
+    botones.forEach(boton => {
+        // Remover eventos previos clonando para evitar duplicados
+        const nuevoBoton = boton.cloneNode(true);
+        boton.parentNode.replaceChild(nuevoBoton, boton);
+        
+        // Agregar evento al nuevo botón
+        nuevoBoton.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            const fila = nuevoBoton.closest('tr');
+            const tbody = fila.closest('tbody');
+            
+            // No permitir eliminar si solo hay 1 fila
+            if (tbody.querySelectorAll('tr').length <= 1) {
+                mostrarNotificacion('No se puede eliminar', 'Debe mantener al menos una fila en la tabla.', 'error');
+                return;
+            }
+            
+            // Animación de desaparición
+            fila.style.opacity = '0';
+            fila.style.transition = 'opacity 0.3s ease';
+            
+            setTimeout(() => {
+                fila.remove();
+                mostrarNotificacion('Fila eliminada', 'La fila ha sido eliminada correctamente.', 'exito');
+                hayCambiosSinGuardar = true;
+            }, 300);
+        });
+    });
+}
+
+// Función para agregar una nueva fila a una tabla de apoyos
+function agregarFilaApoyo(tabla) {
+    const tbody = tabla.querySelector('tbody');
+    if (!tbody) return;
+    
+    // Obtener el tipo de apoyo del atributo data-tipo de la primera fila
+    const primeraFila = tbody.querySelector('tr');
+    const primerSelect = primeraFila?.querySelector('.codigo-select-anexo10');
+    const tipoApoyo = primerSelect?.getAttribute('data-tipo');
+    
+    if (!tipoApoyo) {
+        console.error('No se pudo determinar el tipo de apoyo');
+        return;
+    }
+    
+    // Obtener el índice más alto actual
+    const selects = tbody.querySelectorAll('.codigo-select-anexo10');
+    let maxIndex = -1;
+    selects.forEach(select => {
+        const index = parseInt(select.getAttribute('data-index') || '0');
+        if (index > maxIndex) {
+            maxIndex = index;
+        }
+    });
+    
+    const nuevoIndex = maxIndex + 1;
+    
+    // Crear nueva fila con botón de eliminar
+    const nuevaFila = document.createElement('tr');
+    nuevaFila.innerHTML = `
+        <td>
+            <select class="codigo-select-anexo10" data-tipo="${tipoApoyo}" data-index="${nuevoIndex}">
+                <option value="">Seleccione...</option>
+            </select>
+        </td>
+        <td><span class="descripcion-apoyo-anexo10"></span></td>
+        <td><textarea rows="4" placeholder="Resultados..."></textarea></td>
+        <td style="text-align: center; width: 5%;">
+            <button class="btn-eliminar-fila-apoyo" title="Eliminar fila" style="background: none; border: none; cursor: pointer; color: #dc2626; font-size: 1.2rem; padding: 0.25rem;">✕</button>
+        </td>
+    `;
+    
+    // Agregar nueva fila al tbody
+    tbody.appendChild(nuevaFila);
+    
+    // Llenar el select con los códigos disponibles (igual que llenarSelectCodigos)
+    const nuevoSelect = nuevaFila.querySelector('.codigo-select-anexo10');
+    if (datos && datos.apoyos && datos.apoyos[tipoApoyo]) {
+        datos.apoyos[tipoApoyo].forEach(apoyo => {
+            const option = document.createElement('option');
+            option.value = apoyo.codigo;
+            option.textContent = apoyo.codigo;  // Solo mostrar código
+            option.dataset.descripcion = apoyo.descripcion;  // Descripción en atributo data
+            nuevoSelect.appendChild(option);
+        });
+    }
+    
+    // Registrar evento de cambio para el nuevo select
+    nuevoSelect.addEventListener('change', (e) => actualizarDescripcionApoyoAnexo10(e.target));
+    
+    // Marcar campo como modificado
+    nuevoSelect.classList.add('campo-modificado');
+    nuevoSelect.addEventListener('input', () => {
+        hayCambiosSinGuardar = true;
+        nuevoSelect.classList.add('campo-modificado');
+    });
+    
+    const textarea = nuevaFila.querySelector('textarea');
+    textarea.addEventListener('input', () => {
+        hayCambiosSinGuardar = true;
+        textarea.classList.add('campo-modificado');
+    });
+    
+    // Configurar evento de eliminar para la nueva fila
+    configurarBotonesEliminarFilasApoyos();
+    
+    mostrarNotificacion('Fila agregada', 'Nueva fila agregada correctamente.', 'exito');
+    
+    // Marcar que hay cambios sin guardar
+    hayCambiosSinGuardar = true;
 }
 
 // Configurar buscador de códigos
