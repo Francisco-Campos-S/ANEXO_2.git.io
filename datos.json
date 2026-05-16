@@ -1050,10 +1050,379 @@
     }
   ],
   "apoyos": {
-    "personales": [],
-    "organizativos": [],
-    "materiales": [],
-    "curriculares": [],
-    "evaluativos": []
+    "personales": [
+      {
+        "codigo": "A.P.1",
+        "descripcion": "Utilizar su cercanía física para mantenerlo atento a la clase. "
+      },
+      {
+        "codigo": "A.P.2",
+        "descripcion": "Utilizar la tutoría entre compañeros. "
+      },
+      {
+        "codigo": "A.P.3",
+        "descripcion": "Brindar acercamiento físico y las manifestaciones de apoyo. "
+      },
+      {
+        "codigo": "A.P.4",
+        "descripcion": "Reforzar cada logro por más pequeño que este sea. "
+      },
+      {
+        "codigo": "A.P.5",
+        "descripcion": "Reforzar la autoestima mediante actividades que le permitan éxito, particularizando en características cognitivas y sociales. "
+      },
+      {
+        "codigo": "A.P.6",
+        "descripcion": "Utilizar constantemente la estrategia de trabajo cooperativo con la finalidad de que logre beneficiar y beneficiarse de las experiencias de otros compañeros y así reforzar su seguridad en la ejecución de los aprendizajes. "
+      },
+      {
+        "codigo": "A.P.7",
+        "descripcion": "Dar responsabilidades especificas al estudiante dentro del aula y hogar para reforzar su autoconfianza generando responsabilidad e independencia. "
+      },
+      {
+        "codigo": "A.P.8",
+        "descripcion": "Utilizar dentro de la propuesta pedagógica actividades que refuercen la autoestima como: expresión de sentimientos, respeto a la diferencia y tolerancia. "
+      },
+      {
+        "codigo": "A.P.9",
+        "descripcion": "Utilizar reforzadores sociales como: \"muy bien\", \"usted puede\" y \"siga así\". "
+      },
+      {
+        "codigo": "A.P.10",
+        "descripcion": "Utilizar canales sensoriales como: auditivos, kinestésico y táctil para presentar la materia. "
+      },
+      {
+        "codigo": "A.P.11",
+        "descripcion": "Generar alguna técnica para recordar frecuentemente la entrega de trabajos a largo plazo."
+      },
+      {
+        "codigo": "A.P.12",
+        "descripcion": "Referir a otros especialistas (orientador, docente de apoyo, psicología, terapia física, terapia de lenguaje, otros). "
+      },
+      {
+        "codigo": "A.P.13",
+        "descripcion": "Otros:"
+      }
+    ],
+    "organizativos": [
+      {
+        "codigo": "A.A.13",
+        "descripcion": "Ubicar al estudiante cerca de compañeros que no se desconcentren."
+      },
+      {
+        "codigo": "A.A.14",
+        "descripcion": "Ubicar al estudiante donde mejor pueda ver la pizarra. "
+      },
+      {
+        "codigo": "A.A.15",
+        "descripcion": "Sentar al estudiante en un lugar donde tenga buena iluminación"
+      },
+      {
+        "codigo": "A.A.16",
+        "descripcion": "Considerar colocar los asientos en semicírculo."
+      },
+      {
+        "codigo": "A.A.17",
+        "descripcion": "Rotular objetos y partes importantes de la clase."
+      },
+      {
+        "codigo": "A.A.18",
+        "descripcion": "Organizar y agrupar los y las estudiantes de acuerdo con sus intereses motivacionales"
+      },
+      {
+        "codigo": "A.A.19",
+        "descripcion": "Organizar el tiempo y del espacio para mejorar el clima organizacional."
+      },
+      {
+        "codigo": "A.A.20",
+        "descripcion": "Anotar la fecha de exámenes y entrega de trabajo en un lugar visible."
+      },
+      {
+        "codigo": "A.A.21",
+        "descripcion": "Establecer rutinas de trabajo."
+      },
+      {
+        "codigo": "A.A.22",
+        "descripcion": "Anotar en la pizarra el número de página y/o ejercicios a realizar."
+      },
+      {
+        "codigo": "A.A.23",
+        "descripcion": "Otras:"
+      }
+    ],
+    "materiales": [
+      {
+        "codigo": "A.A.23",
+        "descripcion": "Ampliar la letra al tamaño que el estudiante sienta mejor."
+      },
+      {
+        "codigo": "A.A.24",
+        "descripcion": "Permitir el uso de lámparas y lupas para que pueda tener una mejor visión."
+      },
+      {
+        "codigo": "A.A.25",
+        "descripcion": "Utilización de rotafolios escribiendo con marcador grueso y letra amplia como material de apoyo de temas vistos en clase."
+      },
+      {
+        "codigo": "A.A.26",
+        "descripcion": "Permitir el uso de dispositivos para que realice grabaciones en clases."
+      },
+      {
+        "codigo": "A.A.27",
+        "descripcion": "Usar marcadores gruesos preferiblemente azul o negro para escribir en la pizarra."
+      },
+      {
+        "codigo": "A.A.28",
+        "descripcion": "Permitir el uso del diccionario para ejecución de trabajo cotidiano y pruebas."
+      },
+      {
+        "codigo": "A.A.29",
+        "descripcion": "Usar láminas, mapas, gráficos y vídeos relacionados con los aprendizajes que se desarrollan."
+      },
+      {
+        "codigo": "A.A.30",
+        "descripcion": "Permitir el uso de las tablas de multiplicar para ejecución de trabajo cotidiano y pruebas."
+      },
+      {
+        "codigo": "A.A.31",
+        "descripcion": "Permitir el uso de la calculadora para la ejecución de trabajo cotidiano y pruebas."
+      },
+      {
+        "codigo": "A.A.32",
+        "descripcion": "Permitir el uso de fichas con las fórmulas matemáticas para ejecución de trabajo cotidiano y pruebas."
+      },
+      {
+        "codigo": "A.A.33",
+        "descripcion": "Al utilizar la explicación verbal acompáñela de una explicación visual gráfica."
+      },
+      {
+        "codigo": "A.A.34",
+        "descripcion": "Facilitar el material impreso en caso de ser necesario."
+      },
+      {
+        "codigo": "A.A.35",
+        "descripcion": "Brindar al estudiante fichas que contengan información de los aprendizajes vistos en clases."
+      },
+      {
+        "codigo": "A.A.36",
+        "descripcion": "Facilitar material de reforzamiento para hacer en casa."
+      },
+      {
+        "codigo": "A.A.37",
+        "descripcion": "Facilitar cuestionarios como material de apoyo."
+      },
+      {
+        "codigo": "A.A.38",
+        "descripcion": "Utilizar un diccionario ilustrado de conceptos básicos como palabras claves y estructuras gramaticales."
+      },
+      {
+        "codigo": "A.A.39:",
+        "descripcion": "Otras:"
+      }
+    ],
+    "curriculares": [
+      {
+        "codigo": "A.C.39",
+        "descripcion": "Ajustar los aprendizajes esperados del programa según nivel de funcionamiento."
+      },
+      {
+        "codigo": "A.C.40",
+        "descripcion": "Utilizar canales sensoriales como: auditivos, kinestésico y táctil para transmitir los aprendizajes."
+      },
+      {
+        "codigo": "A.C.41",
+        "descripcion": "Permitir más tiempo para terminar los trabajos cotidianos individualmente.  "
+      },
+      {
+        "codigo": "A.C.42",
+        "descripcion": "Permitir al estudiante que se comunique como mejor pueda."
+      },
+      {
+        "codigo": "A.C.43",
+        "descripcion": "Apoyar en señas y gestos al comunicarse."
+      },
+      {
+        "codigo": "A.C.44",
+        "descripcion": "Hablar siempre frente al estudiante (contacto visual)."
+      },
+      {
+        "codigo": "A.C.45",
+        "descripcion": "De ser necesario disminuir la longitud y la cantidad de las tareas y/o actividades."
+      },
+      {
+        "codigo": "A.C.46",
+        "descripcion": "Utilizar hojas y material de trabajo poco recargados."
+      },
+      {
+        "codigo": "A.C.47",
+        "descripcion": "Involucrar al estudiante durante la lección, es decir participación frecuente utilizando la realimentación.  "
+      },
+      {
+        "codigo": "A.C.48",
+        "descripcion": "Dividir la actividad o tarea en partes y déselas una por una.  "
+      },
+      {
+        "codigo": "A.C.49",
+        "descripcion": "Permitir un rato de descanso entre una actividad y otra."
+      },
+      {
+        "codigo": "A.C.50",
+        "descripcion": "Combinar la teoría con la práctica. "
+      },
+      {
+        "codigo": "A.C.51",
+        "descripcion": "Solicitar al estudiante que repita las indicaciones para asegurarnos de que las haya entendido."
+      },
+      {
+        "codigo": "A.C.52",
+        "descripcion": "Apoyar las indicaciones orales con indicaciones escritas. "
+      },
+      {
+        "codigo": "A.C.53",
+        "descripcion": "Dar las indicaciones de manera clara y correcta."
+      },
+      {
+        "codigo": "A.C.54",
+        "descripcion": "Hacer preguntas de repaso y control de la materia."
+      },
+      {
+        "codigo": "A.C.55",
+        "descripcion": "Describir reiteradamente las acciones solicitadas."
+      },
+      {
+        "codigo": "A.C.56",
+        "descripcion": "Utilizar dentro de la propuesta pedagógica actividades que refuercen la autoestima como: expresión de sentimientos, respeto a la diferencia y la tolerancia."
+      },
+      {
+        "codigo": "A.C.57",
+        "descripcion": "Dar responsabilidades específicas al estudiante dentro del aula para reforzar su autoconfianza generando responsabilidad e independencia."
+      },
+      {
+        "codigo": "A.C.58",
+        "descripcion": "Ajustar y/o modificar las prácticas hechas en clase al ritmo de aprendizaje del estudiante."
+      },
+      {
+        "codigo": "A.C.59",
+        "descripcion": "Tocar su hombro cuando se distrae o establezca un código para llamar su atención."
+      },
+      {
+        "codigo": "A.C.60",
+        "descripcion": "Permitir al estudiante use el dedo como guía al leer."
+      },
+      {
+        "codigo": "A.C.61",
+        "descripcion": "Reforzar constantemente los logros obtenidos."
+      },
+      {
+        "codigo": "A.C.62",
+        "descripcion": "Reducir la cantidad de palabras en una redacción."
+      },
+      {
+        "codigo": "A.C.63",
+        "descripcion": "Devolver los trabajos que realiza muy rápido para que los revise. "
+      },
+      {
+        "codigo": "A.C.64",
+        "descripcion": "Dividir el trabajo de clase de tal manera que, si queda algo pendiente, pueda terminarlo en la casa."
+      },
+      {
+        "codigo": "A.C.65",
+        "descripcion": "Relacionar la escritura del estudiante con su fonética y no evaluar o restar puntos por el error."
+      },
+      {
+        "codigo": "A.C.66",
+        "descripcion": "Desarrollar metodología sobre un solo tema a la vez."
+      },
+      {
+        "codigo": "A.C.67",
+        "descripcion": "Facilitar prácticas de reforzamiento para hacer en casa."
+      },
+      {
+        "codigo": "A.C.68",
+        "descripcion": "Utilizar la técnica de la dramatización."
+      },
+      {
+        "codigo": "A.C.69",
+        "descripcion": "Establecer rutinas de trabajo."
+      },
+      {
+        "codigo": "A.C.70",
+        "descripcion": "Enseñar al estudiante a auto comprobarse utilizando señales."
+      },
+      {
+        "codigo": "A.C.71",
+        "descripcion": "Disminuir la cantidad de ejercicios repetitivos."
+      },
+      {
+        "codigo": "A.C.72",
+        "descripcion": "Trabajar con fichas."
+      },
+      {
+        "codigo": "A.C.73",
+        "descripcion": "Otras:"
+      }
+    ],
+    "evaluativos": [
+      {
+        "codigo": "A.C.73",
+        "descripcion": "Dar tiempo adicional para la realización de los trabajos en clase y las pruebas."
+      },
+      {
+        "codigo": "A.C.74",
+        "descripcion": "Utilizar solamente ítems de selección simple."
+      },
+      {
+        "codigo": "A.C.75",
+        "descripcion": "Resolver la prueba en recinto aparte."
+      },
+      {
+        "codigo": "A.C.76",
+        "descripcion": "Aplicar prueba específica."
+      },
+      {
+        "codigo": "A.C.77",
+        "descripcion": "Omitir la calificación de la caligrafía."
+      },
+      {
+        "codigo": "A.C.78",
+        "descripcion": "Ajustar el tamaño de la letra."
+      },
+      {
+        "codigo": "A.C.79",
+        "descripcion": "Aplicar una prueba por día."
+      },
+      {
+        "codigo": "A.C.80",
+        "descripcion": "Eliminar ítems memorísticos."
+      },
+      {
+        "codigo": "A.C.81",
+        "descripcion": "Aplicar evaluaciones cortas y frecuentes."
+      },
+      {
+        "codigo": "A.C.82",
+        "descripcion": "Tutor especialista."
+      },
+      {
+        "codigo": "A.C.83",
+        "descripcion": "Permitir emitir algunas respuestas de manera oral y la transcripción por parte de la persona docente, ante el rezago en el proceso de lectoescritura."
+      },
+      {
+        "codigo": "A.C.84",
+        "descripcion": "Permitir el uso del diccionario."
+      },
+      {
+        "codigo": "A.C.85",
+        "descripcion": "Usar tablas de multiplicar y formulas."
+      },
+      {
+        "codigo": "A.C.86",
+        "descripcion": "Usar la calculadora."
+      },
+      {
+        "codigo": "A.C.87",
+        "descripcion": "Otras:"
+      }
+    ]
   }
 }
