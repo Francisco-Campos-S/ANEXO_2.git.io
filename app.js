@@ -136,11 +136,19 @@ function llenarSelectEstudiantes(selectId, filtroClaveNorm = '') {
 
     const nombrePrevio = select.value;
     const filtro = filtroClaveNorm ? normalizarClaveSeccion(filtroClaveNorm) : '';
+    
+    // Determinar el tipo de adecuación según el selectId
+    const esMat = selectId.includes('_mat');
+    const tipoAdecuacionRequerido = esMat ? 'significativa' : 'no_significativa';
 
     select.innerHTML = '<option value="">Seleccione un estudiante...</option>';
 
     datos.estudiantes.forEach((estudiante) => {
+        // Filtrar por tipo de adecuación (Anexo 2 vs Anexo 10)
+        if (estudiante.tipo_adecuacion !== tipoAdecuacionRequerido) return;
+        // Filtrar por sección si aplica
         if (filtro && normalizarClaveSeccion(estudiante.seccion) !== filtro) return;
+        
         const option = document.createElement('option');
         option.value = estudiante.nombre;
         option.textContent = estudiante.nombre;
@@ -304,13 +312,17 @@ function llenarTablaEstudiantes(filtroClaveNorm = '') {
     datos.estudiantes.forEach((estudiante) => {
         if (filtro && normalizarClaveSeccion(estudiante.seccion) !== filtro) return;
         num++;
+        
+        // Determinar tipo de adecuación para mostrar
+        const tipoAdecuacion = estudiante.tipo_adecuacion === 'significativa' ? 'Anexo 10' : 'Anexo 2';
+        
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>${num}</td>
             <td>${estudiante.nombre}</td>
             <td>${estudiante.seccion}</td>
             <td>${estudiante.cedula}</td>
-            <td>${estudiante.observaciones}</td>
+            <td>${tipoAdecuacion}</td>
         `;
         tbody.appendChild(tr);
     });

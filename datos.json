@@ -2,820 +2,1058 @@
   "estudiantes": [
     {
       "numero": 1,
-      "nombre": "Agüero Brénes Freyser",
+      "nombre": "ABREGO . WALTER",
       "seccion": "7-1",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 2,
-      "nombre": "Guillen Chávez Omar Rafael",
-      "seccion": "7-1",
+      "nombre": "ABREGO MIRANDA HERIBERTO JORGE",
+      "seccion": "7-4",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 3,
-      "nombre": "Guillen Guido Eneizer",
-      "seccion": "7-1",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Alemán Sandí Jimena",
+      "seccion": "9-1",
+      "cedula": "605320280",
+      "observaciones": "P.A",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 4,
-      "nombre": "Morales Arosemena Keilor Joshua ",
-      "seccion": "7-1",
+      "nombre": "ALEMAN SANDI JONATHAN",
+      "seccion": "7-2",
       "cedula": "",
-      "observaciones": "Revisar Expediente Cambio de apellidos Arosemena Siles"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 5,
-      "nombre": "González Martínez Josué ",
-      "seccion": "7-1",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Alvarado Guzmán Samantha",
+      "seccion": "8-5",
+      "cedula": "121620521",
+      "observaciones": "P.A.",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 6,
-      "nombre": "Briones Sánchez Yeisliany",
-      "seccion": "7-2",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Arias Porras Britanny",
+      "seccion": "11-4",
+      "cedula": "120470353",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 7,
-      "nombre": "Cerdas Guerrero Rihanna",
-      "seccion": "7-2",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Arias Vindas Hazel Lineth",
+      "seccion": "9-6",
+      "cedula": "120910578",
+      "observaciones": "P.A",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 8,
-      "nombre": "Cortes Espinoza Sara Ibeth",
-      "seccion": "7-2",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Artavia Ugarte Jhoan José",
+      "seccion": "8-4",
+      "cedula": "121540833",
+      "observaciones": "Déficit Atencional, dificultad lectora-comprensiva-analítica.",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 9,
-      "nombre": "Franco Caballero Bayron",
-      "seccion": "7–2",
+      "nombre": "AVILES JIMENEZ THAIRYN JOSEBETH",
+      "seccion": "7-6",
       "cedula": "",
-      "observaciones": "Según nota de matrícula que señala adecuación. Falta Revisar expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 10,
-      "nombre": "Martínez Artola Julisa",
-      "seccion": "7-2",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Avilés Jiménez Yareth Alejandra",
+      "seccion": "9-2",
+      "cedula": "120870488",
+      "observaciones": "P.A",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 11,
-      "nombre": "Palacios Montezuma Kenya ",
-      "seccion": "7-2",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Barrantes Vargas Luis Felipe",
+      "seccion": "9-3",
+      "cedula": "605310238",
+      "observaciones": "P.A",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 12,
-      "nombre": "Ávila Ramírez Alejandra Victoria",
-      "seccion": "8-1",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Beita Vargas Rony",
+      "seccion": "8-4",
+      "cedula": "121270094",
+      "observaciones": "P.A",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 13,
-      "nombre": "Caballero González Angie Guiselle",
-      "seccion": "8-1",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Bejerano--------- Viviana",
+      "seccion": "8-3",
+      "cedula": "15910111",
+      "observaciones": "",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 14,
-      "nombre": "Caballero Mora Janish",
-      "seccion": "8-1",
-      "cedula": "",
-      "observaciones": "No se observa en expediente el último nivel de funcionamiento, el docente lo asigna según su valoración del diagnóstico aplicado."
+      "nombre": "Blanco Cubero Aaron Fabricio",
+      "seccion": "8-4",
+      "cedula": "605410373",
+      "observaciones": "Dificultad procesos de atención y percepción, Dificultad para iniciar y finalizar una actividad. TEA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 15,
-      "nombre": "Guerra Pineda Astri Vanessa",
-      "seccion": "8-1",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Blanco García Roxiri Paola",
+      "seccion": "8-3",
+      "cedula": "605410463",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 16,
-      "nombre": "Hidalgo Vindas Lashmy",
-      "seccion": "8-1",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Bonilla Fallas Valentina",
+      "seccion": "8-5",
+      "cedula": "605410700",
+      "observaciones": "Baja visión",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 17,
-      "nombre": "Mora Castillo Elvis Antonio",
-      "seccion": "8-1",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Cascante Vargas Víctor Manuel",
+      "seccion": "8-4",
+      "cedula": "605290162",
+      "observaciones": "P.A",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 18,
-      "nombre": "Muñoz Valdez Owen",
-      "seccion": "8-1",
+      "nombre": "CHAVES ALVAREZ DARLENE ARELIZ",
+      "seccion": "7-5",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 19,
-      "nombre": "Rodríguez Rodríguez Adcison",
+      "nombre": "CHAVES SALAZAR MAIDELYN ANDREINA",
       "seccion": "8-1",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento en el 2023 Est Soc III grado, Educación Cívica no aparece en el expediente, Ciencias III grado, Matemáticas III grado, Español III grado, Religión III grado e Ingles 5° grado en el 2022. El docente valora si lo sube de nivel."
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 20,
-      "nombre": "Salazar Chandler Jefferson Samir",
-      "seccion": "8-1",
-      "cedula": "",
-      "observaciones": "Según revisión de expediente el 07/05/2025 el mismo no indica nivel de funcionamiento en ninguna asignatura. El docente valora el nivel a trabajar con el estudiante."
+      "nombre": "Chaves Valerio Alisson Pamela",
+      "seccion": "7-1",
+      "cedula": "121600888",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 21,
-      "nombre": "Umaña Ortiz Rutvel",
-      "seccion": "8-1",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Chaves Valerio Royer David",
+      "seccion": "9-4",
+      "cedula": "121070344",
+      "observaciones": "P.A",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 22,
-      "nombre": "Vega Samudio Dianeth",
+      "nombre": "Cherlin Yarixa Picado Muñoz",
       "seccion": "8-1",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "cedula": "605390846",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 23,
-      "nombre": "Jiménez Palacios Johel David",
-      "seccion": "8-2",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Cruz González Lisandro",
+      "seccion": "9-2",
+      "cedula": "605350919",
+      "observaciones": "P.A",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 24,
-      "nombre": "Morales Cedeño Reichel",
-      "seccion": "8-2",
+      "nombre": "DURAN VARGAS KEYLIN",
+      "seccion": "7-1",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 25,
-      "nombre": "Quiel Espinoza Maikel Jaccir",
+      "nombre": "Erikca Yariela Elizondo Soto",
       "seccion": "8-2",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "cedula": "605380655",
+      "observaciones": "PA.",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 26,
-      "nombre": "Torres Álvarez Dixon Bacduel",
-      "seccion": "8-2",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Espinoza Villalobos Eidan Santiago",
+      "seccion": "8-4",
+      "cedula": "605360225",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 27,
-      "nombre": "Alvarado Carrera Antoni",
-      "seccion": "9-1",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Flores Prado Lana Jazlin",
+      "seccion": "9-4",
+      "cedula": "121370062",
+      "observaciones": "P.A",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 28,
-      "nombre": "Pineda Zúñiga María José",
-      "seccion": "9-1",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Fonseca Blanco Sharon Jenasha",
+      "seccion": "12-1",
+      "cedula": "119850637",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 29,
-      "nombre": "Macres Gamboa Fernanda",
-      "seccion": "9-2",
+      "nombre": "FONSECA CONCEPCION ANGELO DAVID",
+      "seccion": "7-5",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 30,
-      "nombre": "Restrepo Mora Andrés Alexander",
-      "seccion": "9-2",
-      "cedula": "",
-      "observaciones": "Audición: A partir de 10-04-25 se valorará con ADNS por solicitud de levantamiento de su apoyo."
+      "nombre": "García Miranda Marta",
+      "seccion": "7-7",
+      "cedula": "605380595",
+      "observaciones": "P.A.",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 31,
-      "nombre": "Arauz González Brayan",
-      "seccion": "9-3",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Gómez Granados Angely Lucía",
+      "seccion": "10-5",
+      "cedula": "120960941",
+      "observaciones": "P.A Tiempo extra en los trabajos.",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 32,
-      "nombre": "Quintero Mora Ryan Enrique",
-      "seccion": "9-3",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "González Abarca Justin Estarlen",
+      "seccion": "8-2",
+      "cedula": "605280177",
+      "observaciones": "PA (PROBLEMAS DE APRENIZAJE)",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 33,
-      "nombre": "Concepción Hurtado (Quesada) Joseth David",
-      "seccion": "10-1",
+      "nombre": "GONZÁLEZ ZAPATA OBETH MARTÍN",
+      "seccion": "7-1",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 34,
-      "nombre": "Obregón Ríos Guiselle Dayana",
-      "seccion": "10-1",
+      "nombre": "GUERRA CASTILLO AGUSTIN",
+      "seccion": "7-6",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 35,
-      "nombre": "Palacios Vigil Dayron",
-      "seccion": "10-1",
+      "nombre": "GUTIERREZ DUARTE ANGELO EFREN",
+      "seccion": "7-7",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 36,
-      "nombre": "Ruiz Villareal Adriana Floribeth",
-      "seccion": "10-1",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Guzmán Muñoz Alana",
+      "seccion": "9-3",
+      "cedula": "121030133",
+      "observaciones": "Déficit Atencional, dislexia, discalculia",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 37,
-      "nombre": "Degracia Pitti Yosbeh Aurelio",
-      "seccion": "10-2",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Isabella Francini Navas Mena",
+      "seccion": "8-1",
+      "cedula": "121470877",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 38,
-      "nombre": "Mora Alvarado David",
-      "seccion": "10-2",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Jara Rojas Darllelyn Sofía",
+      "seccion": "9-2",
+      "cedula": "121210036",
+      "observaciones": "P.A",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 39,
-      "nombre": "Sánchez Chinchilla Genesis Victoria",
-      "seccion": "10-2",
+      "nombre": "JIMENEZ CRISOTO LUCIA",
+      "seccion": "7-1",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 40,
-      "nombre": "Madriz Marín Keilor",
-      "seccion": "10-3",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Jiménez Sánchez Alexander",
+      "seccion": "8-1",
+      "cedula": "605390658",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 41,
-      "nombre": "Morales Villagra Nicole",
-      "seccion": "10-3",
+      "nombre": "JIMENEZ TRAÑA AXSEL FRANCISCO",
+      "seccion": "7-3",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 42,
-      "nombre": "Largaespada Gallardo Kristen Arlin",
-      "seccion": "10-4",
-      "cedula": "",
-      "observaciones": "La revisión del expediente se dio el 21/ 05/25"
+      "nombre": "Lezama Jiménez Matías Steff",
+      "seccion": "9-6",
+      "cedula": "605300916",
+      "observaciones": "P.A",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 43,
-      "nombre": "Arcellu Martínez Miguel Ángel",
-      "seccion": "11-1",
+      "nombre": "MARTINEZ CRUZ YIRLANI DANIELA",
+      "seccion": "7-7",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 44,
-      "nombre": "Figueros Víquez Kristel",
-      "seccion": "11-1",
-      "cedula": "",
-      "observaciones": "Se recomienda según expediente atención individual y dar tiempo adicional"
+      "nombre": "Martínez Cruz Youchuan Elias",
+      "seccion": "9-5",
+      "cedula": "605270052",
+      "observaciones": "P.A.",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 45,
-      "nombre": "Sequeira Pitti Jean Carlo",
-      "seccion": "11-1",
+      "nombre": "MARTINEZ PORRAS TAYRA SOFIA",
+      "seccion": "7-4",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 46,
-      "nombre": "Silva Castro Cristofer",
-      "seccion": "11-1",
+      "nombre": "MAZA BORBON ANYELO YAHIR",
+      "seccion": "7-5",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 47,
-      "nombre": "Artavia López Eduardo Antonio",
-      "seccion": "11-2",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Mejías Picado Luis Albeiro",
+      "seccion": "10-2",
+      "cedula": "605230446",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 48,
-      "nombre": "Carmona López José",
-      "seccion": "11-2",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Méndez Arauz Angelo Mateo",
+      "seccion": "9-3",
+      "cedula": "605330611",
+      "observaciones": "D.A",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 49,
-      "nombre": "Cortez Cerdas Dasly Nikole",
-      "seccion": "11-2",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Méndez Portugués Sebastián",
+      "seccion": "8-1",
+      "cedula": "605400754",
+      "observaciones": "P.A.",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 50,
-      "nombre": "Valencia García Natalia Vanesa",
-      "seccion": "11-2",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Miranda Ábrego Ivan",
+      "seccion": "8-3",
+      "cedula": "605290160",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 51,
-      "nombre": "Caballera Artavia Austin",
-      "seccion": "11-3",
+      "nombre": "MIRANDA FLORES KEINER ANDRES",
+      "seccion": "7-7",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 52,
-      "nombre": "Delgado Cianca Alexa Fernanda",
-      "seccion": "11-3",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Miranda López Edgar",
+      "seccion": "8-6",
+      "cedula": "YR2022-34924",
+      "observaciones": "",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 53,
-      "nombre": "Castillo Contreras Jonjansson",
-      "seccion": "11-3",
+      "nombre": "MORA JIMENEZ NEITHAN GABRIEL",
+      "seccion": "7-4",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 54,
-      "nombre": "Gonzales Batista Maikol",
-      "seccion": "11-3",
+      "nombre": "MORALES CHAVES RONALD YOPTIHEL",
+      "seccion": "7-7",
       "cedula": "",
-      "observaciones": "Revisar expediente."
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 55,
-      "nombre": "Guillén Chaves Sorangel Damaris",
-      "seccion": "11-3",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Morales Martínez Airay Nasaret",
+      "seccion": "7-6",
+      "cedula": "605320713",
+      "observaciones": "P.A.",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 56,
-      "nombre": "Muños García Ariana",
-      "seccion": "11-3",
+      "nombre": "MORALES PALACIOS VICTOR",
+      "seccion": "7-7",
       "cedula": "",
-      "observaciones": "Según expediente en las asignaturas de español y estudios sociales."
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 57,
-      "nombre": "Rodríguez Pimentel Kevin Antonio",
-      "seccion": "11-3",
+      "nombre": "MORALES VILLEGAS JOSUE ESTEBAN",
+      "seccion": "7-7",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 58,
-      "nombre": "Amador Montiel Leny Yohel",
-      "seccion": "11-4",
+      "nombre": "PEREZ CORDERO BENYAMIN YAZID",
+      "seccion": "7-3",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 59,
-      "nombre": "Arauz Saavedra Katry",
-      "seccion": "11-4",
+      "nombre": "PEREZ SALAZAR ANGEL RAFAEL",
+      "seccion": "7-5",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 60,
-      "nombre": "Montero Araya Juleisy Pamela",
-      "seccion": "11-4",
-      "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "nombre": "Picado Coronado Gustavo.",
+      "seccion": "8-6",
+      "cedula": "121440095",
+      "observaciones": "PA.",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 61,
-      "nombre": "Torres Artavia Daniel Duban",
-      "seccion": "11-4",
+      "nombre": "PINZON JIRON SAMANTHA VANESSA",
+      "seccion": "7-2",
       "cedula": "",
-      "observaciones": "Revisar Expediente"
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 62,
-      "nombre": "Villareal Concepción Breiner Aarón",
-      "seccion": "11-4",
+      "nombre": "QUESADA ABARCA ANDERSON STIP",
+      "seccion": "7-3",
       "cedula": "",
-      "observaciones": "Revisar Expediente."
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
     },
     {
       "numero": 63,
-      "nombre": "González Corrales Laura",
-      "seccion": "11-5",
+      "nombre": "Rivera García Blas Antonio",
+      "seccion": "9-5",
+      "cedula": "605320529",
+      "observaciones": "P.A",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 64,
+      "nombre": "Rodríguez Miranda Adara Naomi",
+      "seccion": "9-1",
+      "cedula": "121060478",
+      "observaciones": "PA Y TEA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 65,
+      "nombre": "RODRIGUEZ MOYA SHELBY KYARA",
+      "seccion": "7-1",
       "cedula": "",
-      "observaciones": "Español y la Ciencias. "
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 66,
+      "nombre": "Rojas Moya Tanisha",
+      "seccion": "8-2",
+      "cedula": "121630125",
+      "observaciones": "P.A.",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 67,
+      "nombre": "Salinas Bejarano Johan Fabián",
+      "seccion": "7-7",
+      "cedula": "605370959",
+      "observaciones": "P.A.",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 67,
+      "nombre": "Sánchez Montezuma Ronaldo",
+      "seccion": "9-5",
+      "cedula": "605280449",
+      "observaciones": "P.A",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 69,
+      "nombre": "SANDI QUIROS BRENDA SOFIA",
+      "seccion": "7-3",
+      "cedula": "",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 70,
+      "nombre": "Santos Morales Pablo",
+      "seccion": "12-3",
+      "cedula": "305700900",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 71,
+      "nombre": "SEGURA MUÑOZ MATEO",
+      "seccion": "7-4",
+      "cedula": "",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 72,
+      "nombre": "Solís Chinchilla Kristel",
+      "seccion": "10-1",
+      "cedula": "120870651",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 73,
+      "nombre": "SOTO MENA STACY IVON",
+      "seccion": "7-6",
+      "cedula": "",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 74,
+      "nombre": "UREÑA MORA NAZARETH MICKAELA",
+      "seccion": "7-2",
+      "cedula": "",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 75,
+      "nombre": "Valencia Alvarado Yenedith",
+      "seccion": "7-7",
+      "cedula": "605390378",
+      "observaciones": "Problemas Aprendizaje",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 76,
+      "nombre": "Valeria Sofía Solano Solono",
+      "seccion": "8-6",
+      "cedula": "605410453",
+      "observaciones": "PA.",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 77,
+      "nombre": "Vargas Arias Johan Mathias",
+      "seccion": "9-6",
+      "cedula": "121050092",
+      "observaciones": "Desorden fono articular (El desorden fonicoarticular es un tipo de trastorno del sonido del habla que se conoce como trastorno articulatorio1) Dislalia, trastornos generales del desarrollo, observación por trastorno espectro autista.",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 78,
+      "nombre": "VARGAS FONSECA ALLISON MARIEL",
+      "seccion": "7-3",
+      "cedula": "",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 79,
+      "nombre": "Vargas Quirós Arihana Victoria",
+      "seccion": "8-3",
+      "cedula": "121520796",
+      "observaciones": "Problemas Aprendizajes.",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 80,
+      "nombre": "VEGA CASCANTE JOSE PABLO",
+      "seccion": "7-7",
+      "cedula": "",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 81,
+      "nombre": "Vega Espinoza Reashell Yunaiki",
+      "seccion": "8-2",
+      "cedula": "121450601",
+      "observaciones": "P.A",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 82,
+      "nombre": "VENADO SONDOYA YORIEL ESTEBAN",
+      "seccion": "7-5",
+      "cedula": "",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 83,
+      "nombre": "Vidal Contreras Juan David",
+      "seccion": "9-4",
+      "cedula": "605230409",
+      "observaciones": "P.A",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 84,
+      "nombre": "Villegas Barahona Diarlyn",
+      "seccion": "11-4",
+      "cedula": "120680996",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 85,
+      "nombre": "VIQUEZ SANABRIA BRANDON YOSUE",
+      "seccion": "7-7",
+      "cedula": "",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 86,
+      "nombre": "Zamora Campos Santiago",
+      "seccion": "10-1",
+      "cedula": "605260405",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 87,
+      "nombre": "ZAPATA LOPEZ KEILYN NICOLE",
+      "seccion": "7-1",
+      "cedula": "",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 88,
+      "nombre": "ZAPATA MONTEZUMA NEYA",
+      "seccion": "7-6",
+      "cedula": "",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 89,
+      "nombre": "ZUÑIGA BUZANO ELIAZAR ISMAEL",
+      "seccion": "7-6",
+      "cedula": "",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 90,
+      "nombre": "Zúñiga Víquez Tayna Massiel",
+      "seccion": "9-3",
+      "cedula": "605320535",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 91,
+      "nombre": "Vargas Sandí Wendy",
+      "seccion": "9-4",
+      "cedula": "",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 92,
+      "nombre": "Zúñiga Rivera Valeria Lisbeth",
+      "seccion": "7-1",
+      "cedula": "",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 93,
+      "nombre": "Vargas Borbón Kenny Nayelli",
+      "seccion": "7-4",
+      "cedula": "",
+      "observaciones": "PA",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 94,
+      "nombre": "Varela Sánchez Maria Raquel",
+      "seccion": "8-6",
+      "cedula": "209690296",
+      "observaciones": "P.A",
+      "tipo_adecuacion": "no_significativa"
+    },
+    {
+      "numero": 1,
+      "nombre": "Arias Barrantes Isaac",
+      "seccion": "9-4",
+      "cedula": "605260493",
+      "observaciones": "Nivel de funcionamiento Inglés Académico y conversacional 4°, Francés, Matemáticas, Ciencias, Estudios Sociales 6° y Español 7°,",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 2,
+      "nombre": "Bejerano Bejerano Víctor",
+      "seccion": "8-1",
+      "cedula": "605290200",
+      "observaciones": "Nivel de funcionamiento 2°.",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 3,
+      "nombre": "Bejerano Morales Norberth",
+      "seccion": "7-5",
+      "cedula": "305980180",
+      "observaciones": "Nivel de funcionamiento 3°",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 4,
+      "nombre": "Cárdenas Fonseca Aarón Josué",
+      "seccion": "10-3",
+      "cedula": "120440498",
+      "observaciones": "Nivel de funcionamiento: Ciencias 5°, Matemáticas, Inglés académico y Francés 6°, Inglés conversacional 7°, Estudios Sociales 7°",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 5,
+      "nombre": "Carmona Vásquez Yoene",
+      "seccion": "7-1",
+      "cedula": "605400822",
+      "observaciones": "Nivel de funcionamiento 3°",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 6,
+      "nombre": "Carrera Amador Ilder",
+      "seccion": "7-1",
+      "cedula": "121510987",
+      "observaciones": "Nivel de funcionamiento 2° I ciclo",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 7,
+      "nombre": "Castro Campos Vielka Dalay",
+      "seccion": "9-5",
+      "cedula": "605330091",
+      "observaciones": "Nivel de funcionamiento Inglés Académico y conversacional 5°, Francés, Matemáticas, Español  Ciencias,  y Español 6°,y Estudios Sociales 7°",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 8,
+      "nombre": "Cortés Gómez Lewis David",
+      "seccion": "11-1",
+      "cedula": "605140374",
+      "observaciones": "Nivel de funcionamiento: Matemáticas, Inglés 7°, Español, Estudios Sociales, Inglés Conversacional, Ciencias y Francés 8°.",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 9,
+      "nombre": "Fernández Salas Justin Said.",
+      "seccion": "7-1",
+      "cedula": "121190969",
+      "observaciones": "Nivel de funcionamiento 3° grado I ciclo.",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 10,
+      "nombre": "García Fernández Jorge Joshua",
+      "seccion": "8-3",
+      "cedula": "605360677",
+      "observaciones": "Nivel de funcionamiento 4° II ciclo.",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 11,
+      "nombre": "Hernández Valencia Yeiny",
+      "seccion": "8-1",
+      "cedula": "605390382",
+      "observaciones": "Nivel de funcionamiento 3°",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 12,
+      "nombre": "Jiménez Jiménez Víctor",
+      "seccion": "9-4",
+      "cedula": "605350923",
+      "observaciones": "Nivel de funcionamiento Inglés Académico y conversacional 4°, Matemáticas 5°, Español, Ciencias, Estudios Sociales y Françés 6°.",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 13,
+      "nombre": "Martínez Jiménez Kimberly Alexandra",
+      "seccion": "9-6",
+      "cedula": "605230219",
+      "observaciones": "Nivel de funcionamiento 4°",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 14,
+      "nombre": "Miranda Ábrego Amelia",
+      "seccion": "8-6",
+      "cedula": "605260597",
+      "observaciones": "Nivel de funcionamiento 3° grado I ciclo",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 15,
+      "nombre": "Molina Molina Fernando",
+      "seccion": "10-3",
+      "cedula": "605210177",
+      "observaciones": "Nivel de funcionamiento: Matemáticas 7°, Español, Ciencias, Inglés , Inglés conversacional, Francés 8°.",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 16,
+      "nombre": "Morales Palacios Samuel",
+      "seccion": "8-1",
+      "cedula": "124010122",
+      "observaciones": "Nivel de funcionamiento 2° escuela",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 17,
+      "nombre": "Picado Pérez Evelyn Susana",
+      "seccion": "11-2",
+      "cedula": "305850706",
+      "observaciones": "Nivel de Funcionamiento: Ciencias 6°, Matemáticas, inglés 7°, Francés y Cívica 8°, Matemáticas 7°, Español e Inglés Conversacional 9°.",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 18,
+      "nombre": "Portugués Villegas Ingrid",
+      "seccion": "11-2",
+      "cedula": "605140899",
+      "observaciones": "Nivel de Funcionamiento: Matemáticas e Inglés 7°, Español, Ciencias, Estudios Sociales, Inglés conversacional, Francés 8°.",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 19,
+      "nombre": "Salas  Fernández Ashly Valeria",
+      "seccion": "7-6",
+      "cedula": "6-0542-0643",
+      "observaciones": "Nivel de funcionamiento 3° grado primaria.",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 20,
+      "nombre": "Sandoya Mendoza Maricel",
+      "seccion": "7-7",
+      "cedula": "1591011446616",
+      "observaciones": "Nivel de funcionamiento 3°",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 21,
+      "nombre": "Valverde González Eimy Yaslin",
+      "seccion": "8-5",
+      "cedula": "605360674",
+      "observaciones": "Nivel de funcionamiento 3",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 22,
+      "nombre": "Villegas Acuña Hilary Michel",
+      "seccion": "12-4",
+      "cedula": "604980512",
+      "observaciones": "Nivel de funcionamiento: Español 9°, Matemáticas, Estudios Sociales, Ciencias, Cívica, Física, Elementos de Gestión y Agronegocios 10°.",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 23,
+      "nombre": "Abrego Morales Migdalia",
+      "seccion": "7-1",
+      "cedula": "",
+      "observaciones": "Nivel de funcionamiento 2° grado primaria",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 24,
+      "nombre": "García Figueroa Kinberlin",
+      "seccion": "7-6",
+      "cedula": "",
+      "observaciones": "Nivel de funcionamiento 2° grado primaria",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 25,
+      "nombre": "Guevara González Jose Alfredo",
+      "seccion": "7-3",
+      "cedula": "",
+      "observaciones": "Nivel de funcionamiento 2° grado primaria",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 26,
+      "nombre": "Jiménez Castro Emily Anyelina",
+      "seccion": "7-1",
+      "cedula": "",
+      "observaciones": "Nivel de funcionamiento 3° grado primaria",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 27,
+      "nombre": "Jiménez Jiménez Mario",
+      "seccion": "7-1",
+      "cedula": "",
+      "observaciones": "No esta expediente en colegio datos obtenidos plataforma SABER",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 28,
+      "nombre": "Jimenez Zúñiga Nataly Valeria",
+      "seccion": "7-7",
+      "cedula": "",
+      "observaciones": "No esta expediente en colegio datos obtenidos plataforma SABER",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 29,
+      "nombre": "Martinez Montenegro Esthefany",
+      "seccion": "7-5",
+      "cedula": "",
+      "observaciones": "No esta expediente en colegio datos obtenidos plataforma SABER",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 30,
+      "nombre": "Montezuma Bejarano Karola",
+      "seccion": "7-2",
+      "cedula": "",
+      "observaciones": "No esta expediente en colegio datos obtenidos plataforma SABER",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 31,
+      "nombre": "Morales Baker Saul",
+      "seccion": "7-5",
+      "cedula": "",
+      "observaciones": "Nivel de funcionamiento 3° grado I ciclo",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 32,
+      "nombre": "Navarro Pérez Anderson Miguel",
+      "seccion": "7-1",
+      "cedula": "",
+      "observaciones": "Nivel de funcionamiento 2° grado primaria",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 33,
+      "nombre": "Palacios Quintero María Valeria",
+      "seccion": "7-6",
+      "cedula": "",
+      "observaciones": "Nivel de funcionamiento 1° grado primaria",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 34,
+      "nombre": "Quintero Sandoya Joel Yarot",
+      "seccion": "7-1",
+      "cedula": "",
+      "observaciones": "Nivel de funcionamiento 1° grado primaria",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 35,
+      "nombre": "Sandi Marín Eduard Alonso",
+      "seccion": "7-2",
+      "cedula": "",
+      "observaciones": "Nivel de funcionamiemto 2° grado primaria",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 36,
+      "nombre": "Ugalde Hernández Karen Susana",
+      "seccion": "8-1",
+      "cedula": "",
+      "observaciones": "Nivel de funcionamiemto 3° grado primaria",
+      "tipo_adecuacion": "significativa"
+    },
+    {
+      "numero": 37,
+      "nombre": "Jiménez Zúñiga Nataly Valeria",
+      "seccion": "7-7",
+      "cedula": "121450578",
+      "observaciones": "Nivel de funcionamiento 3° grado primaria",
+      "tipo_adecuacion": "significativa"
     }
   ],
   "apoyos": {
-    "personales": [
-      {
-        "codigo": "A.P.1",
-        "descripcion": "Utilizar su cercanía física para mantenerlo atento a la clase. "
-      },
-      {
-        "codigo": "A.P.2",
-        "descripcion": "Utilizar la tutoría entre compañeros. "
-      },
-      {
-        "codigo": "A.P.3",
-        "descripcion": "Brindar acercamiento físico y las manifestaciones de apoyo. "
-      },
-      {
-        "codigo": "A.P.4",
-        "descripcion": "Reforzar cada logro por más pequeño que este sea. "
-      },
-      {
-        "codigo": "A.P.5",
-        "descripcion": "Reforzar la autoestima mediante actividades que le permitan éxito, particularizando en características cognitivas y sociales. "
-      },
-      {
-        "codigo": "A.P.6",
-        "descripcion": "Utilizar constantemente la estrategia de trabajo cooperativo con la finalidad de que logre beneficiar y beneficiarse de las experiencias de otros compañeros y así reforzar su seguridad en la ejecución de los aprendizajes. "
-      },
-      {
-        "codigo": "A.P.7",
-        "descripcion": "Dar responsabilidades especificas al estudiante dentro del aula y hogar para reforzar su autoconfianza generando responsabilidad e independencia. "
-      },
-      {
-        "codigo": "A.P.8",
-        "descripcion": "Utilizar dentro de la propuesta pedagógica actividades que refuercen la autoestima como: expresión de sentimientos, respeto a la diferencia y tolerancia. "
-      },
-      {
-        "codigo": "A.P.9",
-        "descripcion": "Utilizar reforzadores sociales como: \"muy bien\", \"usted puede\" y \"siga así\". "
-      },
-      {
-        "codigo": "A.P.10",
-        "descripcion": "Utilizar canales sensoriales como: auditivos, kinestésico y táctil para presentar la materia. "
-      },
-      {
-        "codigo": "A.P.11",
-        "descripcion": "Generar alguna técnica para recordar frecuentemente la entrega de trabajos a largo plazo."
-      },
-      {
-        "codigo": "A.P.12",
-        "descripcion": "Referir a otros especialistas (orientador, docente de apoyo, psicología, terapia física, terapia de lenguaje, otros). "
-      },
-      {
-        "codigo": "A.P.13",
-        "descripcion": "Otros:"
-      }
-    ],
-    "organizativos": [
-      {
-        "codigo": "A.A.13",
-        "descripcion": "Ubicar al estudiante cerca de compañeros que no se desconcentren."
-      },
-      {
-        "codigo": "A.A.14",
-        "descripcion": "Ubicar al estudiante donde mejor pueda ver la pizarra. "
-      },
-      {
-        "codigo": "A.A.15",
-        "descripcion": "Sentar al estudiante en un lugar donde tenga buena iluminación"
-      },
-      {
-        "codigo": "A.A.16",
-        "descripcion": "Considerar colocar los asientos en semicírculo."
-      },
-      {
-        "codigo": "A.A.17",
-        "descripcion": "Rotular objetos y partes importantes de la clase."
-      },
-      {
-        "codigo": "A.A.18",
-        "descripcion": "Organizar y agrupar los y las estudiantes de acuerdo con sus intereses motivacionales"
-      },
-      {
-        "codigo": "A.A.19",
-        "descripcion": "Organizar el tiempo y del espacio para mejorar el clima organizacional."
-      },
-      {
-        "codigo": "A.A.20",
-        "descripcion": "Anotar la fecha de exámenes y entrega de trabajo en un lugar visible."
-      },
-      {
-        "codigo": "A.A.21",
-        "descripcion": "Establecer rutinas de trabajo."
-      },
-      {
-        "codigo": "A.A.22",
-        "descripcion": "Anotar en la pizarra el número de página y/o ejercicios a realizar."
-      },
-      {
-        "codigo": "A.A.23",
-        "descripcion": "Otras:"
-      }
-    ],
-    "materiales": [
-      {
-        "codigo": "A.A.23",
-        "descripcion": "Ampliar la letra al tamaño que el estudiante sienta mejor."
-      },
-      {
-        "codigo": "A.A.24",
-        "descripcion": "Permitir el uso de lámparas y lupas para que pueda tener una mejor visión."
-      },
-      {
-        "codigo": "A.A.25",
-        "descripcion": "Utilización de rotafolios escribiendo con marcador grueso y letra amplia como material de apoyo de temas vistos en clase."
-      },
-      {
-        "codigo": "A.A.26",
-        "descripcion": "Permitir el uso de dispositivos para que realice grabaciones en clases."
-      },
-      {
-        "codigo": "A.A.27",
-        "descripcion": "Usar marcadores gruesos preferiblemente azul o negro para escribir en la pizarra."
-      },
-      {
-        "codigo": "A.A.28",
-        "descripcion": "Permitir el uso del diccionario para ejecución de trabajo cotidiano y pruebas."
-      },
-      {
-        "codigo": "A.A.29",
-        "descripcion": "Usar láminas, mapas, gráficos y vídeos relacionados con los aprendizajes que se desarrollan."
-      },
-      {
-        "codigo": "A.A.30",
-        "descripcion": "Permitir el uso de las tablas de multiplicar para ejecución de trabajo cotidiano y pruebas."
-      },
-      {
-        "codigo": "A.A.31",
-        "descripcion": "Permitir el uso de la calculadora para la ejecución de trabajo cotidiano y pruebas."
-      },
-      {
-        "codigo": "A.A.32",
-        "descripcion": "Permitir el uso de fichas con las fórmulas matemáticas para ejecución de trabajo cotidiano y pruebas."
-      },
-      {
-        "codigo": "A.A.33",
-        "descripcion": "Al utilizar la explicación verbal acompáñela de una explicación visual gráfica."
-      },
-      {
-        "codigo": "A.A.34",
-        "descripcion": "Facilitar el material impreso en caso de ser necesario."
-      },
-      {
-        "codigo": "A.A.35",
-        "descripcion": "Brindar al estudiante fichas que contengan información de los aprendizajes vistos en clases."
-      },
-      {
-        "codigo": "A.A.36",
-        "descripcion": "Facilitar material de reforzamiento para hacer en casa."
-      },
-      {
-        "codigo": "A.A.37",
-        "descripcion": "Facilitar cuestionarios como material de apoyo."
-      },
-      {
-        "codigo": "A.A.38",
-        "descripcion": "Utilizar un diccionario ilustrado de conceptos básicos como palabras claves y estructuras gramaticales."
-      },
-      {
-        "codigo": "A.A.39:",
-        "descripcion": "Otras:"
-      }
-    ],
-    "curriculares": [
-      {
-        "codigo": "A.C.39",
-        "descripcion": "Ajustar los aprendizajes esperados del programa según nivel de funcionamiento."
-      },
-      {
-        "codigo": "A.C.40",
-        "descripcion": "Utilizar canales sensoriales como: auditivos, kinestésico y táctil para transmitir los aprendizajes."
-      },
-      {
-        "codigo": "A.C.41",
-        "descripcion": "Permitir más tiempo para terminar los trabajos cotidianos individualmente.  "
-      },
-      {
-        "codigo": "A.C.42",
-        "descripcion": "Permitir al estudiante que se comunique como mejor pueda."
-      },
-      {
-        "codigo": "A.C.43",
-        "descripcion": "Apoyar en señas y gestos al comunicarse."
-      },
-      {
-        "codigo": "A.C.44",
-        "descripcion": "Hablar siempre frente al estudiante (contacto visual)."
-      },
-      {
-        "codigo": "A.C.45",
-        "descripcion": "De ser necesario disminuir la longitud y la cantidad de las tareas y/o actividades."
-      },
-      {
-        "codigo": "A.C.46",
-        "descripcion": "Utilizar hojas y material de trabajo poco recargados."
-      },
-      {
-        "codigo": "A.C.47",
-        "descripcion": "Involucrar al estudiante durante la lección, es decir participación frecuente utilizando la realimentación.  "
-      },
-      {
-        "codigo": "A.C.48",
-        "descripcion": "Dividir la actividad o tarea en partes y déselas una por una.  "
-      },
-      {
-        "codigo": "A.C.49",
-        "descripcion": "Permitir un rato de descanso entre una actividad y otra."
-      },
-      {
-        "codigo": "A.C.50",
-        "descripcion": "Combinar la teoría con la práctica. "
-      },
-      {
-        "codigo": "A.C.51",
-        "descripcion": "Solicitar al estudiante que repita las indicaciones para asegurarnos de que las haya entendido."
-      },
-      {
-        "codigo": "A.C.52",
-        "descripcion": "Apoyar las indicaciones orales con indicaciones escritas. "
-      },
-      {
-        "codigo": "A.C.53",
-        "descripcion": "Dar las indicaciones de manera clara y correcta."
-      },
-      {
-        "codigo": "A.C.54",
-        "descripcion": "Hacer preguntas de repaso y control de la materia."
-      },
-      {
-        "codigo": "A.C.55",
-        "descripcion": "Describir reiteradamente las acciones solicitadas."
-      },
-      {
-        "codigo": "A.C.56",
-        "descripcion": "Utilizar dentro de la propuesta pedagógica actividades que refuercen la autoestima como: expresión de sentimientos, respeto a la diferencia y la tolerancia."
-      },
-      {
-        "codigo": "A.C.57",
-        "descripcion": "Dar responsabilidades específicas al estudiante dentro del aula para reforzar su autoconfianza generando responsabilidad e independencia."
-      },
-      {
-        "codigo": "A.C.58",
-        "descripcion": "Ajustar y/o modificar las prácticas hechas en clase al ritmo de aprendizaje del estudiante."
-      },
-      {
-        "codigo": "A.C.59",
-        "descripcion": "Tocar su hombro cuando se distrae o establezca un código para llamar su atención."
-      },
-      {
-        "codigo": "A.C.60",
-        "descripcion": "Permitir al estudiante use el dedo como guía al leer."
-      },
-      {
-        "codigo": "A.C.61",
-        "descripcion": "Reforzar constantemente los logros obtenidos."
-      },
-      {
-        "codigo": "A.C.62",
-        "descripcion": "Reducir la cantidad de palabras en una redacción."
-      },
-      {
-        "codigo": "A.C.63",
-        "descripcion": "Devolver los trabajos que realiza muy rápido para que los revise. "
-      },
-      {
-        "codigo": "A.C.64",
-        "descripcion": "Dividir el trabajo de clase de tal manera que, si queda algo pendiente, pueda terminarlo en la casa."
-      },
-      {
-        "codigo": "A.C.65",
-        "descripcion": "Relacionar la escritura del estudiante con su fonética y no evaluar o restar puntos por el error."
-      },
-      {
-        "codigo": "A.C.66",
-        "descripcion": "Desarrollar metodología sobre un solo tema a la vez."
-      },
-      {
-        "codigo": "A.C.67",
-        "descripcion": "Facilitar prácticas de reforzamiento para hacer en casa."
-      },
-      {
-        "codigo": "A.C.68",
-        "descripcion": "Utilizar la técnica de la dramatización."
-      },
-      {
-        "codigo": "A.C.69",
-        "descripcion": "Establecer rutinas de trabajo."
-      },
-      {
-        "codigo": "A.C.70",
-        "descripcion": "Enseñar al estudiante a auto comprobarse utilizando señales."
-      },
-      {
-        "codigo": "A.C.71",
-        "descripcion": "Disminuir la cantidad de ejercicios repetitivos."
-      },
-      {
-        "codigo": "A.C.72",
-        "descripcion": "Trabajar con fichas."
-      },
-      {
-        "codigo": "A.C.73",
-        "descripcion": "Otras:"
-      }
-    ],
-    "evaluativos": [
-      {
-        "codigo": "A.C.73",
-        "descripcion": "Dar tiempo adicional para la realización de los trabajos en clase y las pruebas."
-      },
-      {
-        "codigo": "A.C.74",
-        "descripcion": "Utilizar solamente ítems de selección simple."
-      },
-      {
-        "codigo": "A.C.75",
-        "descripcion": "Resolver la prueba en recinto aparte."
-      },
-      {
-        "codigo": "A.C.76",
-        "descripcion": "Aplicar prueba específica."
-      },
-      {
-        "codigo": "A.C.77",
-        "descripcion": "Omitir la calificación de la caligrafía."
-      },
-      {
-        "codigo": "A.C.78",
-        "descripcion": "Ajustar el tamaño de la letra."
-      },
-      {
-        "codigo": "A.C.79",
-        "descripcion": "Aplicar una prueba por día."
-      },
-      {
-        "codigo": "A.C.80",
-        "descripcion": "Eliminar ítems memorísticos."
-      },
-      {
-        "codigo": "A.C.81",
-        "descripcion": "Aplicar evaluaciones cortas y frecuentes."
-      },
-      {
-        "codigo": "A.C.82",
-        "descripcion": "Tutor especialista."
-      },
-      {
-        "codigo": "A.C.83",
-        "descripcion": "Permitir emitir algunas respuestas de manera oral y la transcripción por parte de la persona docente, ante el rezago en el proceso de lectoescritura."
-      },
-      {
-        "codigo": "A.C.84",
-        "descripcion": "Permitir el uso del diccionario."
-      },
-      {
-        "codigo": "A.C.85",
-        "descripcion": "Usar tablas de multiplicar y formulas."
-      },
-      {
-        "codigo": "A.C.86",
-        "descripcion": "Usar la calculadora."
-      },
-      {
-        "codigo": "A.C.87",
-        "descripcion": "Otras:"
-      }
-    ]
+    "personales": [],
+    "organizativos": [],
+    "materiales": [],
+    "curriculares": [],
+    "evaluativos": []
   }
 }
