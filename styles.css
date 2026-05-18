@@ -36,8 +36,8 @@ body {
     font-weight: 400;
 }
 
-/* Patrón de fondo sutil */
-body::before {
+/* Patrón de fondo sutil - DESHABILITADO */
+/* body::before {
     content: '';
     position: fixed;
     top: 0;
@@ -48,7 +48,7 @@ body::before {
         repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(30, 64, 175, 0.01) 35px, rgba(30, 64, 175, 0.01) 70px);
     pointer-events: none;
     z-index: 1;
-}
+} */
 
 .container {
     position: relative;
