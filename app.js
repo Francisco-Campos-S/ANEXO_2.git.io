@@ -639,7 +639,8 @@ async function generarPDFAnexo2(tipo, asignatura) {
     y += 8;
     
     pdf.setFontSize(11);
-    pdf.text('Curso lectivo 2025', 108, y, { align: 'center' });
+    const yearAnexo2 = new Date().getFullYear();
+    pdf.text(`Curso lectivo ${yearAnexo2}`, 108, y, { align: 'center' });
     y += 10;
     
     // ========== TABLA DE INFORMACIÓN CON BORDES ==========
@@ -1026,7 +1027,8 @@ async function generarPDFAnexo10(asignatura) {
     pdf.text('(APOYO CURRICULAR SIGNIFICATIVO)', 108, y, { align: 'center' });
     y += 6;
     pdf.setFontSize(11);
-    pdf.text('Curso lectivo 2025', 108, y, { align: 'center' });
+    const yearAnexo10 = new Date().getFullYear();
+    pdf.text(`Curso lectivo ${yearAnexo10}`, 108, y, { align: 'center' });
     y += 10;
     
     // ========== INFORMACIÓN BÁSICA ==========
@@ -1331,13 +1333,44 @@ async function generarPDFAnexo10(asignatura) {
     
     dibujarTablaApoyosAnexo10('Apoyos Evaluativos (A.C.)', 'tablaApoyosEvaluativos_mat');
     
+    // ========== APOYOS PERSONALES ESPECÍFICOS ==========
+    if (y > 240) {
+        pdf.addPage();
+        y = 20;
+    }
+    
+    y += 5;
+    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('Marque con X los Apoyos Personales Específicos que recibe esta persona estudiante:', margen, y);
+    y += 6;
+    
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(8);
+    pdf.text('(   ) Terapia de Lenguaje', margen, y);
+    pdf.text('(   ) Terapia Física', margen + 50, y);
+    pdf.text('(   ) Problemas Emocionales', margen + 95, y);
+    pdf.text('(   ) Discap. Visual', margen + 145, y);
+    y += 5;
+    pdf.text('(   ) Problemas de Aprendizaje', margen, y);
+    y += 10;
+    
+    // ========== RECOMENDACIONES ==========
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(9);
+    pdf.text('Recomendaciones:', margen, y);
+    y += 6;
+    pdf.setFont('helvetica', 'normal');
+    pdf.line(margen, y, margen + 85, y);
+    pdf.line(margen + 100, y, margen + anchoUtil, y);
+    y += 12;
+    
     // ========== FIRMAS ==========
     if (y > 250) {
         pdf.addPage();
         y = 20;
     }
     
-    y += 10;
     pdf.setFontSize(8);
     pdf.setFont('helvetica', 'normal');
     // Dibujar líneas primero
@@ -1348,6 +1381,8 @@ async function generarPDFAnexo10(asignatura) {
     pdf.text('Firma del Profesor (a)', margen + 20, y);
     pdf.text('VB. Comité de Apoyo', margen + 120, y);
     y += 8;
+    
+    pdf.text('Cc/ Expediente Único', margen, y);
     
     pdf.text('Cc/ Expediente Único', margen, y);
     
