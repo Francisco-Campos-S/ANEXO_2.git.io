@@ -483,7 +483,7 @@ function configurarBotones() {
     document.getElementById('btnGenerarPDF_esp').addEventListener('click', () => generarPDF('esp'));
     document.getElementById('btnGenerarPDF_mat').addEventListener('click', () => generarPDF('mat'));
     
-    // Botones de limpiar
+    // Botones de limpiar formulario
     document.getElementById('btnLimpiar_esp').addEventListener('click', () => limpiarFormulario('esp'));
     document.getElementById('btnLimpiar_mat').addEventListener('click', () => limpiarFormulario('mat'));
 }
@@ -1465,6 +1465,8 @@ function limpiarFormulario(tipo) {
     );
 }
 
+// Limpiar estudiantes personalizados guardados en localStorage
+
 // Función para mostrar notificaciones elegantes
 function mostrarNotificacion(titulo, mensaje, tipo = 'info') {
     // Crear elemento de notificación
@@ -2252,21 +2254,36 @@ let intervaloAutoguardado = null;
 let hayCambiosSinGuardar = false;
 
 function iniciarAutoguardado() {
-    // Guardar cada 30 segundos
+    // Guardar cada 10 segundos (aumentado desde 30)
     intervaloAutoguardado = setInterval(() => {
         if (hayCambiosSinGuardar) {
             guardarEnLocalStorage();
         }
-    }, 30000);
+    }, 10000);
     
     // Cargar datos guardados al inicio
     cargarDesdeLocalStorage();
     
-    // Marcar campos como modificados
+    // Marcar campos como modificados y guardar después de 2 segundos de inactividad
     document.querySelectorAll('input, textarea, select').forEach(campo => {
+        let timerGuardado;
         campo.addEventListener('input', () => {
             hayCambiosSinGuardar = true;
             campo.classList.add('campo-modificado');
+            
+            // Guardar rápidamente después de que el usuario deje de escribir
+            clearTimeout(timerGuardado);
+            timerGuardado = setTimeout(() => {
+                guardarEnLocalStorage({ silent: true });
+            }, 2000);
+        });
+        
+        campo.addEventListener('change', () => {
+            hayCambiosSinGuardar = true;
+            // Guardar inmediatamente en select
+            if (campo.tagName === 'SELECT') {
+                guardarEnLocalStorage({ silent: true });
+            }
         });
     });
 }
@@ -2296,8 +2313,30 @@ function guardarEnLocalStorage(opciones = {}) {
                 docente: document.getElementById(`docente_${tipo}`)?.value?.trim() || '',
                 asignatura: document.getElementById(`asignatura_${tipo}`)?.value?.trim() || '',
                 periodo: document.querySelector(`input[name="periodo_${tipo}"]:checked`)?.value || 'primero',
-                timestamp: new Date().toISOString()
+                timestamp: new Date().toISOString(),
+                apoyos: {} // Guardar códigos y resultados de apoyos
             };
+            
+            // Guardar códigos seleccionados y textareas de apoyos
+            const secciones = ['personales', 'organizativos', 'materiales', 'curriculares', 'evaluativos'];
+            secciones.forEach(seccion => {
+                const tableId = tipo === 'esp' ? `tablaApoyos${seccion.charAt(0).toUpperCase() + seccion.slice(1)}_${tipo}` : `tablaApoyos${seccion.charAt(0).toUpperCase() + seccion.slice(1)}_${tipo}`;
+                const table = document.getElementById(tableId);
+                if (!table) return;
+                
+                datosFormulario[tipo].apoyos[seccion] = [];
+                table.querySelectorAll('tr').forEach((fila, index) => {
+                    const select = fila.querySelector('.codigo-select-anexo10');
+                    const textarea = fila.querySelector('textarea');
+                    
+                    if (select || textarea) {
+                        datosFormulario[tipo].apoyos[seccion].push({
+                            codigo: select?.value || '',
+                            resultado: textarea?.value || ''
+                        });
+                    }
+                });
+            });
         });
         
         // Guardar indicadores del ANEXO 10
@@ -2366,6 +2405,32 @@ function cargarDesdeLocalStorage() {
             if (datos.periodo) {
                 const radioPeriodo = document.querySelector(`input[name="periodo_${tipo}"][value="${datos.periodo}"]`);
                 if (radioPeriodo) radioPeriodo.checked = true;
+            }
+            
+            // Restaurar códigos seleccionados y textareas de apoyos
+            if (datos.apoyos) {
+                const secciones = ['personales', 'organizativos', 'materiales', 'curriculares', 'evaluativos'];
+                secciones.forEach(seccion => {
+                    const tableId = tipo === 'esp' ? `tablaApoyos${seccion.charAt(0).toUpperCase() + seccion.slice(1)}_${tipo}` : `tablaApoyos${seccion.charAt(0).toUpperCase() + seccion.slice(1)}_${tipo}`;
+                    const table = document.getElementById(tableId);
+                    if (!table) return;
+                    
+                    const apoyoData = datos.apoyos[seccion] || [];
+                    table.querySelectorAll('tr').forEach((fila, index) => {
+                        const select = fila.querySelector('.codigo-select-anexo10');
+                        const textarea = fila.querySelector('textarea');
+                        
+                        if (apoyoData[index]) {
+                            if (select && apoyoData[index].codigo) {
+                                select.value = apoyoData[index].codigo;
+                                select.dispatchEvent(new Event('change'));
+                            }
+                            if (textarea && apoyoData[index].resultado) {
+                                textarea.value = apoyoData[index].resultado;
+                            }
+                        }
+                    });
+                });
             }
         });
         
@@ -2556,8 +2621,9 @@ function guardarNuevoEstudiante(form, modal) {
     // Cerrar modal y limpiar
     cerrarModalAgregarEstudiante(modal);
     
-    // Refrescar los selectores
-    refrescarListasEstudiantesPorFiltroActual();
+    // Refrescar los selectores y filtros
+    poblarOpcionesFiltroSeccionGlobal();  // Actualizar botones de secciones
+    refrescarListasEstudiantesPorFiltroActual();  // Actualizar selectores
     
     // Seleccionar el nuevo estudiante automáticamente en el select correcto
     const selectEsp = document.getElementById('estudianteSelect_esp');
