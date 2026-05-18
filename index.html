@@ -150,10 +150,13 @@
                             <div class="info-estudiante">
                                 <div class="campo-select">
                                     <label>Nombre del estudiante:</label>
-                                    <select id="estudianteSelect_esp">
-                                        <option value="">Seleccione un estudiante...</option>
-                                        <!-- Se llenará dinámicamente -->
-                                    </select>
+                                    <div class="select-container">
+                                        <select id="estudianteSelect_esp">
+                                            <option value="">Seleccione un estudiante...</option>
+                                            <!-- Se llenará dinámicamente -->
+                                        </select>
+                                        <button type="button" id="btnAgregarEstudiante_esp" class="btn-agregar-estudiante" title="Agregar nuevo estudiante">+</button>
+                                    </div>
                                     <p class="hint">ESCOJA UN ESTUDIANTE EN LA LISTA Y SE DESPLIEGA TODA LA INFORMACIÓN RELACIONADA</p>
                                 </div>
                                 
@@ -517,9 +520,12 @@
                             <div class="info-estudiante">
                                 <div class="campo-select">
                                     <label>Nombre del estudiante:</label>
-                                    <select id="estudianteSelect_mat">
-                                        <option value="">Seleccione un estudiante...</option>
-                                    </select>
+                                    <div class="select-container">
+                                        <select id="estudianteSelect_mat">
+                                            <option value="">Seleccione un estudiante...</option>
+                                        </select>
+                                        <button type="button" id="btnAgregarEstudiante_mat" class="btn-agregar-estudiante" title="Agregar nuevo estudiante">+</button>
+                                    </div>
                                     <p class="hint">ESCOJA UN ESTUDIANTE EN LA LISTA Y SE DESPLIEGA TODA LA INFORMACIÓN RELACIONADA</p>
                                 </div>
                                 
@@ -869,6 +875,46 @@
                 </div>
             </div>
         </section>
+    </div>
+
+    <!-- Modal para agregar estudiante -->
+    <div id="modalAgregarEstudiante" class="modal" style="display: none;">
+        <div class="modal-contenido">
+            <div class="modal-encabezado">
+                <h2>Agregar Nuevo Estudiante</h2>
+                <button type="button" class="btn-cerrar-modal" id="btnCerrarModal" title="Cerrar">✕</button>
+            </div>
+            <form id="formAgregarEstudiante" class="form-agregar-estudiante">
+                <div class="form-grupo">
+                    <label for="nombreEstudiante">Nombre del estudiante <span class="requerido">*</span></label>
+                    <input type="text" id="nombreEstudiante" placeholder="Ej: Juan Pérez García" required>
+                </div>
+                <div class="form-grupo">
+                    <label for="seccionEstudiante">Sección <span class="requerido">*</span></label>
+                    <input type="text" id="seccionEstudiante" placeholder="Ej: 7-1, 8-2" required>
+                </div>
+                <div class="form-grupo">
+                    <label for="cedulaEstudiante">Cédula</label>
+                    <input type="text" id="cedulaEstudiante" placeholder="Ej: 123456789">
+                </div>
+                <div class="form-grupo">
+                    <label for="observacionesEstudiante">Observaciones</label>
+                    <input type="text" id="observacionesEstudiante" placeholder="Ej: PA, P.A.">
+                </div>
+                <div class="form-grupo">
+                    <label for="tipoAdecuacionEstudiante">Tipo de Adecuación <span class="requerido">*</span></label>
+                    <select id="tipoAdecuacionEstudiante" required>
+                        <option value="">Seleccione...</option>
+                        <option value="no_significativa">Anexo 2 (No Significativa)</option>
+                        <option value="significativa">Anexo 10 (Significativa)</option>
+                    </select>
+                </div>
+                <div class="modal-botones">
+                    <button type="button" class="btn-cancelar" id="btnCancelarModal">Cancelar</button>
+                    <button type="submit" class="btn-guardar">Guardar Estudiante</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script src="app.js"></script>

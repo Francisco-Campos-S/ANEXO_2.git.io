@@ -32,6 +32,9 @@ async function cargarDatos() {
         datos = await response.json();
         console.log('Datos cargados:', datos);
         
+        // Cargar estudiantes personalizados guardados en localStorage
+        cargarEstudiantesPersonalizados();
+        
         // Notificación de carga exitosa
         mostrarNotificacion('Sistema listo', 'Datos cargados correctamente. ¡Puede comenzar a trabajar!', 'exito');
     } catch (error) {
@@ -59,6 +62,9 @@ function inicializarApp() {
     
     // Configurar eventos de estudiantes
     configurarEventosEstudiantes();
+    
+    // Configurar modal para agregar estudiante
+    configurarModalAgregarEstudiante();
     
     configurarEventosCodigosAnexo10();
     
@@ -2388,6 +2394,153 @@ function configurarConfirmacionSalida() {
             return '';
         }
     });
+}
+
+// Cargar estudiantes personalizados desde localStorage
+function cargarEstudiantesPersonalizados() {
+    try {
+        const estudiantesGuardados = localStorage.getItem('estudiantesPersonalizados');
+        if (estudiantesGuardados) {
+            const estudiantesList = JSON.parse(estudiantesGuardados);
+            // Agregar solo los estudiantes que no existan ya en datos
+            estudiantesList.forEach(nuevoEst => {
+                const existe = datos.estudiantes.some(est => 
+                    est.nombre.toUpperCase() === nuevoEst.nombre.toUpperCase()
+                );
+                if (!existe) {
+                    datos.estudiantes.push(nuevoEst);
+                }
+            });
+            console.log(`Se cargaron ${estudiantesList.length} estudiantes personalizados`);
+        }
+    } catch (error) {
+        console.warn('Error al cargar estudiantes personalizados:', error);
+    }
+}
+
+// ======== FUNCIONES PARA AGREGAR ESTUDIANTE ========
+function configurarModalAgregarEstudiante() {
+    const btnAgregarEsp = document.getElementById('btnAgregarEstudiante_esp');
+    const btnAgregarMat = document.getElementById('btnAgregarEstudiante_mat');
+    const modal = document.getElementById('modalAgregarEstudiante');
+    const btnCerrar = document.getElementById('btnCerrarModal');
+    const btnCancelar = document.getElementById('btnCancelarModal');
+    const formAgregar = document.getElementById('formAgregarEstudiante');
+    
+    if (!btnAgregarEsp || !btnAgregarMat) return;
+    
+    // Abrir modal
+    btnAgregarEsp.addEventListener('click', () => abrirModalAgregarEstudiante(modal));
+    btnAgregarMat.addEventListener('click', () => abrirModalAgregarEstudiante(modal));
+    
+    // Cerrar modal
+    btnCerrar.addEventListener('click', () => cerrarModalAgregarEstudiante(modal));
+    btnCancelar.addEventListener('click', () => cerrarModalAgregarEstudiante(modal));
+    
+    // Cerrar al hacer click fuera del modal
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            cerrarModalAgregarEstudiante(modal);
+        }
+    });
+    
+    // Enviar formulario
+    formAgregar.addEventListener('submit', (e) => {
+        e.preventDefault();
+        guardarNuevoEstudiante(formAgregar, modal);
+    });
+}
+
+function abrirModalAgregarEstudiante(modal) {
+    modal.style.display = 'flex';
+    // Enfocar en el primer campo
+    setTimeout(() => {
+        document.getElementById('nombreEstudiante').focus();
+    }, 100);
+}
+
+function cerrarModalAgregarEstudiante(modal) {
+    modal.style.display = 'none';
+    // Limpiar formulario
+    document.getElementById('formAgregarEstudiante').reset();
+}
+
+function guardarNuevoEstudiante(form, modal) {
+    const nombre = document.getElementById('nombreEstudiante').value.trim();
+    const seccion = document.getElementById('seccionEstudiante').value.trim();
+    const cedula = document.getElementById('cedulaEstudiante').value.trim();
+    const observaciones = document.getElementById('observacionesEstudiante').value.trim();
+    const tipoAdecuacion = document.getElementById('tipoAdecuacionEstudiante').value;
+    
+    // Validar campos requeridos
+    if (!nombre || !seccion || !tipoAdecuacion) {
+        mostrarNotificacion('Campos incompletos', 'Por favor, complete todos los campos requeridos (marcados con *).' , 'error');
+        return;
+    }
+    
+    // Verificar si el estudiante ya existe
+    const estudianteExiste = datos.estudiantes.some(est => 
+        est.nombre.toUpperCase() === nombre.toUpperCase()
+    );
+    
+    if (estudianteExiste) {
+        mostrarNotificacion('Estudiante duplicado', `El estudiante "${nombre}" ya existe en la lista.`, 'error');
+        return;
+    }
+    
+    // Crear nuevo estudiante
+    const nuevoNumero = Math.max(...datos.estudiantes.map(e => e.numero), 0) + 1;
+    const nuevoEstudiante = {
+        numero: nuevoNumero,
+        nombre: nombre,
+        seccion: seccion,
+        cedula: cedula || '',
+        observaciones: observaciones || '',
+        tipo_adecuacion: tipoAdecuacion
+    };
+    
+    // Agregar a la lista de datos
+    datos.estudiantes.push(nuevoEstudiante);
+    
+    // Guardar solo el nuevo estudiante en localStorage
+    try {
+        // Obtener lista de estudiantes personalizados existentes
+        const estudiantesPersonalizados = JSON.parse(localStorage.getItem('estudiantesPersonalizados') || '[]');
+        
+        // Agregar el nuevo estudiante
+        estudiantesPersonalizados.push(nuevoEstudiante);
+        
+        // Guardar la lista actualizada
+        localStorage.setItem('estudiantesPersonalizados', JSON.stringify(estudiantesPersonalizados));
+        
+        console.log(`Estudiante "${nombre}" guardado en localStorage`);
+    } catch (error) {
+        console.warn('No se pudo guardar en localStorage:', error);
+    }
+    
+    // Cerrar modal y limpiar
+    cerrarModalAgregarEstudiante(modal);
+    
+    // Refrescar los selectores
+    refrescarListasEstudiantesPorFiltroActual();
+    
+    // Seleccionar el nuevo estudiante automáticamente en el select correcto
+    const selectEsp = document.getElementById('estudianteSelect_esp');
+    const selectMat = document.getElementById('estudianteSelect_mat');
+    
+    if (tipoAdecuacion === 'no_significativa' && selectEsp) {
+        selectEsp.value = nombre;
+        selectEsp.dispatchEvent(new Event('change'));
+    } else if (tipoAdecuacion === 'significativa' && selectMat) {
+        selectMat.value = nombre;
+        selectMat.dispatchEvent(new Event('change'));
+    }
+    
+    // Actualizar tabla de estudiantes
+    llenarTablaEstudiantes(obtenerClaveFiltroSeccionActiva());
+    
+    // Mostrar notificación de éxito
+    mostrarNotificacion('¡Éxito!', `Estudiante "${nombre}" agregado correctamente.`, 'exito');
 }
 
 // Animación fadeOut
