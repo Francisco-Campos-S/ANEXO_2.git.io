@@ -320,8 +320,24 @@ function llenarTablaEstudiantes(filtroClaveNorm = '') {
     const filtro = filtroClaveNorm ? normalizarClaveSeccion(filtroClaveNorm) : '';
     tbody.innerHTML = '';
 
+    // Determinar cuál anexo está activo actualmente en la página
+    const seccionEspanolVisible = document.getElementById('seccionEspanol')?.classList.contains('active');
+    const seccionMatematicaVisible = document.getElementById('seccionMatematica')?.classList.contains('active');
+    
+    // Filtrar por tipo de adecuación según qué anexo está visible
+    let tipoAdecuacionRequerido = null;
+    if (seccionEspanolVisible) {
+        tipoAdecuacionRequerido = 'no_significativa'; // ANEXO 2
+    } else if (seccionMatematicaVisible) {
+        tipoAdecuacionRequerido = 'significativa'; // ANEXO 10
+    }
+    // Si ninguno está visible, mostrar todos
+
     let num = 0;
     datos.estudiantes.forEach((estudiante) => {
+        // Filtrar por tipo de adecuación si hay uno requerido
+        if (tipoAdecuacionRequerido && estudiante.tipo_adecuacion !== tipoAdecuacionRequerido) return;
+        // Filtrar por sección si aplica
         if (filtro && normalizarClaveSeccion(estudiante.seccion) !== filtro) return;
         num++;
         
@@ -386,7 +402,14 @@ function actualizarInfoEstudiante(tipo) {
         const observaciones = selectedOption.dataset.observaciones;
         
         document.getElementById(`seccionAuto_${tipo}`).textContent = seccion;
-        document.getElementById(`nivelAuto_${tipo}`).textContent = observaciones;
+        
+        // En ANEXO 2 (español), no mostrar nivel de funcionamiento
+        if (tipo === 'esp') {
+            document.getElementById(`nivelAuto_${tipo}`).textContent = '';
+        } else {
+            // En ANEXO 10 (matemática), mostrar el nivel de funcionamiento
+            document.getElementById(`nivelAuto_${tipo}`).textContent = observaciones;
+        }
     } else {
         document.getElementById(`seccionAuto_${tipo}`).textContent = '';
         document.getElementById(`nivelAuto_${tipo}`).textContent = '';
@@ -580,10 +603,15 @@ async function generarPDFAnexo2(tipo, asignatura) {
     const circuito = document.getElementById(`circuito_${tipo}`).value;
     const nombreEstudiante = estudianteSelect.value;
     const seccion = document.getElementById(`seccionAuto_${tipo}`).textContent;
-    const nivel = document.getElementById(`nivelAuto_${tipo}`).textContent;
+    let nivel = document.getElementById(`nivelAuto_${tipo}`).textContent;
     const fecha = document.getElementById(`fechaAuto_${tipo}`).textContent;
     const docente = document.getElementById(`docente_${tipo}`).value;
     const periodoSeleccionado = document.querySelector(`input[name="periodo_${tipo}"]:checked`).value;
+    
+    // En ANEXO 2, mostrar "No aplica" en lugar del nivel de funcionamiento
+    if (tipo === 'esp') {
+        nivel = 'No aplica';
+    }
     
     // ========== CARGAR Y AGREGAR IMAGEN DE ENCABEZADO ==========
     try {
@@ -909,12 +937,19 @@ async function generarPDFAnexo2(tipo, asignatura) {
     
     pdf.setFont('helvetica', 'normal');
     pdf.setFontSize(8);
-    pdf.text('(   ) Terapia de Lenguaje', margen, y);
-    pdf.text('(   ) Terapia Física', margen + 50, y);
-    pdf.text('(   ) Problemas Emocionales', margen + 95, y);
-    pdf.text('(   ) Discap. Visual', margen + 145, y);
+    // Obtener checkboxes checked
+    const apoyo1 = document.getElementById('apoyo_lenguaje_esp')?.checked ? 'X' : ' ';
+    const apoyo2 = document.getElementById('apoyo_fisica_esp')?.checked ? 'X' : ' ';
+    const apoyo3 = document.getElementById('apoyo_emocional_esp')?.checked ? 'X' : ' ';
+    const apoyo4 = document.getElementById('apoyo_visual_esp')?.checked ? 'X' : ' ';
+    const apoyo5 = document.getElementById('apoyo_aprendizaje_esp')?.checked ? 'X' : ' ';
+    
+    pdf.text(`(${apoyo1}) Terapia de Lenguaje`, margen, y);
+    pdf.text(`(${apoyo2}) Terapia Física`, margen + 50, y);
+    pdf.text(`(${apoyo3}) Problemas Emocionales`, margen + 95, y);
+    pdf.text(`(${apoyo4}) Discap. Visual`, margen + 145, y);
     y += 5;
-    pdf.text('(   ) Problemas de Aprendizaje', margen, y);
+    pdf.text(`(${apoyo5}) Problemas de Aprendizaje`, margen, y);
     y += 10;
     
     // Recomendaciones
@@ -923,9 +958,21 @@ async function generarPDFAnexo2(tipo, asignatura) {
     pdf.text('Recomendaciones:', margen, y);
     y += 6;
     pdf.setFont('helvetica', 'normal');
-    pdf.line(margen, y, margen + 85, y);
-    pdf.line(margen + 100, y, margen + anchoUtil, y);
-    y += 12;
+    
+    // Obtener el texto de recomendaciones
+    const recomendacionesTexto = document.getElementById('recomendaciones_esp')?.value || '';
+    
+    if (recomendacionesTexto.trim()) {
+        // Si hay texto, mostrar el contenido
+        const lineasRec = pdf.splitTextToSize(recomendacionesTexto, anchoUtil - 4);
+        pdf.text(lineasRec, margen + 2, y);
+        y += Math.max(lineasRec.length * 4 + 2, 12);
+    } else {
+        // Si no hay texto, mostrar líneas en blanco
+        pdf.line(margen, y, margen + 85, y);
+        pdf.line(margen + 100, y, margen + anchoUtil, y);
+        y += 12;
+    }
     
     // Firmas
     pdf.setFontSize(8);
@@ -1347,12 +1394,19 @@ async function generarPDFAnexo10(asignatura) {
     
     pdf.setFont('helvetica', 'normal');
     pdf.setFontSize(8);
-    pdf.text('(   ) Terapia de Lenguaje', margen, y);
-    pdf.text('(   ) Terapia Física', margen + 50, y);
-    pdf.text('(   ) Problemas Emocionales', margen + 95, y);
-    pdf.text('(   ) Discap. Visual', margen + 145, y);
+    // Obtener checkboxes checked
+    const apoyo1_mat = document.getElementById('apoyo_lenguaje_mat')?.checked ? 'X' : ' ';
+    const apoyo2_mat = document.getElementById('apoyo_fisica_mat')?.checked ? 'X' : ' ';
+    const apoyo3_mat = document.getElementById('apoyo_emocional_mat')?.checked ? 'X' : ' ';
+    const apoyo4_mat = document.getElementById('apoyo_visual_mat')?.checked ? 'X' : ' ';
+    const apoyo5_mat = document.getElementById('apoyo_aprendizaje_mat')?.checked ? 'X' : ' ';
+    
+    pdf.text(`(${apoyo1_mat}) Terapia de Lenguaje`, margen, y);
+    pdf.text(`(${apoyo2_mat}) Terapia Física`, margen + 50, y);
+    pdf.text(`(${apoyo3_mat}) Problemas Emocionales`, margen + 95, y);
+    pdf.text(`(${apoyo4_mat}) Discap. Visual`, margen + 145, y);
     y += 5;
-    pdf.text('(   ) Problemas de Aprendizaje', margen, y);
+    pdf.text(`(${apoyo5_mat}) Problemas de Aprendizaje`, margen, y);
     y += 10;
     
     // ========== RECOMENDACIONES ==========
@@ -1361,9 +1415,21 @@ async function generarPDFAnexo10(asignatura) {
     pdf.text('Recomendaciones:', margen, y);
     y += 6;
     pdf.setFont('helvetica', 'normal');
-    pdf.line(margen, y, margen + 85, y);
-    pdf.line(margen + 100, y, margen + anchoUtil, y);
-    y += 12;
+    
+    // Obtener el texto de recomendaciones
+    const recomendacionesTexto_mat = document.getElementById('recomendaciones_mat')?.value || '';
+    
+    if (recomendacionesTexto_mat.trim()) {
+        // Si hay texto, mostrar el contenido
+        const lineasRec_mat = pdf.splitTextToSize(recomendacionesTexto_mat, anchoUtil - 4);
+        pdf.text(lineasRec_mat, margen + 2, y);
+        y += Math.max(lineasRec_mat.length * 4 + 2, 12);
+    } else {
+        // Si no hay texto, mostrar líneas en blanco
+        pdf.line(margen, y, margen + 85, y);
+        pdf.line(margen + 100, y, margen + anchoUtil, y);
+        y += 12;
+    }
     
     // ========== FIRMAS ==========
     if (y > 250) {

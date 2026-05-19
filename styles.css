@@ -2694,3 +2694,97 @@ tbody tr:nth-child(even) {
         width: 100%;
     }
 }
+
+/* ========== ESTILOS PARA SECCIÓN DE RECOMENDACIONES ========== */
+
+.seccion-recomendaciones {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-light);
+    page-break-inside: avoid;
+}
+
+.seccion-recomendaciones h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.apoyos-checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.apoyos-checkboxes label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    user-select: none;
+}
+
+.apoyos-checkboxes input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    accent-color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.apoyos-checkboxes input[type="checkbox"]:hover {
+    border-color: var(--primary-color);
+}
+
+.recomendaciones-area {
+    margin-top: 1rem;
+}
+
+.recomendaciones-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    resize: vertical;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.recomendaciones-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Estilos de impresión para recomendaciones */
+@media print {
+    .seccion-recomendaciones {
+        background: white;
+        border: 1px solid #000;
+        page-break-inside: avoid;
+    }
+    
+    .recomendaciones-input {
+        border: 1px solid #000;
+        font-size: 11pt;
+        padding: 8px;
+    }
+    
+    .apoyos-checkboxes input[type="checkbox"] {
+        appearance: auto;
+        -webkit-appearance: auto;
+    }
+}
