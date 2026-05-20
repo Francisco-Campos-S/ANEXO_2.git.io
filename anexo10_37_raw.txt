@@ -1,0 +1,37 @@
+1	Arias Barrantes Isaac	9-4	605260493	masculino	Nivel de funcionamiento Inglés Académico y conversacional 4°, Francés, Matemáticas, Ciencias, Estudios Sociales 6° y Español 7°,	Discapacidad Intelectual
+2	Bejerano Bejerano Víctor	8-1	605290200	masculino	Nivel de funcionamiento 2°.	Discapacidad intelectual
+3	Bejerano Morales Norberth	7-5	305980180	masculino	Nivel de funcionamiento 3°	Discpacidad intelectual . Repite sétimo.
+4	Cárdenas Fonseca Aarón Josué	10-3	120440498	masculino	Nivel de funcionamiento: Español 7°, Matematica 6°, Ciencias 5°, Estudios Sociales 7°, Cívica 7°, Inglés 6°, Especialidad 10°.	Discapacidad Intelectual
+5	Carmona Vásquez Yoene	7-1	605400822	femenino	Nivel de funcionamiento 3°	Discapacidad Intelectual. Repite Sétimo
+6	Carrera Amador Ilder	7-1	121510987	masculino	Nivel de funcionamiento 2° I ciclo	Discapacidad intelectual, pérdida auditiva. El padre no acepta que esté en plan nacional, recibe quimioterapia, utiliza audífonos, determinar avance, lectura, escritura.Repite sétimo.
+7	Castro Campos Vielka Dalay	9-1	605330091	femenino	Nivel de funcionamiento Inglés Académico y conversacional 5°, Francés, Matemáticas, Español Ciencias, y Español 6°, y Estudios Sociales 7°	Discapacidad Intelectual
+8	Cortés Gómez Lewis David	11-1	605140374	masculino	Nivel de funcionamiento: Español 8°, Matemática 7°, Quimica 8°, Biología 8°, Estudios Sociales 9°, Cívica 8°, Inglés 7°, Especialidad 10°	Discapacidad Intelectual
+9	Fernández Salas Justin Said.	7-1	121190969	masculino	Nivel de funcionamiento 3° grado I ciclo.	Discapacidad intelectual. Determinar avance, lectura y escritura, padres matriculan en aula regular.Repite sétimo
+10	García Fernández Jorge Joshua	8-3	605360677	masculino	Nivel de funcionamiento 4° II ciclo.	Discapacidad intelectual.
+11	Hernández Valencia Yeiny	8-1	605390382	femenino	Nivel de funcionamiento 3°	Hacer observaciones avances y lectoescritura
+12	Jiménez Jiménez Víctor	9-4	605350923	masculino	Nivel de funcionamiento Inglés Académico y conversacional 4°, Matemáticas 5°, Español, Ciencias, Estudios Sociales y Françés 6°.	Discapacidad Intelectual
+13	Martínez Jiménez Kimberly Alexandra	9-6	605230219	femenino	Nivel de funcionamiento 4°	Discapacidad Intelectual
+14	Miranda Ábrego Amelia	8-6	605260597	femenino	Nivel de funcionamiento 3° grado I ciclo	Discapacidad intelectual. Determinar avance, lectura y escritura, padres matriculan en aula regular.
+15	Molina Molina Fernando	10-3	605210177	masculino	Nivel de funcionamiento: Español 9°, Matemática 7°, Física 8°, Estudios Sociales 9°, Cívica 9°, Inglés 8°, Especialidad 10°	Discapacidad Intelectual. Repite décimo
+16	Morales Palacios Samuel	8-1	124010122	masculino	Nivel de funcionamiento 2° escuela	Discapacidad intelectual
+17	Picado Pérez Evelyn Susana	11-2	305850706	femenino	Nivel de Funcionamiento: Español 9°, Matemática 7°, Química 7°, Biología 7°, Estudios Sociales 9°, Cívica 8°, Inglés 7°, Especialidad 10°.	Discapacidad Intelectual
+18	Portugués Villegas Ingrid	11-2	605140899	femenino	Nivel de Funcionamiento: Español 9°, Matemática 7°, Química 7°, Biología 7°, Estudios Sociales 9°, Cívica 8°, Inglés 7°, Especialidad 10°.	Discapacidad Intelectual
+19	Salas Fernández Ashly Valeria	7-6	6-0542-0643	femenino	Nivel de funcionamiento 3° grado primaria.	Discapacidad Intelectual
+20	Sandoya Mendoza Maricel	7-7	1591011446616	femenino	Nivel de funcionamiento 3°	Discpacidad intelectual en TODAS las asignaturas. Repite sétimo.
+21	Valverde González Eimy Yaslin	8-5	605360674	femenino	Nivel de funcionamiento 3	traslado a Coto Brus encargada PANI. Discapacidad Intelectual
+22	Villegas Acuña Hilary Michel	12-4	604980512	femenino	Nivel de funcionamiento: Español 9°, Matemáticas, Química, Biología, Estudios Sociales, Cívica, Física, Elementos de Gestión y Agronegocios 10°.	Discapacidad Intelectual
+23	Abrego Morales Migdalia	7-1		femenino	Nivel de funcionamiento 2° grado primaria	Discapacidad intelectual
+24	García Figueroa Kinberlin	7-6		femenino	Nivel de funcionamiento 2° grado primaria	Discapacidad intelectual y epilepsia
+25	Guevara González Jose Alfredo	7-3		masculino	Nivel de funcionamiento 2° grado primaria	DI
+26	Jiménez Castro Emily Anyelina	7-1		femenino	Nivel de funcionamiento 3° grado primaria	
+27	Jiménez Jiménez Mario	7-1		masculino	Nivel de funcionamiento 2° grado primaria	DI
+28	Jimenez Zúñiga Nataly Valeria	7-7		femenino	No esta expediente en colegio datos obtenidos plataforma SABER	DI
+29	Martinez Montenegro Esthefany	7-5		femenino	No esta expediente en colegio datos obtenidos plataforma SABER	DI + asma
+30	Montezuma Bejarano Karola	7-2		femenino	No esta expediente en colegio datos obtenidos plataforma SABER	DI + Epilepsia
+31	Morales Baker Saul	7-5		masculino	Nivel de funcionamiento 3° grado I ciclo	DI
+32	Navarro Pérez Anderson Miguel	7-1		masculino	Nivel de funcionamiento 2° grado primaria	DI
+33	Palacios Quintero María Valeria	7-6		femenino	Nivel de funcionamiento 1° grado primaria	DI
+34	Quintero Sandoya Joel Yarot	7-1		masculino	Nivel de funcionamiento 1° grado primaria	DI
+35	Sandi Marín Eduard Alonso	7-2		masculino	Nivel de funcionamiemto 2° grado primaria	DI
+36	Ugalde Hernández Karen Susana	8-1		femenino	Nivel de funcionamiemto 3° grado primaria	DI (2025 en Plan Nacional CTPUM)
+37	Jiménez Zúñiga Nataly Valeria	7-7	121450578	femenino	Nivel de funcionamiento 3° grado primaria	Discapacidad Intelectual

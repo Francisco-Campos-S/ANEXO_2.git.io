@@ -1,92 +1,126 @@
-import openpyxl
 import json
+import re
+from pathlib import Path
 
-wb = openpyxl.load_workbook('ANEXO 2.xlsx', data_only=True)
+import openpyxl
 
-# Extraer lista de estudiantes
-ws_estudiantes = wb['LISTA DE ESTUDIANTES']
-estudiantes = []
 
-for row in ws_estudiantes.iter_rows(min_row=2, max_row=102, values_only=True):
-    if row[1]:
+BASE_DIR = Path(__file__).resolve().parent
+
+
+def cargar_estudiantes_anexo2(raw_path):
+    estudiantes = []
+    contenido = raw_path.read_text(encoding='utf-8').splitlines()
+
+    for linea in contenido:
+        if not linea.strip():
+            continue
+
+        partes = [p.strip() for p in linea.split('\t')]
+        if len(partes) < 3:
+            continue
+
+        numero = int(partes[0])
+        nombre = partes[1]
+        seccion = partes[2]
+
+        # En Anexo 2 no se carga nivel de funcionamiento ni observaciones en el JSON.
+        resto = []
+        cedula = ''
+        observaciones = ''
+
+        if len(partes) > 3 and partes[3]:
+            primero = partes[3]
+            if re.search(r'\d', primero) or primero.upper().startswith('YR'):
+                cedula = primero
+
         estudiantes.append({
-            "numero": row[0],
-            "nombre": row[1],
-            "seccion": row[2] if row[2] else "",
-            "cedula": row[3] if row[3] else "",
-            "observaciones": row[4] if row[4] else ""
+            'numero': numero,
+            'nombre': nombre,
+            'seccion': seccion,
+            'cedula': cedula,
+            'tipo_adecuacion': 'no_significativa',
+            'observaciones': '',
         })
 
-# Extraer códigos de apoyos personales (A.P.)
-ws_espanol = wb['ESPAÑOL ']
-apoyos_personales = []
+    return estudiantes
 
-for row in ws_espanol.iter_rows(min_row=6, max_row=18, values_only=True):
-    if row[0] and row[1]:
-        apoyos_personales.append({
-            "codigo": row[0],
-            "descripcion": row[1]
+
+def cargar_estudiantes_significativos(raw_path):
+    estudiantes = []
+    contenido = raw_path.read_text(encoding='utf-8').splitlines()
+
+    for linea in contenido:
+        if not linea.strip():
+            continue
+
+        partes = [p.strip() for p in linea.split('\t')]
+        if len(partes) < 7:
+            continue
+
+        estudiantes.append({
+            'numero': int(partes[0]),
+            'nombre': partes[1],
+            'seccion': partes[2],
+            'cedula': partes[3],
+            'genero': partes[4],
+            'tipo_adecuacion': 'significativa',
+            'observaciones': f"{partes[5]} {partes[6]}".strip(),
         })
 
-# Extraer códigos de apoyos organizativos (A.A.)
-apoyos_organizativos = []
+    return estudiantes
 
-for row in ws_espanol.iter_rows(min_row=20, max_row=30, values_only=True):
-    if row[0] and row[1]:
-        apoyos_organizativos.append({
-            "codigo": row[0],
-            "descripcion": row[1]
-        })
 
-# Extraer apoyos materiales y tecnológicos
-apoyos_materiales = []
+def extraer_apoyos(excel_path):
+    wb = openpyxl.load_workbook(excel_path, data_only=True)
+    ws_espanol = wb['ESPAÑOL ']
 
-for row in ws_espanol.iter_rows(min_row=33, max_row=49, values_only=True):
-    if row[0] and row[1]:
-        apoyos_materiales.append({
-            "codigo": row[0],
-            "descripcion": row[1]
-        })
+    def leer_bloque(min_row, max_row):
+        items = []
+        for row in ws_espanol.iter_rows(min_row=min_row, max_row=max_row, values_only=True):
+            if row[0] and row[1]:
+                items.append({
+                    'codigo': row[0],
+                    'descripcion': row[1],
+                })
+        return items
 
-# Extraer apoyos curriculares
-apoyos_curriculares = []
-
-for row in ws_espanol.iter_rows(min_row=53, max_row=87, values_only=True):
-    if row[0] and row[1]:
-        apoyos_curriculares.append({
-            "codigo": row[0],
-            "descripcion": row[1]
-        })
-
-# Extraer apoyos evaluativos
-apoyos_evaluativos = []
-
-for row in ws_espanol.iter_rows(min_row=90, max_row=104, values_only=True):
-    if row[0] and row[1]:
-        apoyos_evaluativos.append({
-            "codigo": row[0],
-            "descripcion": row[1]
-        })
-
-# Crear el archivo JSON con todos los datos
-datos = {
-    "estudiantes": estudiantes,
-    "apoyos": {
-        "personales": apoyos_personales,
-        "organizativos": apoyos_organizativos,
-        "materiales": apoyos_materiales,
-        "curriculares": apoyos_curriculares,
-        "evaluativos": apoyos_evaluativos
+    return {
+        'personales': leer_bloque(6, 18),
+        'organizativos': leer_bloque(20, 30),
+        'materiales': leer_bloque(33, 49),
+        'curriculares': leer_bloque(53, 87),
+        'evaluativos': leer_bloque(90, 104),
     }
-}
 
-with open('datos.json', 'w', encoding='utf-8') as f:
-    json.dump(datos, f, ensure_ascii=False, indent=2)
 
-print("OK - Datos extraidos exitosamente a datos.json")
-print(f"OK - {len(estudiantes)} estudiantes")
-print(f"OK - {len(apoyos_personales)} apoyos personales")
-print(f"OK - {len(apoyos_organizativos)} apoyos organizativos")
-print(f"OK - {len(apoyos_materiales)} apoyos materiales")
-print(f"OK - {len(apoyos_curriculares)} apoyos curriculares")
-print(f"OK - {len(apoyos_evaluativos)} apoyos evaluativos")
+def main():
+    anexo2_path = BASE_DIR / 'anexo2_101_raw.txt'
+    anexo10_path = BASE_DIR / 'anexo10_37_raw.txt'
+    apoyos_path = BASE_DIR / 'ANEXO 2.xlsx'
+    json_path = BASE_DIR / 'datos.json'
+
+    estudiantes = cargar_estudiantes_anexo2(anexo2_path)
+    estudiantes.extend(cargar_estudiantes_significativos(anexo10_path))
+    apoyos = extraer_apoyos(apoyos_path)
+
+    datos = {
+        'estudiantes': estudiantes,
+        'apoyos': apoyos,
+    }
+
+    with json_path.open('w', encoding='utf-8') as f:
+        json.dump(datos, f, ensure_ascii=False, indent=2)
+
+    print('OK - Datos extraidos exitosamente a datos.json')
+    print(f'OK - {len(estudiantes)} estudiantes')
+    print(f"OK - {sum(1 for e in estudiantes if e['tipo_adecuacion'] == 'significativa')} significativos")
+    print(f"OK - {len(apoyos['personales'])} apoyos personales")
+    print(f"OK - {len(apoyos['organizativos'])} apoyos organizativos")
+    print(f"OK - {len(apoyos['materiales'])} apoyos materiales")
+    print(f"OK - {len(apoyos['curriculares'])} apoyos curriculares")
+    print(f"OK - {len(apoyos['evaluativos'])} apoyos evaluativos")
+
+
+if __name__ == '__main__':
+    main()

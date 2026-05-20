@@ -5,1048 +5,1141 @@
       "nombre": "ABREGO . WALTER",
       "seccion": "7-1",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento Inglés Académico y conversacional 4°, Francés, Matemáticas, Ciencias, Estudios Sociales 6° y Español 7°,",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 2,
       "nombre": "ABREGO MIRANDA HERIBERTO JORGE",
       "seccion": "7-4",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento 2°.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 3,
       "nombre": "Alemán Sandí Jimena",
       "seccion": "9-1",
       "cedula": "605320280",
-      "observaciones": "Nivel de funcionamiento 3°",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 4,
       "nombre": "ALEMAN SANDI JONATHAN",
       "seccion": "7-2",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento: Español 7°, Matematica 6°, Ciencias 5°, Estudios Sociales 7°, Cívica 7°, Inglés 6°, Especialidad 10°.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 5,
       "nombre": "Alvarado Guzmán Samantha",
       "seccion": "8-5",
       "cedula": "121620521",
-      "observaciones": "Nivel de funcionamiento 3°",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 6,
       "nombre": "Arias Porras Britanny",
       "seccion": "11-4",
       "cedula": "120470353",
-      "observaciones": "Nivel de funcionamiento 2° I ciclo",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 7,
       "nombre": "Arias Vindas Hazel Lineth",
       "seccion": "9-6",
       "cedula": "120910578",
-      "observaciones": "Nivel de funcionamiento Inglés Académico y conversacional 5°, Francés, Matemáticas, Español  Ciencias,  y Español 6°,y Estudios Sociales 7°",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 8,
       "nombre": "Artavia Ugarte Jhoan José",
       "seccion": "8-4",
       "cedula": "121540833",
-      "observaciones": "Nivel de funcionamiento: Español 8°, Matemática 7°, Quimica 8°, Biología 8°, Estudios Sociales 9°, Cívica 8°, Inglés 7°, Especialidad 10°",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 9,
       "nombre": "AVILES JIMENEZ THAIRYN JOSEBETH",
       "seccion": "7-6",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento 3° grado I ciclo.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 10,
       "nombre": "Avilés Jiménez Yareth Alejandra",
       "seccion": "9-2",
       "cedula": "120870488",
-      "observaciones": "Nivel de funcionamiento 4° II ciclo.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 11,
       "nombre": "Barrantes Vargas Luis Felipe",
       "seccion": "9-3",
       "cedula": "605310238",
-      "observaciones": "Nivel de funcionamiento 3°",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 12,
       "nombre": "Beita Vargas Rony",
       "seccion": "8-4",
       "cedula": "121270094",
-      "observaciones": "Nivel de funcionamiento Inglés Académico y conversacional 4°, Matemáticas 5°, Español, Ciencias, Estudios Sociales y Françés 6°.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 13,
       "nombre": "Bejerano Viviana",
       "seccion": "8-3",
       "cedula": "15910111",
-      "observaciones": "Nivel de funcionamiento 4°",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 14,
       "nombre": "Blanco Cubero Aaron Fabricio",
       "seccion": "8-4",
       "cedula": "605410373",
-      "observaciones": "Nivel de funcionamiento 3° grado I ciclo",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 15,
       "nombre": "Blanco García Roxiri Paola",
       "seccion": "8-3",
       "cedula": "605410463",
-      "observaciones": "Nivel de funcionamiento: Español 9°, Matemática 7°,Física 8°, Estudios Sociales 9°, Cívica 9°, Inglés 8°, Especialidad 10°",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 16,
       "nombre": "Bonilla Fallas Valentina",
       "seccion": "8-5",
       "cedula": "605410700",
-      "observaciones": "Nivel de funcionamiento 2° escuela",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 17,
       "nombre": "Cascante Vargas Víctor Manuel",
       "seccion": "8-4",
       "cedula": "605290162",
-      "observaciones": "Nivel de Funcionamiento: Español 9°, Matemática 7°, Química 7°, Biología 7°, Estudios Sociales 9°, Cívica 8°, Inglés 7°, Especialidad 10°.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 18,
       "nombre": "CHAVES ALVAREZ DARLENE ARELIZ",
       "seccion": "7-5",
       "cedula": "",
-      "observaciones": "Nivel de Funcionamiento: Español 9°, Matemática 7°, Química 7°, Biología 7°, Estudios Sociales 9°, Cívica 8°, Inglés 7°, Especialidad 10°.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 19,
       "nombre": "CHAVES SALAZAR MAIDELYN ANDREINA",
       "seccion": "8-1",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento 3° grado primaria.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 20,
       "nombre": "Chaves Valerio Alisson Pamela",
       "seccion": "7-1",
       "cedula": "121600888",
-      "observaciones": "Nivel de funcionamiento 3° ",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 21,
       "nombre": "Chaves Valerio Royer David",
       "seccion": "9-4",
       "cedula": "121070344",
-      "observaciones": "Nivel de funcionamiento 3",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 22,
       "nombre": "Cherlin Yarixa Picado Muñoz",
       "seccion": "8-1",
       "cedula": "605390846",
-      "observaciones": "Nivel de funcionamiento: Español 9°, Matemáticas,Química, Biología,  Estudios Sociales, Cívica, Física, Elementos de Gestión y Agronegocios 10°.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 23,
       "nombre": "Cruz González Lisandro",
       "seccion": "9-2",
       "cedula": "605350919",
-      "observaciones": "Nivel de funcionamiento 2° grado primaria",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 24,
       "nombre": "DURAN VARGAS KEYLIN",
       "seccion": "7-1",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento 2° grado primaria",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 25,
       "nombre": "Erikca Yariela Elizondo Soto",
       "seccion": "8-2",
       "cedula": "605380655",
-      "observaciones": "Nivel de funcionamiento 2° grado primaria",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 26,
       "nombre": "Espinoza Villalobos Eidan Santiago",
       "seccion": "8-4",
       "cedula": "605360225",
-      "observaciones": "Nivel de funcionamiento 3° grado primaria",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 27,
       "nombre": "Flores Prado Lana Jazlin",
       "seccion": "9-4",
       "cedula": "121370062",
-      "observaciones": "Nivel de funcionamiento 2° grado primaria",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 28,
       "nombre": "Fonseca Blanco Sharon Jenasha",
       "seccion": "12-1",
       "cedula": "119850637",
-      "observaciones": "No esta expediente en colegio datos obtenidos plataforma SABER",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 29,
       "nombre": "FONSECA CONCEPCION ANGELO DAVID",
       "seccion": "7-5",
       "cedula": "",
-      "observaciones": "No esta expediente en colegio datos obtenidos plataforma SABER",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 30,
       "nombre": "García Miranda Marta",
       "seccion": "7-7",
       "cedula": "605380595",
-      "observaciones": "No esta expediente en colegio datos obtenidos plataforma SABER",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 31,
       "nombre": "Gómez Granados Angely Lucía",
       "seccion": "10-5",
       "cedula": "120960941",
-      "observaciones": "Nivel de funcionamiento 3° grado I ciclo",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 32,
       "nombre": "González Abarca Justin Estarlen",
       "seccion": "8-2",
       "cedula": "605280177",
-      "observaciones": "Nivel de funcionamiento 2° grado primaria",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 33,
       "nombre": "GONZÁLEZ ZAPATA OBETH MARTÍN",
       "seccion": "7-1",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento 1° grado primaria",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 34,
       "nombre": "GUERRA CASTILLO AGUSTIN",
       "seccion": "7-6",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento 1° grado primaria",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 35,
       "nombre": "GUTIERREZ DUARTE ANGELO EFREN",
       "seccion": "7-7",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiemto 2° grado primaria",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 36,
       "nombre": "Guzmán Muñoz Alana",
       "seccion": "9-3",
       "cedula": "121030133",
-      "observaciones": "Nivel de funcionamiemto 3° grado primaria",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 37,
       "nombre": "Isabella Francini Navas Mena",
       "seccion": "8-1",
       "cedula": "121470877",
-      "observaciones": "Nivel de funcionamiento 3° grado primaria",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 38,
       "nombre": "Jara Rojas Darllelyn Sofía",
       "seccion": "9-2",
       "cedula": "121210036",
-      "observaciones": "P.A",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 39,
       "nombre": "JIMENEZ CRISOTO LUCIA",
       "seccion": "7-1",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 40,
       "nombre": "Jiménez Sánchez Alexander",
       "seccion": "8-1",
       "cedula": "605390658",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 41,
       "nombre": "JIMENEZ TRAÑA AXSEL FRANCISCO",
       "seccion": "7-3",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 42,
       "nombre": "Lezama Jiménez Matías Steff",
       "seccion": "9-6",
       "cedula": "605300916",
-      "observaciones": "P.A",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 43,
       "nombre": "MARTINEZ CRUZ YIRLANI DANIELA",
       "seccion": "7-7",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 44,
       "nombre": "Martínez Cruz Youchuan Elias",
       "seccion": "9-5",
       "cedula": "605270052",
-      "observaciones": "P.A.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 45,
       "nombre": "MARTINEZ PORRAS TAYRA SOFIA",
       "seccion": "7-4",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 46,
       "nombre": "MAZA BORBON ANYELO YAHIR",
       "seccion": "7-5",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 47,
       "nombre": "Mejías Picado Luis Albeiro",
       "seccion": "10-2",
       "cedula": "605230446",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 48,
       "nombre": "Méndez Arauz Angelo Mateo",
       "seccion": "9-3",
       "cedula": "605330611",
-      "observaciones": "D.A",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 49,
       "nombre": "Méndez Portugués Sebastián",
       "seccion": "8-1",
       "cedula": "605400754",
-      "observaciones": "P.A.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 50,
       "nombre": "Miranda Ábrego Ivan",
       "seccion": "8-3",
       "cedula": "605290160",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 51,
       "nombre": "MIRANDA FLORES KEINER ANDRES",
       "seccion": "7-7",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 52,
       "nombre": "Miranda López Edgar",
       "seccion": "8-6",
       "cedula": "YR2022-34924",
-      "observaciones": "",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 53,
       "nombre": "MORA JIMENEZ NEITHAN GABRIEL",
       "seccion": "7-4",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 54,
       "nombre": "MORALES CHAVES RONALD YOPTIHEL",
       "seccion": "7-7",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 55,
       "nombre": "Morales Martínez Airay Nasaret",
       "seccion": "7-6",
       "cedula": "605320713",
-      "observaciones": "P.A.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 56,
       "nombre": "MORALES PALACIOS VICTOR",
       "seccion": "7-7",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 57,
       "nombre": "MORALES VILLEGAS JOSUE ESTEBAN",
       "seccion": "7-7",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 58,
       "nombre": "PEREZ CORDERO BENYAMIN YAZID",
       "seccion": "7-3",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 59,
       "nombre": "PEREZ SALAZAR ANGEL RAFAEL",
       "seccion": "7-5",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 60,
       "nombre": "Picado Coronado Gustavo.",
       "seccion": "8-6",
       "cedula": "121440095",
-      "observaciones": "PA.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 61,
       "nombre": "PINZON JIRON SAMANTHA VANESSA",
       "seccion": "7-2",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 62,
       "nombre": "QUESADA ABARCA ANDERSON STIP",
       "seccion": "7-3",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 63,
       "nombre": "Rivera García Blas Antonio",
       "seccion": "9-5",
       "cedula": "605320529",
-      "observaciones": "P.A",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 64,
       "nombre": "Rodríguez Miranda Adara Naomi",
       "seccion": "9-1",
       "cedula": "121060478",
-      "observaciones": "PA Y TEA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 65,
       "nombre": "RODRIGUEZ MOYA SHELBY KYARA",
       "seccion": "7-1",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 66,
       "nombre": "Rojas Moya Tanisha",
       "seccion": "8-2",
       "cedula": "121630125",
-      "observaciones": "P.A.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 67,
       "nombre": "Salinas Bejarano Johan Fabián",
       "seccion": "7-7",
       "cedula": "605370959",
-      "observaciones": "P.A.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
-      "numero": 67,
+      "numero": 68,
       "nombre": "Sánchez Montezuma Ronaldo",
       "seccion": "9-5",
       "cedula": "605280449",
-      "observaciones": "P.A",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 69,
       "nombre": "SANDI QUIROS BRENDA SOFIA",
       "seccion": "7-3",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 70,
       "nombre": "Santos Morales Pablo",
       "seccion": "12-3",
       "cedula": "305700900",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 71,
       "nombre": "SEGURA MUÑOZ MATEO",
       "seccion": "7-4",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 72,
       "nombre": "Solís Chinchilla Kristel",
       "seccion": "10-1",
       "cedula": "120870651",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 73,
       "nombre": "SOTO MENA STACY IVON",
       "seccion": "7-6",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 74,
       "nombre": "UREÑA MORA NAZARETH MICKAELA",
       "seccion": "7-2",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 75,
       "nombre": "Valencia Alvarado Yenedith",
       "seccion": "7-7",
       "cedula": "605390378",
-      "observaciones": "Problemas Aprendizaje",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 76,
       "nombre": "Valeria Sofía Solano Solono",
       "seccion": "8-6",
       "cedula": "605410453",
-      "observaciones": "PA.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 77,
       "nombre": "Vargas Arias Johan Mathias",
       "seccion": "9-6",
       "cedula": "121050092",
-      "observaciones": "Desorden fono articular (El desorden fonicoarticular es un tipo de trastorno del sonido del habla que se conoce como trastorno articulatorio1) Dislalia, trastornos generales del desarrollo, observación por trastorno espectro autista.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 78,
       "nombre": "VARGAS FONSECA ALLISON MARIEL",
       "seccion": "7-3",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 79,
       "nombre": "Vargas Quirós Arihana Victoria",
       "seccion": "8-3",
       "cedula": "121520796",
-      "observaciones": "Problemas Aprendizajes.",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 80,
       "nombre": "VEGA CASCANTE JOSE PABLO",
       "seccion": "7-7",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 81,
       "nombre": "Vega Espinoza Reashell Yunaiki",
       "seccion": "8-2",
       "cedula": "121450601",
-      "observaciones": "P.A",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 82,
       "nombre": "VENADO SONDOYA YORIEL ESTEBAN",
       "seccion": "7-5",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 83,
       "nombre": "Vidal Contreras Juan David",
       "seccion": "9-4",
       "cedula": "605230409",
-      "observaciones": "P.A",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 84,
       "nombre": "Villegas Barahona Diarlyn",
       "seccion": "11-4",
       "cedula": "120680996",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 85,
       "nombre": "VIQUEZ SANABRIA BRANDON YOSUE",
       "seccion": "7-7",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 86,
       "nombre": "Zamora Campos Santiago",
       "seccion": "10-1",
       "cedula": "605260405",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 87,
       "nombre": "ZAPATA LOPEZ KEILYN NICOLE",
       "seccion": "7-1",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 88,
       "nombre": "ZAPATA MONTEZUMA NEYA",
       "seccion": "7-6",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 89,
       "nombre": "ZUÑIGA BUZANO ELIAZAR ISMAEL",
       "seccion": "7-6",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 90,
       "nombre": "Zúñiga Víquez Tayna Massiel",
       "seccion": "9-3",
       "cedula": "605320535",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 91,
       "nombre": "Vargas Sandí Wendy",
       "seccion": "9-4",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 92,
       "nombre": "Zúñiga Rivera Valeria Lisbeth",
       "seccion": "7-1",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 93,
       "nombre": "Vargas Borbón Kenny Nayelli",
       "seccion": "7-4",
       "cedula": "",
-      "observaciones": "PA",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 94,
       "nombre": "Varela Sánchez Maria Raquel",
       "seccion": "8-6",
       "cedula": "209690296",
-      "observaciones": "P.A",
-      "tipo_adecuacion": "no_significativa"
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
+    },
+    {
+      "numero": 95,
+      "nombre": "Vásquez Díaz Xiany Fiorela.",
+      "seccion": "7-7",
+      "cedula": "605450294",
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
+    },
+    {
+      "numero": 96,
+      "nombre": "Jiménez Fernández Ariany",
+      "seccion": "7-3",
+      "cedula": "605440915",
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
+    },
+    {
+      "numero": 97,
+      "nombre": "Blanco Valverde Briana Alexandra",
+      "seccion": "7-2",
+      "cedula": "121830826",
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
+    },
+    {
+      "numero": 98,
+      "nombre": "Rodríguez Fuentes Johel Mauricio",
+      "seccion": "7-3",
+      "cedula": "605450449",
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
+    },
+    {
+      "numero": 99,
+      "nombre": "Agüero Alfaro Isaura María",
+      "seccion": "7-4",
+      "cedula": "605460517",
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
+    },
+    {
+      "numero": 100,
+      "nombre": "Duran Jiménez Mathew Alejandro",
+      "seccion": "8-2",
+      "cedula": "209500460",
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
+    },
+    {
+      "numero": 101,
+      "nombre": "Emely Calderón Fallas",
+      "seccion": "7-4",
+      "cedula": "121640184",
+      "tipo_adecuacion": "no_significativa",
+      "observaciones": ""
     },
     {
       "numero": 1,
       "nombre": "Arias Barrantes Isaac",
       "seccion": "9-4",
       "cedula": "605260493",
-      "observaciones": "Nivel de funcionamiento Inglés Académico y conversacional 4°, Francés, Matemáticas, Ciencias, Estudios Sociales 6° y Español 7°,",
-      "tipo_adecuacion": "significativa"
+      "genero": "masculino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento Inglés Académico y conversacional 4°, Francés, Matemáticas, Ciencias, Estudios Sociales 6° y Español 7°, Discapacidad Intelectual"
     },
     {
       "numero": 2,
       "nombre": "Bejerano Bejerano Víctor",
       "seccion": "8-1",
       "cedula": "605290200",
-      "observaciones": "Nivel de funcionamiento 2°.",
-      "tipo_adecuacion": "significativa"
+      "genero": "masculino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 2°. Discapacidad intelectual"
     },
     {
       "numero": 3,
       "nombre": "Bejerano Morales Norberth",
       "seccion": "7-5",
       "cedula": "305980180",
-      "observaciones": "Nivel de funcionamiento 3°",
-      "tipo_adecuacion": "significativa"
+      "genero": "masculino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 3° Discpacidad intelectual . Repite sétimo."
     },
     {
       "numero": 4,
       "nombre": "Cárdenas Fonseca Aarón Josué",
       "seccion": "10-3",
       "cedula": "120440498",
-      "observaciones": "Nivel de funcionamiento: Español 7°, Matematica 6°, Ciencias 5°, Estudios Sociales 7°, Cívica 7°, Inglés 6°, Especialidad 10°.",
-      "tipo_adecuacion": "significativa"
+      "genero": "masculino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento: Español 7°, Matematica 6°, Ciencias 5°, Estudios Sociales 7°, Cívica 7°, Inglés 6°, Especialidad 10°. Discapacidad Intelectual"
     },
     {
       "numero": 5,
       "nombre": "Carmona Vásquez Yoene",
       "seccion": "7-1",
       "cedula": "605400822",
-      "observaciones": "Nivel de funcionamiento 3°",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 3° Discapacidad Intelectual. Repite Sétimo"
     },
     {
       "numero": 6,
       "nombre": "Carrera Amador Ilder",
       "seccion": "7-1",
       "cedula": "121510987",
-      "observaciones": "Nivel de funcionamiento 2° I ciclo",
-      "tipo_adecuacion": "significativa"
+      "genero": "masculino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 2° I ciclo Discapacidad intelectual, pérdida auditiva. El padre no acepta que esté en plan nacional, recibe quimioterapia, utiliza audífonos, determinar avance, lectura, escritura.Repite sétimo."
     },
     {
       "numero": 7,
       "nombre": "Castro Campos Vielka Dalay",
-      "seccion": "9-5",
+      "seccion": "9-1",
       "cedula": "605330091",
-      "observaciones": "Nivel de funcionamiento Inglés Académico y conversacional 5°, Francés, Matemáticas, Español  Ciencias,  y Español 6°,y Estudios Sociales 7°",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento Inglés Académico y conversacional 5°, Francés, Matemáticas, Español Ciencias, y Español 6°, y Estudios Sociales 7° Discapacidad Intelectual"
     },
     {
       "numero": 8,
       "nombre": "Cortés Gómez Lewis David",
       "seccion": "11-1",
       "cedula": "605140374",
-      "observaciones": "Nivel de funcionamiento: Español 8°, Matemática 7°, Quimica 8°, Biología 8°, Estudios Sociales 9°, Cívica 8°, Inglés 7°, Especialidad 10°",
-      "tipo_adecuacion": "significativa"
+      "genero": "masculino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento: Español 8°, Matemática 7°, Quimica 8°, Biología 8°, Estudios Sociales 9°, Cívica 8°, Inglés 7°, Especialidad 10° Discapacidad Intelectual"
     },
     {
       "numero": 9,
       "nombre": "Fernández Salas Justin Said.",
       "seccion": "7-1",
       "cedula": "121190969",
-      "observaciones": "Nivel de funcionamiento 3° grado I ciclo.",
-      "tipo_adecuacion": "significativa"
+      "genero": "masculino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 3° grado I ciclo. Discapacidad intelectual. Determinar avance, lectura y escritura, padres matriculan en aula regular.Repite sétimo"
     },
     {
       "numero": 10,
       "nombre": "García Fernández Jorge Joshua",
       "seccion": "8-3",
       "cedula": "605360677",
-      "observaciones": "Nivel de funcionamiento 4° II ciclo.",
-      "tipo_adecuacion": "significativa"
+      "genero": "masculino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 4° II ciclo. Discapacidad intelectual."
     },
     {
       "numero": 11,
       "nombre": "Hernández Valencia Yeiny",
       "seccion": "8-1",
       "cedula": "605390382",
-      "observaciones": "Nivel de funcionamiento 3°",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 3° Hacer observaciones avances y lectoescritura"
     },
     {
       "numero": 12,
       "nombre": "Jiménez Jiménez Víctor",
       "seccion": "9-4",
       "cedula": "605350923",
-      "observaciones": "Nivel de funcionamiento Inglés Académico y conversacional 4°, Matemáticas 5°, Español, Ciencias, Estudios Sociales y Françés 6°.",
-      "tipo_adecuacion": "significativa"
+      "genero": "masculino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento Inglés Académico y conversacional 4°, Matemáticas 5°, Español, Ciencias, Estudios Sociales y Françés 6°. Discapacidad Intelectual"
     },
     {
       "numero": 13,
       "nombre": "Martínez Jiménez Kimberly Alexandra",
       "seccion": "9-6",
       "cedula": "605230219",
-      "observaciones": "Nivel de funcionamiento 4°",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 4° Discapacidad Intelectual"
     },
     {
       "numero": 14,
       "nombre": "Miranda Ábrego Amelia",
       "seccion": "8-6",
       "cedula": "605260597",
-      "observaciones": "Nivel de funcionamiento 3° grado I ciclo",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 3° grado I ciclo Discapacidad intelectual. Determinar avance, lectura y escritura, padres matriculan en aula regular."
     },
     {
       "numero": 15,
       "nombre": "Molina Molina Fernando",
       "seccion": "10-3",
       "cedula": "605210177",
-      "observaciones": "Nivel de funcionamiento: Español 9°, Matemática 7°,Física 8°, Estudios Sociales 9°, Cívica 9°, Inglés 8°, Especialidad 10°",
-      "tipo_adecuacion": "significativa"
+      "genero": "masculino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento: Español 9°, Matemática 7°, Física 8°, Estudios Sociales 9°, Cívica 9°, Inglés 8°, Especialidad 10° Discapacidad Intelectual. Repite décimo"
     },
     {
       "numero": 16,
       "nombre": "Morales Palacios Samuel",
       "seccion": "8-1",
       "cedula": "124010122",
-      "observaciones": "Nivel de funcionamiento 2° escuela",
-      "tipo_adecuacion": "significativa"
+      "genero": "masculino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 2° escuela Discapacidad intelectual"
     },
     {
       "numero": 17,
       "nombre": "Picado Pérez Evelyn Susana",
       "seccion": "11-2",
       "cedula": "305850706",
-      "observaciones": "Nivel de Funcionamiento: Español 9°, Matemática 7°, Química 7°, Biología 7°, Estudios Sociales 9°, Cívica 8°, Inglés 7°, Especialidad 10°.",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de Funcionamiento: Español 9°, Matemática 7°, Química 7°, Biología 7°, Estudios Sociales 9°, Cívica 8°, Inglés 7°, Especialidad 10°. Discapacidad Intelectual"
     },
     {
       "numero": 18,
       "nombre": "Portugués Villegas Ingrid",
       "seccion": "11-2",
       "cedula": "605140899",
-      "observaciones": "Nivel de Funcionamiento: Español 9°, Matemática 7°, Química 7°, Biología 7°, Estudios Sociales 9°, Cívica 8°, Inglés 7°, Especialidad 10°.",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de Funcionamiento: Español 9°, Matemática 7°, Química 7°, Biología 7°, Estudios Sociales 9°, Cívica 8°, Inglés 7°, Especialidad 10°. Discapacidad Intelectual"
     },
     {
       "numero": 19,
       "nombre": "Salas Fernández Ashly Valeria",
       "seccion": "7-6",
       "cedula": "6-0542-0643",
-      "observaciones": "Nivel de funcionamiento 3° grado primaria.",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 3° grado primaria. Discapacidad Intelectual"
     },
     {
       "numero": 20,
       "nombre": "Sandoya Mendoza Maricel",
       "seccion": "7-7",
       "cedula": "1591011446616",
-      "observaciones": "Nivel de funcionamiento 3° ",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 3° Discpacidad intelectual en TODAS las asignaturas. Repite sétimo."
     },
     {
       "numero": 21,
       "nombre": "Valverde González Eimy Yaslin",
       "seccion": "8-5",
       "cedula": "605360674",
-      "observaciones": "Nivel de funcionamiento 3",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 3 traslado a Coto Brus encargada PANI. Discapacidad Intelectual"
     },
     {
       "numero": 22,
       "nombre": "Villegas Acuña Hilary Michel",
       "seccion": "12-4",
       "cedula": "604980512",
-      "observaciones": "Nivel de funcionamiento: Español 9°, Matemáticas,Química, Biología,  Estudios Sociales, Cívica, Física, Elementos de Gestión y Agronegocios 10°.",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento: Español 9°, Matemáticas, Química, Biología, Estudios Sociales, Cívica, Física, Elementos de Gestión y Agronegocios 10°. Discapacidad Intelectual"
     },
     {
       "numero": 23,
       "nombre": "Abrego Morales Migdalia",
       "seccion": "7-1",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento 2° grado primaria",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 2° grado primaria Discapacidad intelectual"
     },
     {
       "numero": 24,
       "nombre": "García Figueroa Kinberlin",
       "seccion": "7-6",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento 2° grado primaria",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 2° grado primaria Discapacidad intelectual y epilepsia"
     },
     {
       "numero": 25,
       "nombre": "Guevara González Jose Alfredo",
       "seccion": "7-3",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento 2° grado primaria",
-      "tipo_adecuacion": "significativa"
+      "genero": "masculino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 2° grado primaria DI"
     },
     {
       "numero": 26,
       "nombre": "Jiménez Castro Emily Anyelina",
       "seccion": "7-1",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento 3° grado primaria",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 3° grado primaria"
     },
     {
       "numero": 27,
       "nombre": "Jiménez Jiménez Mario",
       "seccion": "7-1",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento 2° grado primaria",
-      "tipo_adecuacion": "significativa"
+      "genero": "masculino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 2° grado primaria DI"
     },
     {
       "numero": 28,
       "nombre": "Jimenez Zúñiga Nataly Valeria",
       "seccion": "7-7",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento 3° grado primaria",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "No esta expediente en colegio datos obtenidos plataforma SABER DI"
     },
     {
       "numero": 29,
       "nombre": "Martinez Montenegro Esthefany",
       "seccion": "7-5",
       "cedula": "",
-      "observaciones": "No esta expediente en colegio datos obtenidos plataforma SABER",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "No esta expediente en colegio datos obtenidos plataforma SABER DI + asma"
     },
     {
       "numero": 30,
       "nombre": "Montezuma Bejarano Karola",
       "seccion": "7-2",
       "cedula": "",
-      "observaciones": "No esta expediente en colegio datos obtenidos plataforma SABER",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "No esta expediente en colegio datos obtenidos plataforma SABER DI + Epilepsia"
     },
     {
       "numero": 31,
       "nombre": "Morales Baker Saul",
       "seccion": "7-5",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento 3° grado I ciclo",
-      "tipo_adecuacion": "significativa"
+      "genero": "masculino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 3° grado I ciclo DI"
     },
     {
       "numero": 32,
       "nombre": "Navarro Pérez Anderson Miguel",
       "seccion": "7-1",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento 2° grado primaria",
-      "tipo_adecuacion": "significativa"
+      "genero": "masculino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 2° grado primaria DI"
     },
     {
       "numero": 33,
       "nombre": "Palacios Quintero María Valeria",
       "seccion": "7-6",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento 1° grado primaria",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 1° grado primaria DI"
     },
     {
       "numero": 34,
       "nombre": "Quintero Sandoya Joel Yarot",
       "seccion": "7-1",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiento 1° grado primaria",
-      "tipo_adecuacion": "significativa"
+      "genero": "masculino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 1° grado primaria DI"
     },
     {
       "numero": 35,
       "nombre": "Sandi Marín Eduard Alonso",
       "seccion": "7-2",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiemto 2° grado primaria",
-      "tipo_adecuacion": "significativa"
+      "genero": "masculino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiemto 2° grado primaria DI"
     },
     {
       "numero": 36,
       "nombre": "Ugalde Hernández Karen Susana",
       "seccion": "8-1",
       "cedula": "",
-      "observaciones": "Nivel de funcionamiemto 3° grado primaria",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiemto 3° grado primaria DI (2025 en Plan Nacional CTPUM)"
     },
     {
       "numero": 37,
       "nombre": "Jiménez Zúñiga Nataly Valeria",
       "seccion": "7-7",
       "cedula": "121450578",
-      "observaciones": "Nivel de funcionamiento 3° grado primaria",
-      "tipo_adecuacion": "significativa"
+      "genero": "femenino",
+      "tipo_adecuacion": "significativa",
+      "observaciones": "Nivel de funcionamiento 3° grado primaria Discapacidad Intelectual"
     }
   ],
   "apoyos": {

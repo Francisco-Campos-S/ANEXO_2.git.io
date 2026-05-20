@@ -32,9 +32,6 @@ async function cargarDatos() {
         datos = await response.json();
         console.log('Datos cargados:', datos);
         
-        // Cargar estudiantes personalizados guardados en localStorage
-        cargarEstudiantesPersonalizados();
-        
         // Notificación de carga exitosa
         mostrarNotificacion('Sistema listo', 'Datos cargados correctamente. ¡Puede comenzar a trabajar!', 'exito');
     } catch (error) {
@@ -62,9 +59,6 @@ function inicializarApp() {
     
     // Configurar eventos de estudiantes
     configurarEventosEstudiantes();
-    
-    // Configurar modal para agregar estudiante
-    configurarModalAgregarEstudiante();
     
     configurarEventosCodigosAnexo10();
     
@@ -320,24 +314,8 @@ function llenarTablaEstudiantes(filtroClaveNorm = '') {
     const filtro = filtroClaveNorm ? normalizarClaveSeccion(filtroClaveNorm) : '';
     tbody.innerHTML = '';
 
-    // Determinar cuál anexo está activo actualmente en la página
-    const seccionEspanolVisible = document.getElementById('seccionEspanol')?.classList.contains('active');
-    const seccionMatematicaVisible = document.getElementById('seccionMatematica')?.classList.contains('active');
-    
-    // Filtrar por tipo de adecuación según qué anexo está visible
-    let tipoAdecuacionRequerido = null;
-    if (seccionEspanolVisible) {
-        tipoAdecuacionRequerido = 'no_significativa'; // ANEXO 2
-    } else if (seccionMatematicaVisible) {
-        tipoAdecuacionRequerido = 'significativa'; // ANEXO 10
-    }
-    // Si ninguno está visible, mostrar todos
-
     let num = 0;
     datos.estudiantes.forEach((estudiante) => {
-        // Filtrar por tipo de adecuación si hay uno requerido
-        if (tipoAdecuacionRequerido && estudiante.tipo_adecuacion !== tipoAdecuacionRequerido) return;
-        // Filtrar por sección si aplica
         if (filtro && normalizarClaveSeccion(estudiante.seccion) !== filtro) return;
         num++;
         
@@ -402,14 +380,7 @@ function actualizarInfoEstudiante(tipo) {
         const observaciones = selectedOption.dataset.observaciones;
         
         document.getElementById(`seccionAuto_${tipo}`).textContent = seccion;
-        
-        // En ANEXO 2 (español), no mostrar nivel de funcionamiento
-        if (tipo === 'esp') {
-            document.getElementById(`nivelAuto_${tipo}`).textContent = '';
-        } else {
-            // En ANEXO 10 (matemática), mostrar el nivel de funcionamiento
-            document.getElementById(`nivelAuto_${tipo}`).textContent = observaciones;
-        }
+        document.getElementById(`nivelAuto_${tipo}`).textContent = observaciones;
     } else {
         document.getElementById(`seccionAuto_${tipo}`).textContent = '';
         document.getElementById(`nivelAuto_${tipo}`).textContent = '';
@@ -506,7 +477,7 @@ function configurarBotones() {
     document.getElementById('btnGenerarPDF_esp').addEventListener('click', () => generarPDF('esp'));
     document.getElementById('btnGenerarPDF_mat').addEventListener('click', () => generarPDF('mat'));
     
-    // Botones de limpiar formulario
+    // Botones de limpiar
     document.getElementById('btnLimpiar_esp').addEventListener('click', () => limpiarFormulario('esp'));
     document.getElementById('btnLimpiar_mat').addEventListener('click', () => limpiarFormulario('mat'));
 }
@@ -572,15 +543,32 @@ function lineasInstitucionPdf(pdf, institucion, maxWidthMm, opciones = {}) {
     return pdf.splitTextToSize(String(institucion || '').trim(), maxWidthMm);
 }
 
-/** Solo numeración de página en cada hoja (sin texto de supervisión ni institución al final). */
+/** Pie compartido para los PDF de anexos: ubicación del centro al final. */
 function aplicarPiePaginasAnexoPdf(pdf) {
+    const textoPie = 'Puntarenas, Coto Brus, 600 metros sureste de la Tostadora de Café Río Brus, camino a Río Sereno.';
     const totalPaginas = pdf.internal.pages.length - 1;
     for (let i = 1; i <= totalPaginas; i++) {
         pdf.setPage(i);
         pdf.setFont('helvetica', 'normal');
         pdf.setFontSize(8);
-        pdf.text(`-- ${i} de ${totalPaginas} --`, 108, 278, { align: 'center' });
+        pdf.text(textoPie, 108, 278, { align: 'center' });
     }
+}
+
+function dibujarRecomendacionesPdf(pdf, texto, margen, anchoUtil, y) {
+    const contenido = String(texto || '').trim();
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(8);
+    pdf.line(margen, y, margen + anchoUtil, y);
+    pdf.line(margen, y + 10, margen + anchoUtil, y + 10);
+    pdf.line(margen, y + 20, margen + anchoUtil, y + 20);
+
+    if (contenido) {
+        const lineas = pdf.splitTextToSize(contenido, anchoUtil - 5);
+        pdf.text(lineas, margen, y + 6);
+    }
+
+    return y + 24;
 }
 
 // Generar PDF para ANEXO 2 (formato original)
@@ -603,15 +591,11 @@ async function generarPDFAnexo2(tipo, asignatura) {
     const circuito = document.getElementById(`circuito_${tipo}`).value;
     const nombreEstudiante = estudianteSelect.value;
     const seccion = document.getElementById(`seccionAuto_${tipo}`).textContent;
-    let nivel = document.getElementById(`nivelAuto_${tipo}`).textContent;
+    const nivel = document.getElementById(`nivelAuto_${tipo}`).textContent;
     const fecha = document.getElementById(`fechaAuto_${tipo}`).textContent;
     const docente = document.getElementById(`docente_${tipo}`).value;
+    const recomendaciones = document.getElementById(`recomendaciones_${tipo}`).value;
     const periodoSeleccionado = document.querySelector(`input[name="periodo_${tipo}"]:checked`).value;
-    
-    // En ANEXO 2, mostrar "No aplica" en lugar del nivel de funcionamiento
-    if (tipo === 'esp') {
-        nivel = 'No aplica';
-    }
     
     // ========== CARGAR Y AGREGAR IMAGEN DE ENCABEZADO ==========
     try {
@@ -667,8 +651,7 @@ async function generarPDFAnexo2(tipo, asignatura) {
     y += 8;
     
     pdf.setFontSize(11);
-    const yearAnexo2 = new Date().getFullYear();
-    pdf.text(`Curso lectivo ${yearAnexo2}`, 108, y, { align: 'center' });
+    pdf.text('Curso lectivo 2025', 108, y, { align: 'center' });
     y += 10;
     
     // ========== TABLA DE INFORMACIÓN CON BORDES ==========
@@ -937,19 +920,12 @@ async function generarPDFAnexo2(tipo, asignatura) {
     
     pdf.setFont('helvetica', 'normal');
     pdf.setFontSize(8);
-    // Obtener checkboxes checked
-    const apoyo1 = document.getElementById('apoyo_lenguaje_esp')?.checked ? 'X' : ' ';
-    const apoyo2 = document.getElementById('apoyo_fisica_esp')?.checked ? 'X' : ' ';
-    const apoyo3 = document.getElementById('apoyo_emocional_esp')?.checked ? 'X' : ' ';
-    const apoyo4 = document.getElementById('apoyo_visual_esp')?.checked ? 'X' : ' ';
-    const apoyo5 = document.getElementById('apoyo_aprendizaje_esp')?.checked ? 'X' : ' ';
-    
-    pdf.text(`(${apoyo1}) Terapia de Lenguaje`, margen, y);
-    pdf.text(`(${apoyo2}) Terapia Física`, margen + 50, y);
-    pdf.text(`(${apoyo3}) Problemas Emocionales`, margen + 95, y);
-    pdf.text(`(${apoyo4}) Discap. Visual`, margen + 145, y);
+    pdf.text('(   ) Terapia de Lenguaje', margen, y);
+    pdf.text('(   ) Terapia Física', margen + 50, y);
+    pdf.text('(   ) Problemas Emocionales', margen + 95, y);
+    pdf.text('(   ) Discap. Visual', margen + 145, y);
     y += 5;
-    pdf.text(`(${apoyo5}) Problemas de Aprendizaje`, margen, y);
+    pdf.text('(   ) Problemas de Aprendizaje', margen, y);
     y += 10;
     
     // Recomendaciones
@@ -957,21 +933,12 @@ async function generarPDFAnexo2(tipo, asignatura) {
     pdf.setFontSize(9);
     pdf.text('Recomendaciones:', margen, y);
     y += 6;
-    pdf.setFont('helvetica', 'normal');
-    
-    // Obtener el texto de recomendaciones
-    const recomendacionesTexto = document.getElementById('recomendaciones_esp')?.value || '';
-    
-    if (recomendacionesTexto.trim()) {
-        // Si hay texto, mostrar el contenido
-        const lineasRec = pdf.splitTextToSize(recomendacionesTexto, anchoUtil - 4);
-        pdf.text(lineasRec, margen + 2, y);
-        y += Math.max(lineasRec.length * 4 + 2, 12);
-    } else {
-        // Si no hay texto, mostrar líneas en blanco
-        pdf.line(margen, y, margen + 85, y);
-        pdf.line(margen + 100, y, margen + anchoUtil, y);
-        y += 12;
+    y = dibujarRecomendacionesPdf(pdf, recomendaciones, margen, anchoUtil, y);
+    y += 12;
+
+    if (y > 240) {
+        pdf.addPage();
+        y = 20;
     }
     
     // Firmas
@@ -1019,6 +986,7 @@ async function generarPDFAnexo10(asignatura) {
     const nivel = document.getElementById(`nivelAuto_${tipo}`).textContent;
     const fecha = document.getElementById(`fechaAuto_${tipo}`).textContent;
     const docente = document.getElementById(`docente_${tipo}`).value;
+    const recomendaciones = document.getElementById(`recomendaciones_${tipo}`).value;
     const periodoSeleccionado = document.querySelector(`input[name="periodo_${tipo}"]:checked`).value;
     
     // ========== CARGAR Y AGREGAR IMAGEN DE ENCABEZADO ==========
@@ -1074,8 +1042,7 @@ async function generarPDFAnexo10(asignatura) {
     pdf.text('(APOYO CURRICULAR SIGNIFICATIVO)', 108, y, { align: 'center' });
     y += 6;
     pdf.setFontSize(11);
-    const yearAnexo10 = new Date().getFullYear();
-    pdf.text(`Curso lectivo ${yearAnexo10}`, 108, y, { align: 'center' });
+    pdf.text('Curso lectivo 2025', 108, y, { align: 'center' });
     y += 10;
     
     // ========== INFORMACIÓN BÁSICA ==========
@@ -1379,64 +1346,27 @@ async function generarPDFAnexo10(asignatura) {
     }
     
     dibujarTablaApoyosAnexo10('Apoyos Evaluativos (A.C.)', 'tablaApoyosEvaluativos_mat');
+
+    // Recomendaciones
+    if (y > 235) {
+        pdf.addPage();
+        y = 20;
+    }
+
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(9);
+    pdf.text('Recomendaciones:', margen, y);
+    y += 6;
+    y = dibujarRecomendacionesPdf(pdf, recomendaciones, margen, anchoUtil, y);
+    y += 12;
     
-    // ========== APOYOS PERSONALES ESPECÍFICOS ==========
+    // ========== FIRMAS ==========
     if (y > 240) {
         pdf.addPage();
         y = 20;
     }
     
-    y += 5;
-    pdf.setFontSize(9);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text('Marque con X los Apoyos Personales Específicos que recibe esta persona estudiante:', margen, y);
-    y += 6;
-    
-    pdf.setFont('helvetica', 'normal');
-    pdf.setFontSize(8);
-    // Obtener checkboxes checked
-    const apoyo1_mat = document.getElementById('apoyo_lenguaje_mat')?.checked ? 'X' : ' ';
-    const apoyo2_mat = document.getElementById('apoyo_fisica_mat')?.checked ? 'X' : ' ';
-    const apoyo3_mat = document.getElementById('apoyo_emocional_mat')?.checked ? 'X' : ' ';
-    const apoyo4_mat = document.getElementById('apoyo_visual_mat')?.checked ? 'X' : ' ';
-    const apoyo5_mat = document.getElementById('apoyo_aprendizaje_mat')?.checked ? 'X' : ' ';
-    
-    pdf.text(`(${apoyo1_mat}) Terapia de Lenguaje`, margen, y);
-    pdf.text(`(${apoyo2_mat}) Terapia Física`, margen + 50, y);
-    pdf.text(`(${apoyo3_mat}) Problemas Emocionales`, margen + 95, y);
-    pdf.text(`(${apoyo4_mat}) Discap. Visual`, margen + 145, y);
-    y += 5;
-    pdf.text(`(${apoyo5_mat}) Problemas de Aprendizaje`, margen, y);
     y += 10;
-    
-    // ========== RECOMENDACIONES ==========
-    pdf.setFont('helvetica', 'bold');
-    pdf.setFontSize(9);
-    pdf.text('Recomendaciones:', margen, y);
-    y += 6;
-    pdf.setFont('helvetica', 'normal');
-    
-    // Obtener el texto de recomendaciones
-    const recomendacionesTexto_mat = document.getElementById('recomendaciones_mat')?.value || '';
-    
-    if (recomendacionesTexto_mat.trim()) {
-        // Si hay texto, mostrar el contenido
-        const lineasRec_mat = pdf.splitTextToSize(recomendacionesTexto_mat, anchoUtil - 4);
-        pdf.text(lineasRec_mat, margen + 2, y);
-        y += Math.max(lineasRec_mat.length * 4 + 2, 12);
-    } else {
-        // Si no hay texto, mostrar líneas en blanco
-        pdf.line(margen, y, margen + 85, y);
-        pdf.line(margen + 100, y, margen + anchoUtil, y);
-        y += 12;
-    }
-    
-    // ========== FIRMAS ==========
-    if (y > 250) {
-        pdf.addPage();
-        y = 20;
-    }
-    
     pdf.setFontSize(8);
     pdf.setFont('helvetica', 'normal');
     // Dibujar líneas primero
@@ -1447,8 +1377,6 @@ async function generarPDFAnexo10(asignatura) {
     pdf.text('Firma del Profesor (a)', margen + 20, y);
     pdf.text('VB. Comité de Apoyo', margen + 120, y);
     y += 8;
-    
-    pdf.text('Cc/ Expediente Único', margen, y);
     
     pdf.text('Cc/ Expediente Único', margen, y);
     
@@ -1530,8 +1458,6 @@ function limpiarFormulario(tipo) {
         }
     );
 }
-
-// Limpiar estudiantes personalizados guardados en localStorage
 
 // Función para mostrar notificaciones elegantes
 function mostrarNotificacion(titulo, mensaje, tipo = 'info') {
@@ -2320,36 +2246,21 @@ let intervaloAutoguardado = null;
 let hayCambiosSinGuardar = false;
 
 function iniciarAutoguardado() {
-    // Guardar cada 10 segundos (aumentado desde 30)
+    // Guardar cada 30 segundos
     intervaloAutoguardado = setInterval(() => {
         if (hayCambiosSinGuardar) {
             guardarEnLocalStorage();
         }
-    }, 10000);
+    }, 30000);
     
     // Cargar datos guardados al inicio
     cargarDesdeLocalStorage();
     
-    // Marcar campos como modificados y guardar después de 2 segundos de inactividad
+    // Marcar campos como modificados
     document.querySelectorAll('input, textarea, select').forEach(campo => {
-        let timerGuardado;
         campo.addEventListener('input', () => {
             hayCambiosSinGuardar = true;
             campo.classList.add('campo-modificado');
-            
-            // Guardar rápidamente después de que el usuario deje de escribir
-            clearTimeout(timerGuardado);
-            timerGuardado = setTimeout(() => {
-                guardarEnLocalStorage({ silent: true });
-            }, 2000);
-        });
-        
-        campo.addEventListener('change', () => {
-            hayCambiosSinGuardar = true;
-            // Guardar inmediatamente en select
-            if (campo.tagName === 'SELECT') {
-                guardarEnLocalStorage({ silent: true });
-            }
         });
     });
 }
@@ -2379,30 +2290,8 @@ function guardarEnLocalStorage(opciones = {}) {
                 docente: document.getElementById(`docente_${tipo}`)?.value?.trim() || '',
                 asignatura: document.getElementById(`asignatura_${tipo}`)?.value?.trim() || '',
                 periodo: document.querySelector(`input[name="periodo_${tipo}"]:checked`)?.value || 'primero',
-                timestamp: new Date().toISOString(),
-                apoyos: {} // Guardar códigos y resultados de apoyos
+                timestamp: new Date().toISOString()
             };
-            
-            // Guardar códigos seleccionados y textareas de apoyos
-            const secciones = ['personales', 'organizativos', 'materiales', 'curriculares', 'evaluativos'];
-            secciones.forEach(seccion => {
-                const tableId = tipo === 'esp' ? `tablaApoyos${seccion.charAt(0).toUpperCase() + seccion.slice(1)}_${tipo}` : `tablaApoyos${seccion.charAt(0).toUpperCase() + seccion.slice(1)}_${tipo}`;
-                const table = document.getElementById(tableId);
-                if (!table) return;
-                
-                datosFormulario[tipo].apoyos[seccion] = [];
-                table.querySelectorAll('tr').forEach((fila, index) => {
-                    const select = fila.querySelector('.codigo-select-anexo10');
-                    const textarea = fila.querySelector('textarea');
-                    
-                    if (select || textarea) {
-                        datosFormulario[tipo].apoyos[seccion].push({
-                            codigo: select?.value || '',
-                            resultado: textarea?.value || ''
-                        });
-                    }
-                });
-            });
         });
         
         // Guardar indicadores del ANEXO 10
@@ -2472,32 +2361,6 @@ function cargarDesdeLocalStorage() {
                 const radioPeriodo = document.querySelector(`input[name="periodo_${tipo}"][value="${datos.periodo}"]`);
                 if (radioPeriodo) radioPeriodo.checked = true;
             }
-            
-            // Restaurar códigos seleccionados y textareas de apoyos
-            if (datos.apoyos) {
-                const secciones = ['personales', 'organizativos', 'materiales', 'curriculares', 'evaluativos'];
-                secciones.forEach(seccion => {
-                    const tableId = tipo === 'esp' ? `tablaApoyos${seccion.charAt(0).toUpperCase() + seccion.slice(1)}_${tipo}` : `tablaApoyos${seccion.charAt(0).toUpperCase() + seccion.slice(1)}_${tipo}`;
-                    const table = document.getElementById(tableId);
-                    if (!table) return;
-                    
-                    const apoyoData = datos.apoyos[seccion] || [];
-                    table.querySelectorAll('tr').forEach((fila, index) => {
-                        const select = fila.querySelector('.codigo-select-anexo10');
-                        const textarea = fila.querySelector('textarea');
-                        
-                        if (apoyoData[index]) {
-                            if (select && apoyoData[index].codigo) {
-                                select.value = apoyoData[index].codigo;
-                                select.dispatchEvent(new Event('change'));
-                            }
-                            if (textarea && apoyoData[index].resultado) {
-                                textarea.value = apoyoData[index].resultado;
-                            }
-                        }
-                    });
-                });
-            }
         });
         
         // Restaurar indicadores del ANEXO 10
@@ -2560,154 +2423,6 @@ function configurarConfirmacionSalida() {
             return '';
         }
     });
-}
-
-// Cargar estudiantes personalizados desde localStorage
-function cargarEstudiantesPersonalizados() {
-    try {
-        const estudiantesGuardados = localStorage.getItem('estudiantesPersonalizados');
-        if (estudiantesGuardados) {
-            const estudiantesList = JSON.parse(estudiantesGuardados);
-            // Agregar solo los estudiantes que no existan ya en datos
-            estudiantesList.forEach(nuevoEst => {
-                const existe = datos.estudiantes.some(est => 
-                    est.nombre.toUpperCase() === nuevoEst.nombre.toUpperCase()
-                );
-                if (!existe) {
-                    datos.estudiantes.push(nuevoEst);
-                }
-            });
-            console.log(`Se cargaron ${estudiantesList.length} estudiantes personalizados`);
-        }
-    } catch (error) {
-        console.warn('Error al cargar estudiantes personalizados:', error);
-    }
-}
-
-// ======== FUNCIONES PARA AGREGAR ESTUDIANTE ========
-function configurarModalAgregarEstudiante() {
-    const btnAgregarEsp = document.getElementById('btnAgregarEstudiante_esp');
-    const btnAgregarMat = document.getElementById('btnAgregarEstudiante_mat');
-    const modal = document.getElementById('modalAgregarEstudiante');
-    const btnCerrar = document.getElementById('btnCerrarModal');
-    const btnCancelar = document.getElementById('btnCancelarModal');
-    const formAgregar = document.getElementById('formAgregarEstudiante');
-    
-    if (!btnAgregarEsp || !btnAgregarMat) return;
-    
-    // Abrir modal
-    btnAgregarEsp.addEventListener('click', () => abrirModalAgregarEstudiante(modal));
-    btnAgregarMat.addEventListener('click', () => abrirModalAgregarEstudiante(modal));
-    
-    // Cerrar modal
-    btnCerrar.addEventListener('click', () => cerrarModalAgregarEstudiante(modal));
-    btnCancelar.addEventListener('click', () => cerrarModalAgregarEstudiante(modal));
-    
-    // Cerrar al hacer click fuera del modal
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            cerrarModalAgregarEstudiante(modal);
-        }
-    });
-    
-    // Enviar formulario
-    formAgregar.addEventListener('submit', (e) => {
-        e.preventDefault();
-        guardarNuevoEstudiante(formAgregar, modal);
-    });
-}
-
-function abrirModalAgregarEstudiante(modal) {
-    modal.style.display = 'flex';
-    // Enfocar en el primer campo
-    setTimeout(() => {
-        document.getElementById('nombreEstudiante').focus();
-    }, 100);
-}
-
-function cerrarModalAgregarEstudiante(modal) {
-    modal.style.display = 'none';
-    // Limpiar formulario
-    document.getElementById('formAgregarEstudiante').reset();
-}
-
-function guardarNuevoEstudiante(form, modal) {
-    const nombre = document.getElementById('nombreEstudiante').value.trim();
-    const seccion = document.getElementById('seccionEstudiante').value.trim();
-    const cedula = document.getElementById('cedulaEstudiante').value.trim();
-    const observaciones = document.getElementById('observacionesEstudiante').value.trim();
-    const tipoAdecuacion = document.getElementById('tipoAdecuacionEstudiante').value;
-    
-    // Validar campos requeridos
-    if (!nombre || !seccion || !tipoAdecuacion) {
-        mostrarNotificacion('Campos incompletos', 'Por favor, complete todos los campos requeridos (marcados con *).' , 'error');
-        return;
-    }
-    
-    // Verificar si el estudiante ya existe
-    const estudianteExiste = datos.estudiantes.some(est => 
-        est.nombre.toUpperCase() === nombre.toUpperCase()
-    );
-    
-    if (estudianteExiste) {
-        mostrarNotificacion('Estudiante duplicado', `El estudiante "${nombre}" ya existe en la lista.`, 'error');
-        return;
-    }
-    
-    // Crear nuevo estudiante
-    const nuevoNumero = Math.max(...datos.estudiantes.map(e => e.numero), 0) + 1;
-    const nuevoEstudiante = {
-        numero: nuevoNumero,
-        nombre: nombre,
-        seccion: seccion,
-        cedula: cedula || '',
-        observaciones: observaciones || '',
-        tipo_adecuacion: tipoAdecuacion
-    };
-    
-    // Agregar a la lista de datos
-    datos.estudiantes.push(nuevoEstudiante);
-    
-    // Guardar solo el nuevo estudiante en localStorage
-    try {
-        // Obtener lista de estudiantes personalizados existentes
-        const estudiantesPersonalizados = JSON.parse(localStorage.getItem('estudiantesPersonalizados') || '[]');
-        
-        // Agregar el nuevo estudiante
-        estudiantesPersonalizados.push(nuevoEstudiante);
-        
-        // Guardar la lista actualizada
-        localStorage.setItem('estudiantesPersonalizados', JSON.stringify(estudiantesPersonalizados));
-        
-        console.log(`Estudiante "${nombre}" guardado en localStorage`);
-    } catch (error) {
-        console.warn('No se pudo guardar en localStorage:', error);
-    }
-    
-    // Cerrar modal y limpiar
-    cerrarModalAgregarEstudiante(modal);
-    
-    // Refrescar los selectores y filtros
-    poblarOpcionesFiltroSeccionGlobal();  // Actualizar botones de secciones
-    refrescarListasEstudiantesPorFiltroActual();  // Actualizar selectores
-    
-    // Seleccionar el nuevo estudiante automáticamente en el select correcto
-    const selectEsp = document.getElementById('estudianteSelect_esp');
-    const selectMat = document.getElementById('estudianteSelect_mat');
-    
-    if (tipoAdecuacion === 'no_significativa' && selectEsp) {
-        selectEsp.value = nombre;
-        selectEsp.dispatchEvent(new Event('change'));
-    } else if (tipoAdecuacion === 'significativa' && selectMat) {
-        selectMat.value = nombre;
-        selectMat.dispatchEvent(new Event('change'));
-    }
-    
-    // Actualizar tabla de estudiantes
-    llenarTablaEstudiantes(obtenerClaveFiltroSeccionActiva());
-    
-    // Mostrar notificación de éxito
-    mostrarNotificacion('¡Éxito!', `Estudiante "${nombre}" agregado correctamente.`, 'exito');
 }
 
 // Animación fadeOut

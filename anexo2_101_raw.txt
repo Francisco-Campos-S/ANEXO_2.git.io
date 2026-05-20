@@ -1,0 +1,101 @@
+1	ABREGO . WALTER	7-1			PA
+2	ABREGO MIRANDA HERIBERTO JORGE	7-4			PA
+3	Alemán Sandí Jimena	9-1	605320280		P.A 
+4	ALEMAN SANDI JONATHAN	7-2			PA
+5	Alvarado Guzmán Samantha	8-5	121620521		P.A.
+6	Arias Porras Britanny	11-4	120470353		PA
+7	Arias Vindas Hazel Lineth	9-6	120910578		P.A
+8	Artavia Ugarte Jhoan José	8-4	121540833		Déficit Atencional, dificultad lectora-comprensiva-analítica.
+9	AVILES JIMENEZ THAIRYN JOSEBETH	7-6			PA
+10	Avilés Jiménez Yareth Alejandra	9-2	120870488		P.A
+11	Barrantes Vargas Luis Felipe	9-3	605310238		P.A
+12	Beita Vargas Rony	8-4	121270094		P.A
+13	Bejerano Viviana	8-3	15910111		
+14	Blanco Cubero Aaron Fabricio	8-4	605410373		Dificultad procesos de atención y percepción, Dificultad para iniciar y finalizar una actividad. TEA
+15	Blanco García Roxiri Paola	8-3	605410463		PA
+16	Bonilla Fallas Valentina	8-5	605410700		Baja visión
+17	Cascante Vargas Víctor Manuel	8-4	605290162	X	P.A
+18	CHAVES ALVAREZ DARLENE ARELIZ	7-5			PA
+19	CHAVES SALAZAR MAIDELYN ANDREINA	8-1			PA
+20	Chaves Valerio Alisson Pamela	7-1	121600888	X	PA
+21	Chaves Valerio Royer David	9-4	121070344		P.A
+22	Cherlin Yarixa Picado Muñoz	8-1	605390846		PA
+23	Cruz González Lisandro	9-2	605350919		P.A
+24	DURAN VARGAS KEYLIN	7-1			PA
+25	Erikca Yariela Elizondo Soto	8-2	605380655		PA.
+26	Espinoza Villalobos Eidan Santiago	8-4	605360225		PA
+27	Flores Prado Lana Jazlin	9-4	121370062		P.A
+28	Fonseca Blanco Sharon Jenasha	12-1	119850637		PA
+29	FONSECA CONCEPCION ANGELO DAVID	7-5			PA
+30	García Miranda Marta	7-7	605380595	X	P.A.
+31	Gómez Granados Angely Lucía	10-5	120960941		P.A Tiempo extra en los trabajos.
+32	González Abarca Justin Estarlen	8-2	605280177		PA (PROBLEMAS DE APRENIZAJE)
+33	GONZÁLEZ ZAPATA OBETH MARTÍN	7-1			PA
+34	GUERRA CASTILLO AGUSTIN	7-6			PA
+35	GUTIERREZ DUARTE ANGELO EFREN	7-7			PA
+36	Guzmán Muñoz Alana	9-3	121030133		Déficit Atencional, dislexia, discalculia
+37	Isabella Francini Navas Mena	8-1	121470877		PA
+38	Jara Rojas Darllelyn Sofía	9-2	121210036		P.A
+39	JIMENEZ CRISOTO LUCIA	7-1			PA
+40	Jiménez Sánchez Alexander	8-1	605390658		PA
+41	JIMENEZ TRAÑA AXSEL FRANCISCO	7-3			PA
+42	Lezama Jiménez Matías Steff	9-6	605300916		P.A
+43	MARTINEZ CRUZ YIRLANI DANIELA	7-7			PA
+44	Martínez Cruz Youchuan Elias	9-5	605270052		P.A.
+45	MARTINEZ PORRAS TAYRA SOFIA	7-4			PA
+46	MAZA BORBON ANYELO YAHIR	7-5			PA
+47	Mejías Picado Luis Albeiro	10-2	605230446		PA
+48	Méndez Arauz Angelo Mateo	9-3	605330611		D.A
+49	Méndez Portugués Sebastián	8-1	605400754		P.A.
+50	Miranda Ábrego Ivan	8-3	605290160		PA
+51	MIRANDA FLORES KEINER ANDRES	7-7			PA
+52	Miranda López Edgar	8-6	YR2022-34924		
+53	MORA JIMENEZ NEITHAN GABRIEL	7-4			PA
+54	MORALES CHAVES RONALD YOPTIHEL	7-7			PA
+55	Morales Martínez Airay Nasaret	7-6	605320713	X	P.A.
+56	MORALES PALACIOS VICTOR	7-7			PA
+57	MORALES VILLEGAS JOSUE ESTEBAN	7-7			PA
+58	PEREZ CORDERO BENYAMIN YAZID	7-3			PA
+59	PEREZ SALAZAR ANGEL RAFAEL	7-5			PA
+60	Picado Coronado Gustavo.	8-6	121440095		PA.
+61	PINZON JIRON SAMANTHA VANESSA	7-2			PA
+62	QUESADA ABARCA ANDERSON STIP	7-3			PA
+63	Rivera García Blas Antonio	9-5	605320529		P.A
+64	Rodríguez Miranda Adara Naomi	9-1	121060478		PA Y TEA
+65	RODRIGUEZ MOYA SHELBY KYARA	7-1			PA
+66	Rojas Moya Tanisha	8-2	121630125		P.A.
+67	Salinas Bejarano Johan Fabián	7-7	605370959		P.A.
+68	Sánchez Montezuma Ronaldo	9-5	605280449		P.A
+69	SANDI QUIROS BRENDA SOFIA	7-3			PA
+70	Santos Morales Pablo	12-3	305700900		PA
+71	SEGURA MUÑOZ MATEO	7-4			PA
+72	Solís Chinchilla Kristel	10-1	120870651		PA
+73	SOTO MENA STACY IVON	7-6			PA
+74	UREÑA MORA NAZARETH MICKAELA	7-2			PA
+75	Valencia Alvarado Yenedith	7-7	605390378		Problemas Aprendizaje
+76	Valeria Sofía Solano Solono	8-6	605410453		PA.
+77	Vargas Arias Johan Mathias	9-6	121050092		Desorden fono articular (El desorden fonicoarticular es un tipo de trastorno del sonido del habla que se conoce como trastorno articulatorio1) Dislalia, trastornos generales del desarrollo, observación por trastorno espectro autista.
+78	VARGAS FONSECA ALLISON MARIEL	7-3			PA
+79	Vargas Quirós Arihana Victoria	8-3	121520796		Problemas Aprendizajes.
+80	VEGA CASCANTE JOSE PABLO	7-7			PA
+81	Vega Espinoza Reashell Yunaiki	8-2	121450601		P.A
+82	VENADO SONDOYA YORIEL ESTEBAN	7-5			PA
+83	Vidal Contreras Juan David	9-4	605230409		P.A
+84	Villegas Barahona Diarlyn	11-4	120680996		PA
+85	VIQUEZ SANABRIA BRANDON YOSUE	7-7			PA
+86	Zamora Campos Santiago	10-1	605260405		PA
+87	ZAPATA LOPEZ KEILYN NICOLE	7-1			PA
+88	ZAPATA MONTEZUMA NEYA	7-6			PA
+89	ZUÑIGA BUZANO ELIAZAR ISMAEL	7-6			PA
+90	Zúñiga Víquez Tayna Massiel	9-3	605320535		PA
+91	Vargas Sandí Wendy	9-4			PA
+92	Zúñiga Rivera Valeria Lisbeth	7-1			PA
+93	Vargas Borbón Kenny Nayelli	7-4			PA
+94	Varela Sánchez Maria Raquel	8-6	209690296		P.A
+95	Vásquez Díaz Xiany Fiorela.	7-7	605450294		P.A
+96	Jiménez Fernández Ariany	7-3	605440915		P.A
+97	Blanco Valverde Briana Alexandra	7-2	121830826		P.A
+98	Rodríguez Fuentes Johel Mauricio	7-3	605450449		P.A
+99	Agüero Alfaro Isaura María	7-4	605460517		P.A
+100	Duran Jiménez Mathew Alejandro	8-2	209500460		P.A.
+101	Emely Calderón Fallas	7-4	121640184		P.A.

@@ -36,8 +36,8 @@ body {
     font-weight: 400;
 }
 
-/* Patrón de fondo sutil - DESHABILITADO */
-/* body::before {
+/* Patrón de fondo sutil */
+body::before {
     content: '';
     position: fixed;
     top: 0;
@@ -48,7 +48,7 @@ body {
         repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(30, 64, 175, 0.01) 35px, rgba(30, 64, 175, 0.01) 70px);
     pointer-events: none;
     z-index: 1;
-} */
+}
 
 .container {
     position: relative;
@@ -610,6 +610,26 @@ body {
     margin-bottom: 1.5rem;
 }
 
+.info-estudiante .campo-select {
+    width: 100%;
+}
+
+.info-estudiante .select-container {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+}
+
+.info-estudiante .select-container select {
+    flex: 1 1 420px;
+    min-width: 420px;
+}
+
+.info-estudiante .btn-agregar-estudiante {
+    flex: 0 0 auto;
+}
+
 .info-auto {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -848,6 +868,33 @@ body {
 .resultado textarea:not(:placeholder-shown) {
     background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
     border-color: var(--success-color);
+}
+
+.seccion-recomendaciones {
+    width: 100%;
+}
+
+.recomendaciones-area {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.recomendaciones-input {
+    width: 100%;
+    min-height: 120px;
+    padding: 0.9rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font: inherit;
+    resize: vertical;
+    box-sizing: border-box;
+    display: block;
+}
+
+.recomendaciones-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 /* Animaciones de entrada */
@@ -2446,223 +2493,6 @@ tbody tr:nth-child(even) {
     background: #fffbeb;
 }
 
-/* Estilos para agregar estudiante */
-.select-container {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-}
-
-.select-container select {
-    flex: 1;
-    padding: 0.8rem 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 0.95rem;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    background: white;
-}
-
-.btn-agregar-estudiante {
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    border: 2px solid var(--primary-color);
-    background: white;
-    color: var(--primary-color);
-    border-radius: 8px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.btn-agregar-estudiante:hover {
-    background: var(--primary-color);
-    color: white;
-    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
-    transform: scale(1.05);
-}
-
-.btn-agregar-estudiante:active {
-    transform: scale(0.95);
-}
-
-/* Modal */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    animation: fadeInModal 0.3s ease;
-}
-
-@keyframes fadeInModal {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.modal-contenido {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    max-width: 500px;
-    width: 90%;
-    animation: slideInModal 0.3s ease;
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-@keyframes slideInModal {
-    from {
-        transform: translateY(-50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.modal-encabezado {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.modal-encabezado h2 {
-    font-size: 1.25rem;
-    color: var(--text-dark);
-    margin: 0;
-}
-
-.btn-cerrar-modal {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--text-light);
-    cursor: pointer;
-    transition: color 0.2s ease;
-    padding: 0.25rem;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.btn-cerrar-modal:hover {
-    color: var(--danger-color);
-}
-
-.form-agregar-estudiante {
-    padding: 1.5rem;
-}
-
-.form-grupo {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.form-grupo label {
-    font-weight: 600;
-    color: var(--text-dark);
-    font-size: 0.95rem;
-}
-
-.requerido {
-    color: var(--danger-color);
-    font-weight: bold;
-}
-
-.form-grupo input,
-.form-grupo select {
-    padding: 0.8rem 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 0.95rem;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    background: white;
-    font-family: inherit;
-}
-
-.form-grupo input:hover,
-.form-grupo select:hover {
-    border-color: var(--primary-color);
-    box-shadow: 0 2px 8px rgba(30, 64, 175, 0.06);
-}
-
-.form-grupo input:focus,
-.form-grupo select:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.08),
-                0 2px 8px rgba(30, 64, 175, 0.12);
-    background: white;
-}
-
-.modal-botones {
-    display: flex;
-    gap: 1rem;
-    justify-content: flex-end;
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-color);
-}
-
-.btn-cancelar,
-.btn-guardar {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 0.95rem;
-}
-
-.btn-cancelar {
-    background: var(--bg-light);
-    color: var(--text-dark);
-    border: 1px solid var(--border-color);
-}
-
-.btn-cancelar:hover {
-    background: var(--border-color);
-}
-
-.btn-guardar {
-    background: var(--success-color);
-    color: white;
-}
-
-.btn-guardar:hover {
-    background: #047857;
-    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
-}
-
-.btn-guardar:active {
-    transform: scale(0.98);
-}
-
 /* Mejoras responsive adicionales */
 @media (max-width: 768px) {
     .buscador-codigos {
@@ -2680,111 +2510,5 @@ tbody tr:nth-child(even) {
         right: 10px;
         left: 10px;
         text-align: center;
-    }
-    
-    .modal-contenido {
-        width: 95%;
-    }
-    
-    .select-container {
-        flex-direction: column;
-    }
-    
-    .btn-agregar-estudiante {
-        width: 100%;
-    }
-}
-
-/* ========== ESTILOS PARA SECCIÓN DE RECOMENDACIONES ========== */
-
-.seccion-recomendaciones {
-    margin: 2rem 0;
-    padding: 1.5rem;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    background: var(--bg-light);
-    page-break-inside: avoid;
-}
-
-.seccion-recomendaciones h4 {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-}
-
-.apoyos-checkboxes {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-}
-
-.apoyos-checkboxes label {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    cursor: pointer;
-    font-size: 0.95rem;
-    color: var(--text-dark);
-    user-select: none;
-}
-
-.apoyos-checkboxes input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    border: 2px solid var(--border-color);
-    border-radius: 4px;
-    accent-color: var(--primary-color);
-    flex-shrink: 0;
-}
-
-.apoyos-checkboxes input[type="checkbox"]:hover {
-    border-color: var(--primary-color);
-}
-
-.recomendaciones-area {
-    margin-top: 1rem;
-}
-
-.recomendaciones-input {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid var(--border-color);
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 0.95rem;
-    color: var(--text-dark);
-    resize: vertical;
-    font-weight: 400;
-    line-height: 1.5;
-}
-
-.recomendaciones-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-/* Estilos de impresión para recomendaciones */
-@media print {
-    .seccion-recomendaciones {
-        background: white;
-        border: 1px solid #000;
-        page-break-inside: avoid;
-    }
-    
-    .recomendaciones-input {
-        border: 1px solid #000;
-        font-size: 11pt;
-        padding: 8px;
-    }
-    
-    .apoyos-checkboxes input[type="checkbox"] {
-        appearance: auto;
-        -webkit-appearance: auto;
     }
 }
